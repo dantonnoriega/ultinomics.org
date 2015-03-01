@@ -6,12 +6,12 @@ url:        http://ultinomics.github.io/ultinomics.org
 
 # Jekyll configuration
 
-permalink:   /:categories/:title/
+# permalink:   /:categories/:title/
 markdown:    rdiscount
 highlighter: pygments
-sass:
-  sass_dir: _sass
-  style: compressed
+# sass:
+#   sass_dir: _sass
+#   style: compressed
 gems:
   - jekyll-sitemap
 
