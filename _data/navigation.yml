@@ -1,10 +1,12 @@
 # Site navigation links
 
 - title: About
-  url: http://dantonnoriega.me
+  url: http://ultinomics.github.io
+  # url: http://dantonnoriega.me
 
-- title: Vitae
-  url: http://dantonnoriega.me/CV/
+- title: Curriculum Vitae
+  url: http://ultinomics.github.io/CV/
 
 - title: Blog
-  url: http://ultinomics.org
+  # url: http://ultinomics.org
+  url: http://ultinomics.github.io/blog
