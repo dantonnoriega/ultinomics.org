@@ -1,25 +1,26 @@
 # Site wide configuration
 
+title:      ultinomics.org
 locale:     en_US
-url:
+# url:        http://ultinomics.org
 
 # Jekyll configuration
 
 # permalink:   /:categories/:title/
 markdown:    rdiscount
 highlighter: pygments
-# sass:
-#   sass_dir: _sass
-#   style: compressed
-# gems:
-#   - jekyll-sitemap
+sass:
+  sass_dir: _sass
+  style: compressed
+gems:
+  - jekyll-sitemap
 
-# kramdown:
-#   auto_ids: true
-#   footnote_nr: 1
-#   entity_output: as_char
-#   toc_levels: 1..6
-#   use_coderay: false
+kramdown:
+  auto_ids: true
+  footnote_nr: 1
+  entity_output: as_char
+  toc_levels: 1..6
+  use_coderay: false
 
 
 # Site owner
