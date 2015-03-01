@@ -2,12 +2,12 @@
 
 title:      ultinomics.org
 locale:     en_US
-url:        http://ultinomics.org
+# url:        http://ultinomics.org
 
 # Jekyll configuration
 
-# permalink:   /:categories/:title/
-markdown:    rdiscount
+permalink:   /:categories/:title/
+markdown:    kramdown
 highlighter: pygments
 sass:
   sass_dir: _sass
