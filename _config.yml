@@ -1,12 +1,12 @@
 # Site wide configuration
 
-title:      ultinomics.org
+#title:      ultinomics.org
 locale:     en_US
-url:        http://ultinomics.github.io/ultinomics.org
+#url:        http://ultinomics.github.io/ultinomics.org
 
 # Jekyll configuration
 
-# permalink:   /:categories/:title/
+permalink:   /:categories/:title/
 markdown:    kramdown
 highlighter: pygments
 sass:
