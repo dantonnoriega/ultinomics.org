@@ -8,7 +8,7 @@ url:        http://ultinomics.github.io/ultinomics.org
 
 permalink:   /:categories/:title/
 markdown:    kramdown
-highlighter: pygments
+highlighter: rouge
 sass:
   sass_dir: _sass
   style: compressed
@@ -28,7 +28,7 @@ owner:
   name: Danton Noriega
   avatar: disc.png
   bio: "mediocre economist. aspiring data scientist. ultimate player."
-  email: danton.noriega@gmail.com
+  email: danton_dot_noriega_at_gmail_dot_com
   # disqus-shortname:
   twitter: dantonnoriega
   # facebook: #username
