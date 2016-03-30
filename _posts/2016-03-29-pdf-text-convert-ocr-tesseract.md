@@ -1,13 +1,13 @@
 ---
 layout: post
-title: Converting Unsearchable PDF Files to Raw Text Using `convert` and `tesseract`.
-excerpt: "Often, one gets a PDF file that is a scan of a book or text, which cannot be searched (boo). A good (but not perfect) solution is to use Optical Character Recognition (OCR) to convert the pdf to a txt file and search that instead."
+title: Converting Unsearchable PDF Files (aka PDF scans) to Raw Text Using Command Line Tools `convert` and `tesseract`
+excerpt: "Often, one gets a PDF file that is a scan of a book or text, which cannot be searched (boo!). A good (but not perfect) solution is to use Optical Character Recognition (OCR) to convert the pdf to a txt file and search that instead."
 modified: 2016-03-129
 tags: [convert, tesseract, mac os x, terminal, ocr]
 comments: true
 ---
 
-# REQUIRES
+# Requirements
 
 1. Command line tools
 	+ `convert`
@@ -16,7 +16,7 @@ comments: true
 	I installed both using [`homebrew`](http://brew.sh/). I'm using Mac OS X 10.11.3. This is important because it affects the location of where these are install of my system `/usr/local/`.
 2. Knowledge and comfort using command line. Helps if you understand how to use the `find` command.
 
-# WORKFLOW
+# Workflow
 
 1. **Convert `pdf` to `tiff`. Best to put the tiffs in a different directory.**
 
@@ -26,16 +26,18 @@ comments: true
 
 	```bash
 	mkdir tiffs
-	convert -density 600 -depth 4 -monochrome -background white -blur 0x2 -shave '0x200' Bookscan.pdf tiffs/bookdown.tiff
+	convert -density 600 -depth 4 -monochrome -background white -blur '0x2' -shave '0x200' Bookscan.pdf tiffs/bookdown.tiff
 	```
 
 	To learn more about the commands, visit the [imagemagick site](http://www.imagemagick.org/script/command-line-options.php). But in brief:
 		- `density` adjust dpi
 		- `depth` is the number of bits
 		- `monochrome` black and white only
-		- `blur` is useful for super sharp letter scans
+		- `blur` is useful for super sharp scans (thin letters are bad, thick good)
 		- `shave` used to strip pixels from the output image (so you need to figure out the size of the final image). Useful when books have chapter names or numbers at the top (`0` is width, `200` is height)
-2. **Make sure we ignore annoying characters like 'ligatures'**. I found that, consistently, `tesseract` will add in [ligatures](https://en.wikipedia.org/wiki/Typographic_ligature), ruining the ability to search some words. But it is possible to keep `tesseract` from using them by creating a **blacklist**. I copied a list of ligatures from [this page](https://en.wikipedia.org/wiki/List_of_precomposed_Latin_characters_in_Unicode) 
+	
+	These options just happen to work for the set of documents I was converting.
+2. **Make sure we ignore annoying characters like 'ligatures'**. I found that, consistently, `tesseract` will add in [ligatures](https://en.wikipedia.org/wiki/Typographic_ligature), ruining the ability to search some words. But it is possible to keep `tesseract` from using them by creating a *blacklist*. I copied a list of ligatures from [this page](https://en.wikipedia.org/wiki/List_of_precomposed_Latin_characters_in_Unicode) 
 
 	One needs to add a file to `/usr/local/share/tessdata/configs/` (this assumes a `brew` installation in Mac OS X) to a file which contains the following:
 	
@@ -43,9 +45,9 @@ comments: true
 	tessedit_char_blacklist ꜲꜳÆæꜴꜵꜶꜷꜸꜹꜼꜽǱǲǳǄǅǆﬀﬃﬄﬁﬂĲĳǇǈǉǊǋǌŒœꝎꝏﬅᵫꝠꝡ
 	```
 
-	![Here is a screen shot of the file (named it `ligatures`).](https://www.dropbox.com/s/r9qivqz7dkmszhi/ligatures.png?raw=1)
+	![Here is a screen shot of the file (named it `ligatures`).](https://www.dropbox.com/s/z7rhn1v66cm4jli/ligatures.png?raw=1)
 	
-	![And here is what the directory `/usr/local/share/tessdata/configs/` looks like on my computer.](https://www.dropbox.com/s/pw0rbisa3hku1nz/ligatures_dir.png?raw=1)
+	![And here is what the directory `/usr/local/share/tessdata/configs/` looks like on my computer.](https://www.dropbox.com/s/24nwja0r0y6v2bo/ligatures_dir.png?raw=1)
 
 3. **Convert the tiff to text**. This is pretty straight-forward. `cd` into the folder with the tiffs then run the command:
 
@@ -66,3 +68,19 @@ comments: true
 Boom. Loops through and converts any and all tiffs in the directory (here, called `tiffs/`).
 
 And that's it!
+
+# An Example
+
+If you to try a real example, try it with the following pdf: [`bookscan.pdf`](https://www.dropbox.com/s/ihn23r2olq211za/bookscan.pdf?dl=0)
+
+Let's pretend you put `bookscan.pdf` in your downloads folder. We'll make a new folder called `tiffs/`, convert the pdf, then use `tesseract`.
+
+```bash
+cd ~/Downloads
+mkdir tiffs
+convert -density 600 -depth 4 -monochrome -background white -blur '0x2' -shave '200x450' bookscan.pdf tiffs/bookscan.tiff
+cd tiffs
+tesseract bookscan.tiff bookscan -l eng 
+```
+
+I get the resulting [tiff](https://www.dropbox.com/s/4twn7egdkdj0ox0/bookscan.tiff?raw=1) and [txt](https://www.dropbox.com/s/ik27dm6dmjsq05n/bookscan.txt?raw=1) files.
