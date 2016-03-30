@@ -34,11 +34,12 @@ convert -density 600 -depth 4 -monochrome -background white -blur '0x2' -shave '
 ```
 	
 To learn more about the commands, visit the [imagemagick site](http://www.imagemagick.org/script/command-line-options.php). But in brief:
-	* `density` adjust dpi
-	* `depth` is the number of bits
-	* `monochrome` black and white only
-	* `blur` is useful for super sharp scans (thin letters are bad, thick good)
-	* `shave` used to strip pixels from the output image (so you need to figure out the size of the final image). Useful when books have chapter names or numbers at the top (`0` is width, `200` is height)
+
++ `density` adjust dpi
++ `depth` is the number of bits
++ `monochrome` black and white only
++ `blur` is useful for super sharp scans (thin letters are bad, thick good)
++ `shave` used to strip pixels from the output image (so you need to figure out the size of the final image). Useful when books have chapter names or numbers at the top (`0` is width, `200` is height)
 
 (*Note that the option in the sample code above just happen to work for the set of documents I was converting.*)
 
