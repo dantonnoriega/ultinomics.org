@@ -28,7 +28,7 @@ Here is my solution.
 	
 	Below, we create a new directory called `tiffs/` in the same directory as `Bookscan.pdf` then convert the pdf to a tiff (here, its called `bookdown.tiff`).
 
-	```bash
+	```
 	mkdir tiffs
 	convert -density 600 -depth 4 -monochrome -background white -blur '0x2' -shave '0x200' Bookscan.pdf tiffs/bookdown.tiff
 	```
@@ -45,7 +45,7 @@ Here is my solution.
 
 	One needs to add a file to `/usr/local/share/tessdata/configs/` (this assumes a `brew` installation in Mac OS X) to a file which contains the following:
 	
-	```bash
+	```
 	tessedit_char_blacklist ꜲꜳÆæꜴꜵꜶꜷꜸꜹꜼꜽǱǲǳǄǅǆﬀﬃﬄﬁﬂĲĳǇǈǉǊǋǌŒœꝎꝏﬅᵫꝠꝡ
 	```
 
@@ -79,7 +79,7 @@ If you to try a real example, try it with the following pdf: [`bookscan.pdf`](ht
 
 Let's pretend you put `bookscan.pdf` in your downloads folder. We'll make a new folder called `tiffs/`, convert the pdf, then use `tesseract`.
 
-```bash
+```
 cd ~/Downloads
 mkdir tiffs
 convert -density 600 -depth 4 -monochrome -background white -blur '0x2' -shave '200x450' bookscan.pdf tiffs/bookscan.tiff
