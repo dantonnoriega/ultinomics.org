@@ -24,7 +24,7 @@ Here is my solution.
 
 ## 1. Convert `pdf` to `tiff`
 
-Say we have pdf `Bookscan.pdf`. We can create a new directory `tiffs/` and then use the command line tool `convert` the pdf to a tiff. It is important to use make dpi of *at least 300* (see the [Tesseract FAQ](https://github.com/tesseract-ocr/tesseract/wiki/FAQ)). 
+Say we have pdf `Bookscan.pdf`. We can create a new directory `tiffs/` and then use the command line tool `convert` to convert the pdf to a tiff.
 
 Below, we create a new directory called `tiffs/` in the same directory as `Bookscan.pdf` then convert the pdf to a tiff (here, its called `bookdown.tiff`).
 
@@ -60,13 +60,16 @@ tessedit_char_blacklist ꜲꜳÆæꜴꜵꜶꜷꜸꜹꜼꜽǱǲǳǄǅǆﬀﬃﬄ�
 
 This is pretty straight-forward. `cd` into the folder with the tiffs then run the command:
 
-
 ```bash
 cd tiffs/
 tesseract bookscan.tiff bookscan -l eng ligatures                                                            
 ```
 
 Here, we are assuming the text is in English (`-l eng`) and we load the `ligature` configs file (which loads the blacklist variable).
+
+For other tips, see the [Tesseract FAQ](https://github.com/tesseract-ocr/tesseract/wiki/FAQ). Sometimes, files are just too noisy or tilted to work. Most of the scans I've worked with are pretty clean, so I've not had to struggle with something too complicated.
+
+Granted, if there are problems with the image, the fixes would all have to be done in the conversion stage!
 
 ## 4. (optional) Looping Through Tiffs
 
