@@ -2,10 +2,14 @@
 layout: post
 title: Converting Unsearchable PDF Files (aka PDF scans) to Raw Text Using Command Line Tools `convert` and `tesseract`
 excerpt: "Often, one gets a PDF file that is a scan of a book or text, which cannot be searched (boo!). A good (but not perfect) solution is to use Optical Character Recognition (OCR) to convert the pdf to a txt file and search that instead."
-modified: 2016-03-129
-tags: [convert, tesseract, mac os x, terminal, ocr]
+modified: 2016-03-29
+tags: [convert, tesseract, mac os x, terminal, ocr, pdf, txt]
 comments: true
 ---
+
+Often, one gets a PDF file that is a scan of a book or text, which cannot be searched (boo!). A good (but not perfect) solution is to use Optical Character Recognition (OCR) to convert the pdf to a txt file and search that instead.
+
+Here is my solution.
 
 # Requirements
 
