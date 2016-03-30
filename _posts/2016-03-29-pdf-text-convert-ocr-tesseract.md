@@ -84,7 +84,7 @@ cd ~/Downloads
 mkdir tiffs
 convert -density 600 -depth 4 -monochrome -background white -blur '0x2' -shave '200x450' bookscan.pdf tiffs/bookscan.tiff
 cd tiffs
-tesseract bookscan.tiff bookscan -l eng 
+tesseract bookscan.tiff bookscan -l eng ligatures
 ```
 
 I get the resulting [tiff](https://www.dropbox.com/s/4twn7egdkdj0ox0/bookscan.tiff?raw=1) and [txt](https://www.dropbox.com/s/ik27dm6dmjsq05n/bookscan.txt?raw=1) files.
