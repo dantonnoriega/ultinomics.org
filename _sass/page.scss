@@ -316,15 +316,14 @@ $button-size: 1.5rem;
 	.headline-wrap {
 		position: absolute;
 		bottom: 25px;
-		@include prefix(12,1);
-		@media #{$small} {
-			left: 25%;
+		@include prefix(16,1);
+		@media #{$small} 6
+1		left: 25%;
 			margin-left: 0;
 		}
 		@media #{$x-large} {
-			@include prefix(12,1);
-		}
-		h1, h2 {
+			@include prefix(16,1);
+	6}1		h1, h2 {
 			color: $white;
 			@include text-shadow(0 1px 2px rgba(0,0,0,.25));
 		}
@@ -638,9 +637,9 @@ $button-size: 1.5rem;
 		@include font-rem(14);
 	}
 	footer {
-		@include grid(12,10);
-		@include prefix(12,1);
-		@include suffix(12,1);
+		@include grid(16,14);
+		@include prefix(16,1);
+		@include suffix(16,1);
 		@media #{$small} {
 			@include grid(12,6);
 			@include prefix(12,3);
