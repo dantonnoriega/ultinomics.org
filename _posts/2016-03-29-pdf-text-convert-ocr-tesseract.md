@@ -22,52 +22,60 @@ Here is my solution.
 
 # Workflow
 
-1. **Convert `pdf` to `tiff`. Best to put the tiffs in a different directory.**
+## 1. Convert `pdf` to `tiff`
 
-	Example, say we have pdf `Bookscan.pdf`. We can create a new directory `tiffs/` and then use the command line tool `convert` the pdf to a tiff. It is important to use make dpi of *at least 300* (see the [Tesseract FAQ](https://github.com/tesseract-ocr/tesseract/wiki/FAQ)). 
+Say we have pdf `Bookscan.pdf`. We can create a new directory `tiffs/` and then use the command line tool `convert` the pdf to a tiff. It is important to use make dpi of *at least 300* (see the [Tesseract FAQ](https://github.com/tesseract-ocr/tesseract/wiki/FAQ)). 
+
+Below, we create a new directory called `tiffs/` in the same directory as `Bookscan.pdf` then convert the pdf to a tiff (here, its called `bookdown.tiff`).
+
+```bash
+mkdir tiffs
+convert -density 600 -depth 4 -monochrome -background white -blur '0x2' -shave '0x200' Bookscan.pdf tiffs/bookdown.tiff
+```
 	
-	Below, we create a new directory called `tiffs/` in the same directory as `Bookscan.pdf` then convert the pdf to a tiff (here, its called `bookdown.tiff`).
+To learn more about the commands, visit the [imagemagick site](http://www.imagemagick.org/script/command-line-options.php). But in brief:
+	* `density` adjust dpi
+	* `depth` is the number of bits
+	* `monochrome` black and white only
+	* `blur` is useful for super sharp scans (thin letters are bad, thick good)
+	* `shave` used to strip pixels from the output image (so you need to figure out the size of the final image). Useful when books have chapter names or numbers at the top (`0` is width, `200` is height)
 
-	```
-	mkdir tiffs
-	convert -density 600 -depth 4 -monochrome -background white -blur '0x2' -shave '0x200' Bookscan.pdf tiffs/bookdown.tiff
-	```
+(*Note that the option in the sample code above just happen to work for the set of documents I was converting.*)
 
-	To learn more about the commands, visit the [imagemagick site](http://www.imagemagick.org/script/command-line-options.php). But in brief:
-		- `density` adjust dpi
-		- `depth` is the number of bits
-		- `monochrome` black and white only
-		- `blur` is useful for super sharp scans (thin letters are bad, thick good)
-		- `shave` used to strip pixels from the output image (so you need to figure out the size of the final image). Useful when books have chapter names or numbers at the top (`0` is width, `200` is height)
-	
-	These options just happen to work for the set of documents I was converting.
-2. **Make sure we ignore annoying characters like 'ligatures'**. I found that, consistently, `tesseract` will add in [ligatures](https://en.wikipedia.org/wiki/Typographic_ligature), ruining the ability to search some words. But it is possible to keep `tesseract` from using them by creating a *blacklist*. I copied a list of ligatures from [this page](https://en.wikipedia.org/wiki/List_of_precomposed_Latin_characters_in_Unicode) 
+## 2. Make Sure We Ignore Annoying Characters Like 'ligatures'
 
-	One needs to add a file to `/usr/local/share/tessdata/configs/` (this assumes a `brew` installation in Mac OS X) to a file which contains the following:
-	
-	```
-	tessedit_char_blacklist ꜲꜳÆæꜴꜵꜶꜷꜸꜹꜼꜽǱǲǳǄǅǆﬀﬃﬄﬁﬂĲĳǇǈǉǊǋǌŒœꝎꝏﬅᵫꝠꝡ
-	```
+I found that, consistently, `tesseract` will add in [ligatures](https://en.wikipedia.org/wiki/Typographic_ligature), ruining the ability to search some words. But it is possible to keep `tesseract` from using them by creating a *blacklist*. I copied a list of ligatures from [this page](https://en.wikipedia.org/wiki/List_of_precomposed_Latin_characters_in_Unicode) 
 
-	![Here is a screen shot of the file (named it `ligatures`).](https://www.dropbox.com/s/z7rhn1v66cm4jli/ligatures.png?raw=1)
-	
-	![And here is what the directory `/usr/local/share/tessdata/configs/` looks like on my computer.](https://www.dropbox.com/s/24nwja0r0y6v2bo/ligatures_dir.png?raw=1)
+One needs to add a file to `/usr/local/share/tessdata/configs/` (this assumes a `brew` installation in Mac OS X) to a file which contains the following:
 
-3. **Convert the tiff to text**. This is pretty straight-forward. `cd` into the folder with the tiffs then run the command:
+```bash
+tessedit_char_blacklist ꜲꜳÆæꜴꜵꜶꜷꜸꜹꜼꜽǱǲǳǄǅǆﬀﬃﬄﬁﬂĲĳǇǈǉǊǋǌŒœꝎꝏﬅᵫꝠꝡ
+```
 
-	```
-	cd tiffs/
-	tesseract bookscan.tiff bookscan -l eng ligatures                                                            
-	```
-	
-	Here, we are assuming the text is in English (`-l eng`) and we load the `ligature` configs file (which loads the blacklist variable).
+![Here is a screen shot of the file (named it `ligatures`).](https://www.dropbox.com/s/z7rhn1v66cm4jli/ligatures.png?raw=1)
 
-4. **Optional looping through tiffs**. If you `cd` into the folder full of tiffs, you can loop through all the tiffs and convert them to texts.
+![And here is what the directory `/usr/local/share/tessdata/configs/` looks like on my computer.](https://www.dropbox.com/s/24nwja0r0y6v2bo/ligatures_dir.png?raw=1)
 
-	```
-	cd tiffs/
-	find . -type f | while read F; do tesseract ${F} ${F%.tiff} -l eng ligatures; done;                          
-	```
+## 3. Convert the tiff to text
+
+This is pretty straight-forward. `cd` into the folder with the tiffs then run the command:
+
+
+```bash
+cd tiffs/
+tesseract bookscan.tiff bookscan -l eng ligatures                                                            
+```
+
+Here, we are assuming the text is in English (`-l eng`) and we load the `ligature` configs file (which loads the blacklist variable).
+
+## 4. (optional) Looping Through Tiffs
+
+If you `cd` into the folder full of tiffs, you can loop through all the tiffs and convert them to texts.
+
+```bash
+cd tiffs/
+find . -type f | while read F; do tesseract ${F} ${F%.tiff} -l eng ligatures; done;                          
+```
 
 Boom. Loops through and converts any and all tiffs in the directory (here, called `tiffs/`).
 
@@ -79,7 +87,7 @@ If you to try a real example, try it with the following pdf: [`bookscan.pdf`](ht
 
 Let's pretend you put `bookscan.pdf` in your downloads folder. We'll make a new folder called `tiffs/`, convert the pdf, then use `tesseract`.
 
-```
+```bash
 cd ~/Downloads
 mkdir tiffs
 convert -density 600 -depth 4 -monochrome -background white -blur '0x2' -shave '200x450' bookscan.pdf tiffs/bookscan.tiff
