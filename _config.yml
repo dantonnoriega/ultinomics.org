@@ -3,6 +3,7 @@
 title:      ultinomics.org
 locale:     en_US
 url:        http://ultinomics.github.io/ultinomics.org
+# url:        http://127.0.0.1:4000/
 
 # Jekyll configuration
 
@@ -15,6 +16,8 @@ sass:
 gems:
   - jekyll-sitemap
   - jekyll-gist
+  - jekyll-coffeescript
+  - jekyll-paginate
 
 kramdown:
   auto_ids: true
@@ -22,6 +25,8 @@ kramdown:
   entity_output: as_char
   toc_levels: 1..6
   enable_coderay: false
+  input: GFM
+  hard_wrap: false
 
 
 # Octopress
