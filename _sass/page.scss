@@ -23,9 +23,9 @@ body {
 
 /* Site name */
 .site-name {
-	@include grid(12,10);
-	@include prefix(12,1);
-	@include suffix(12,1);
+	@include grid(16,14);
+	@include prefix(16,1);
+	@include suffix(16,1);
 	margin-bottom: 1em;
 	float: none;
 	display: block;
@@ -44,9 +44,9 @@ body {
 
 /* Top navigation links */
 .top-navigation {
-	@include grid(12,10);
-	@include prefix(12,1);
-	@include suffix(12,1);
+	@include grid(16,14);
+	@include prefix(16,1);
+	@include suffix(16,1);
 	margin-bottom: 1em;
 	float: none;
 	display: block;
@@ -229,9 +229,9 @@ $button-size: 1.5rem;
 	.post,
 	.page {
 		@include container;
-		@include grid(24,22);
-		@include prefix(12,1);
-		@include suffix(12,1);
+		@include grid(16,14);
+		@include prefix(16,1);
+		@include suffix(16,1);
 		margin-bottom: 2em;
 		@media #{$small} {
 			@include grid(12,6);
@@ -247,9 +247,9 @@ $button-size: 1.5rem;
 /* Index listing specific styling */
 #index {
 	@include container;
-	@include grid(24,22);
-	@include prefix(12,1);
-	@include suffix(12,1);
+	@include grid(16,14);
+	@include prefix(16,1);
+	@include suffix(16,1);
 	margin-bottom: 2em;
 	@media #{$small} {
 		@include grid(12,6);
@@ -656,9 +656,9 @@ $button-size: 1.5rem;
 
 /* Related articles list */
 .related-articles {
-	@include grid(12,10);
-	@include prefix(12,1);
-	@include suffix(12,1);
+	@include grid(16,14);
+	@include prefix(16,1);
+	@include suffix(16,1);
 	margin-bottom: 2em;
 	@media #{$small} {
 		@include grid(12,6);
