@@ -31,14 +31,14 @@ body {
 	display: block;
 	@include font-rem(24);
 	@media #{$small} {
-		@include grid(12,2);
-		@include prefix(12,0.5);
-		@include suffix(12,0.5);
+		@include grid(16,2);
+		@include prefix(16,0.5);
+		@include suffix(16,0.5);
 		@include font-rem(24);
 	}
 	@media #{$x-large} {
-		@include grid(12,1.5);
-		@include prefix(12,2);
+		@include grid(16,1.5);
+		@include prefix(16,2);
 	}
 }
 
@@ -51,12 +51,12 @@ body {
 	float: none;
 	display: block;
 	@media #{$small} {
-		@include grid(12,9);
-		@include prefix(12,0);
-		@include suffix(12,0);
+		@include grid(16,9);
+		@include prefix(16,0);
+		@include suffix(16,0);
 	}
 	@media #{$x-large} {
-		@include grid(12,8);
+		@include grid(16,8);
 	}
 	ul {
 		margin: 0;
@@ -234,12 +234,12 @@ $button-size: 1.5rem;
 		@include suffix(16,1);
 		margin-bottom: 2em;
 		@media #{$small} {
-			@include grid(12,6);
-			@include prefix(12,0);
-			@include suffix(12,0);
+			@include grid(16,6);
+			@include prefix(16,0);
+			@include suffix(16,0);
 		}
 		@media #{$x-large} {
-			@include grid(12,4.5);
+			@include grid(16,4.5);
 		}
 	}
 }
@@ -252,12 +252,12 @@ $button-size: 1.5rem;
 	@include suffix(16,1);
 	margin-bottom: 2em;
 	@media #{$small} {
-		@include grid(12,6);
-		@include prefix(12,0);
-		@include suffix(12,0);
+		@include grid(16,6);
+		@include prefix(16,0);
+		@include suffix(16,0);
 	}
 	@media #{$x-large} {
-		@include grid(12,4.5);
+		@include grid(16,4.5);
 	}
 	h3 {
 		margin: 0;
@@ -378,9 +378,9 @@ $button-size: 1.5rem;
 	}
 	@media #{$small} {
 		display: block;
-		@include grid(12,2);
-		@include prefix(12,0.5);
-		@include suffix(12,0.5);
+		@include grid(16,2);
+		@include prefix(16,0.5);
+		@include suffix(16,0.5);
 		h3,
 		p,
 		.author-social {
@@ -407,8 +407,8 @@ $button-size: 1.5rem;
 		}
 	}
 	@media #{$x-large} {
-		@include grid(12,1.5);
-		@include prefix(12,2);
+		@include grid(16,1.5);
+		@include prefix(16,2);
 	}
 }
 
@@ -452,9 +452,9 @@ $button-size: 1.5rem;
 	font-size: 95%;
 	@media #{$large} {
 		display: block;
-		@include grid(12,2);
-		@include prefix(12,0.5);
-		@include suffix(12,0.5);
+		@include grid(16,2);
+		@include prefix(16,0.5);
+		@include suffix(16,0.5);
 		position: absolute;
 		top: 5.5em;
 		right: 0;
@@ -524,7 +524,7 @@ $button-size: 1.5rem;
 	margin: 0 0 1em;
 	padding: 0;
 	li {
-		@include grid(12,6);
+		@include grid(16,6);
 		@media #{$micro} {
 			width: 33.333333%;
 		}
@@ -641,14 +641,14 @@ $button-size: 1.5rem;
 		@include prefix(16,1);
 		@include suffix(16,1);
 		@media #{$small} {
-			@include grid(12,6);
-			@include prefix(12,3);
-			@include suffix(12,3);
+			@include grid(16,6);
+			@include prefix(16,3);
+			@include suffix(16,3);
 		}
 		@media #{$x-large} {
-			@include grid(12,4.5);
-			@include prefix(12,4);
-			@include suffix(12,3.5);
+			@include grid(16,4.5);
+			@include prefix(16,4);
+			@include suffix(16,3.5);
 		}
 	}
 }
@@ -660,14 +660,14 @@ $button-size: 1.5rem;
 	@include suffix(16,1);
 	margin-bottom: 2em;
 	@media #{$small} {
-		@include grid(12,6);
-		@include prefix(12,3);
-		@include suffix(12,3);
+		@include grid(16,6);
+		@include prefix(16,3);
+		@include suffix(16,3);
 	}
 	@media #{$x-large} {
-		@include grid(12,4.5);
-		@include prefix(12,4);
-		@include suffix(12,3.5);
+		@include grid(16,4.5);
+		@include prefix(16,4);
+		@include suffix(16,3.5);
 	}
 	h4 {
 		text-transform: uppercase;
