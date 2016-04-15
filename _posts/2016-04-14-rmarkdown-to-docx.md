@@ -37,7 +37,7 @@ These files are listed to show that folks can cite references (useful for academ
 
 # Requirements
 
-1. Microsoft Word for Mac in your Applications folder. This has been built and testing using Microsfot Word for Mac, Version `15.20`.
+1. Microsoft Word for Mac in your Applications folder. This has been built and testing using Microsoft Word for Mac, Version `15.20`.
 2. `R` with packages `rmarkdown` and `knitr`.
 3. An understanding of how to use GNU Make and terminal commands.
 
