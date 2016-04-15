@@ -20,7 +20,6 @@ In this repo, the `makefile` converts `example.Rmd` to `example.docx`.
 ## The output files
 
 - `example.html`
-- `example.md`
 - `example.docx`
 
 ## The main support file
@@ -44,15 +43,13 @@ These files are listed to show that folks can cite references (useful for academ
 
 # How to Use
 
-There are two options for going from `Rmd` to `docx`. The first `make` option is `all` and the second is `alt`. But before anything, make sure the `makefile` variables are set up accordingly. Simply change the `RMD_NAME` variable (and optional `CSL_FILE` and `BIBLIO_FILE` variables if you use the `alt` option) to suite your needs:
+There are two options for going from `Rmd` to `docx`. The first `make` option is `all` and the second is `alt`. But before anything, make sure the `makefile` variables are set up accordingly. Simply change the `RMD_NAME` variable to suite your needs:
 
 ```
 RMD_NAME = example.Rmd
-CSL_FILE = $(CURDIR)/chicago-author-date.csl
-BIBLIO_FILE = $(CURDIR)/bibliography.bib
 ```
 
-In this case, the `Rmd` file of interest is `example.Rmd`. We use the GNU `make` variable for current working directory, `$(CURDIR)`, to source the csl and bib files. Again, the optional variable are only really necessary if you need a standalone `html` file and use the `alt` option.
+In this case, the `Rmd` file of interest is `example.Rmd`.
 
 
 ## Option 1: `all`
@@ -67,7 +64,6 @@ Although one can knit an `html` file from a `Rmd` file---letting knitr run the `
 
 > output options `self_contained` **must** be `FALSE`. Otherwise, Microsoft Word will crash during the `html` to `docx` conversion. Keep in mind that this is the default option for `rmarkdown`. But I force it to be true in the `makefile`.
 
-Also, it doesn't matter if `keep_md: true`. I just prefer to have the `.md` regardless of what I'm doing. Basically, you want to make sure the final `html` file produce is as simple and clean as possible. The conversion script will do the rest.
 
 ## Option 2: `alt`
 
