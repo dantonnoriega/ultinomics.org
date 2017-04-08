@@ -1,9 +1,9 @@
-baseurl             = "http://ultinomics.org"
+baseurl             = "https://ultinomics.github.io/ultinomics.org/"
 builddrafts         = false
 relativeURLs        = false
 contentdir          = "content"
 languageCode        = "en-US"
-publishdir          = "public"
+publishdir          = "doc"
 title               = "ultinomics.org"
 
 
