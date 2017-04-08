@@ -4,5 +4,4 @@
 
 [posts]
     Name = "posts"
-    Title = "Show list of posts"
     URL = "/post"

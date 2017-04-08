@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Markdown on ultinomics.org</title>
-    <link>http://ultinomics.github.io/ultinomics.org/tags/markdown/index.xml</link>
+    <link>http://ultinomics.org/tags/markdown/index.xml</link>
     <description>Recent content in Markdown on ultinomics.org</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
     <managingEditor>danton_dot_noriega_at_gmail_dot_com (Danton Noriega)</managingEditor>
     <webMaster>danton_dot_noriega_at_gmail_dot_com (Danton Noriega)</webMaster>
     <copyright>(c) 2017 Danton Noriega.</copyright>
-    <atom:link href="http://ultinomics.github.io/ultinomics.org/tags/markdown/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://ultinomics.org/tags/markdown/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>RMarkdown (.Rmd) to MS Word (.docx) aka rmarkdown2docx</title>
-      <link>http://ultinomics.github.io/ultinomics.org/2016/04/14/rmarkdown-.rmd-to-ms-word-.docx-aka-rmarkdown2docx/</link>
+      <link>http://ultinomics.org/2016/04/14/rmarkdown-.rmd-to-ms-word-.docx-aka-rmarkdown2docx/</link>
       <pubDate>Thu, 14 Apr 2016 00:00:00 +0000</pubDate>
       <author>danton_dot_noriega_at_gmail_dot_com (Danton Noriega)</author>
-      <guid>http://ultinomics.github.io/ultinomics.org/2016/04/14/rmarkdown-.rmd-to-ms-word-.docx-aka-rmarkdown2docx/</guid>
+      <guid>http://ultinomics.org/2016/04/14/rmarkdown-.rmd-to-ms-word-.docx-aka-rmarkdown2docx/</guid>
       <description>
 
 &lt;p&gt;This post is just a copy of README.md file for the repo &lt;a href=&#34;https://github.com/ultinomics/rmarkdown2docx&#34;&gt;https://github.com/ultinomics/rmarkdown2docx&lt;/a&gt;. But it&amp;rsquo;s got everything you need to get your R Markdown file (.Rmd) to a clean, useful MS Word file (.docx).&lt;/p&gt;
