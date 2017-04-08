@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Reproducible on ultinomics.org</title>
+    <link>http://ultinomics.org/tags/reproducible/index.xml</link>
+    <description>Recent content in Reproducible on ultinomics.org</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-US</language>
+    <managingEditor>danton_dot_noriega_at_gmail_dot_com (Danton Noriega)</managingEditor>
+    <webMaster>danton_dot_noriega_at_gmail_dot_com (Danton Noriega)</webMaster>
+    <copyright>(c) 2017 Danton Noriega.</copyright>
+    <atom:link href="http://ultinomics.org/tags/reproducible/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>RMarkdown (.Rmd) to MS Word (.docx) aka rmarkdown2docx</title>
+      <link>http://ultinomics.org/2016/04/14/rmarkdown-.rmd-to-ms-word-.docx-aka-rmarkdown2docx/</link>
+      <pubDate>Thu, 14 Apr 2016 00:00:00 +0000</pubDate>
+      <author>danton_dot_noriega_at_gmail_dot_com (Danton Noriega)</author>
+      <guid>http://ultinomics.org/2016/04/14/rmarkdown-.rmd-to-ms-word-.docx-aka-rmarkdown2docx/</guid>
+      <description>
+
+&lt;p&gt;This post is just a copy of README.md file for the repo &lt;a href=&#34;https://github.com/ultinomics/rmarkdown2docx&#34;&gt;https://github.com/ultinomics/rmarkdown2docx&lt;/a&gt;. But it&amp;rsquo;s got everything you need to get your R Markdown file (.Rmd) to a clean, useful MS Word file (.docx).&lt;/p&gt;
+
+&lt;h1 id=&#34;description&#34;&gt;Description&lt;/h1&gt;
+
+&lt;p&gt;This set of scripts help convert the output of &lt;code&gt;Rmd&lt;/code&gt; files to &lt;code&gt;docx&lt;/code&gt; files. It is done by creating a clean &lt;code&gt;html&lt;/code&gt; file, then opening, converting, and saving the &lt;code&gt;html&lt;/code&gt; to &lt;code&gt;docx&lt;/code&gt; using &lt;a href=&#34;https://www.dropbox.com/s/4bwwsgod27w1fjo/word-2004-applescript-reference.pdf?dl=0&#34;&gt;Applescript and Microsoft Word&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;The workhorse script is a &lt;code&gt;makefile&lt;/code&gt;. Just change the variables to convert any &lt;code&gt;Rmd&lt;/code&gt; to &lt;code&gt;docx&lt;/code&gt;. However, only clean (not standalone) &lt;code&gt;html&lt;/code&gt; files will fully convert. There are some caveats (outlined below) if you want to keep a standalone &lt;code&gt;html&lt;/code&gt; file.&lt;/p&gt;
+
+&lt;p&gt;In this repo, the &lt;code&gt;makefile&lt;/code&gt; converts &lt;code&gt;example.Rmd&lt;/code&gt; to &lt;code&gt;example.docx&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h2 id=&#34;the-output-files&#34;&gt;The output files&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;example.html&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;example.docx&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;the-main-support-file&#34;&gt;The main support file&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;html2docx.sh&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;The &lt;code&gt;makefile&lt;/code&gt; automatically downloads the &lt;code&gt;html2docx.sh&lt;/code&gt; conversion script using &lt;code&gt;wget&lt;/code&gt; if it&amp;rsquo;s missing. (Requires unix command-line tool &lt;code&gt;wget&lt;/code&gt; to download if missing.)&lt;/p&gt;
+
+&lt;h2 id=&#34;optional-support-files&#34;&gt;Optional support files&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;chicago-author-date.csl&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;bibliography.bib&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;These files are listed to show that folks can cite references (useful for academics). To learn more about these RMarkdown &lt;code&gt;yaml&lt;/code&gt; options, see this &lt;a href=&#34;http://rmarkdown.rstudio.com/authoring_bibliographies_and_citations.html&#34;&gt;RStudio post&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h1 id=&#34;requirements&#34;&gt;Requirements&lt;/h1&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Microsoft Word for Mac in your Applications folder. This has been built and testing using Microsoft Word for Mac, Version &lt;code&gt;15.20&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;R&lt;/code&gt; with packages &lt;code&gt;rmarkdown&lt;/code&gt; and &lt;code&gt;knitr&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;An understanding of how to use GNU Make and terminal commands.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h1 id=&#34;how-to-use&#34;&gt;How to Use&lt;/h1&gt;
+
+&lt;p&gt;There are two options for going from &lt;code&gt;Rmd&lt;/code&gt; to &lt;code&gt;docx&lt;/code&gt;. The first &lt;code&gt;make&lt;/code&gt; option is &lt;code&gt;all&lt;/code&gt; and the second is &lt;code&gt;alt&lt;/code&gt;. But before anything, make sure the &lt;code&gt;makefile&lt;/code&gt; variables are set up accordingly. Simply change the &lt;code&gt;RMD_NAME&lt;/code&gt; variable to suite your needs:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;RMD_NAME = example.Rmd
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;In this case, the &lt;code&gt;Rmd&lt;/code&gt; file of interest is &lt;code&gt;example.Rmd&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h2 id=&#34;option-1-all&#34;&gt;Option 1: &lt;code&gt;all&lt;/code&gt;&lt;/h2&gt;
+
+&lt;p&gt;Simply run&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;make all
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Although one can knit an &lt;code&gt;html&lt;/code&gt; file from a &lt;code&gt;Rmd&lt;/code&gt; file&amp;mdash;letting knitr run the &lt;code&gt;pandoc&lt;/code&gt; step&amp;mdash;there is a caveat.&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;output options &lt;code&gt;self_contained&lt;/code&gt; &lt;strong&gt;must&lt;/strong&gt; be &lt;code&gt;FALSE&lt;/code&gt;. Otherwise, Microsoft Word will crash during the &lt;code&gt;html&lt;/code&gt; to &lt;code&gt;docx&lt;/code&gt; conversion. Keep in mind that this is the default option for &lt;code&gt;rmarkdown&lt;/code&gt;. But I force it to be true in the &lt;code&gt;makefile&lt;/code&gt;.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&#34;option-2-alt&#34;&gt;Option 2: &lt;code&gt;alt&lt;/code&gt;&lt;/h2&gt;
+
+&lt;p&gt;You cannot convert a self contained (aka standalone) &lt;code&gt;html&lt;/code&gt; file to a &lt;code&gt;docx&lt;/code&gt;. (At least I&amp;rsquo;ve found that it always crashes.) If you want the option to have a standalone &lt;code&gt;html&lt;/code&gt; file, then then we use option &lt;code&gt;alt&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Simply run&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;make alt
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This will produce a clean (not self contained) &lt;code&gt;html&lt;/code&gt;, create a &lt;code&gt;docx&lt;/code&gt; file, then replace the clean &lt;code&gt;html&lt;/code&gt; file with a standalone file.&lt;/p&gt;
+
+&lt;p&gt;It&amp;rsquo;s a little hackish, but it allows you to create a &lt;code&gt;docx&lt;/code&gt; AND keep a standalone &lt;code&gt;html&lt;/code&gt; file.&lt;/p&gt;
+
+&lt;h1 id=&#34;first-run-word-will-ask-for-permission&#34;&gt;First Run, Word will ask for permission&lt;/h1&gt;
+
+&lt;p&gt;When you first run the script, do not worry if Word asks for permissions. Once you give Word access to the folder and files, it should run just fine and without asking again every time after.&lt;/p&gt;
+
+&lt;h1 id=&#34;shortcomings&#34;&gt;Shortcomings&lt;/h1&gt;
+
+&lt;h2 id=&#34;footnotes&#34;&gt;Footnotes&lt;/h2&gt;
+
+&lt;p&gt;Footnotes, not matter what, go to the bottom of the page. Just how html files work.&lt;/p&gt;
+
+&lt;h1 id=&#34;thanks&#34;&gt;Thanks&lt;/h1&gt;
+
+&lt;p&gt;A special thanks to &lt;a href=&#34;http://github.com/andrewheiss&#34;&gt;Andrew Heiss&lt;/a&gt;, from whom I&amp;rsquo;ve learned almost all I know about makefiles and converting markdown files to docx files.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>
