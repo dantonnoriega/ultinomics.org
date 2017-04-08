@@ -32,7 +32,7 @@ paginatePath = "page"
 
 [author]
     name = "Danton Noriega"
-    email = "danton_dot_noriega_at_gmail_dot_com"
+    email = "danton.noriega@gmail.com"
 
 #
 # All parameters below here are optional and can be mixed and matched.
@@ -55,7 +55,7 @@ paginatePath = "page"
     highlight = "tomorrow-night-eighties"
 
     # Sidebar social links.
-    github = "github" # Your Github profile ID
+    github = "ultinomics" # Your Github profile ID
     linkedin = "dantonnoriega" # Your LinkedIn profile ID (from public URL)
     twitter = "dantonnoriega" # Your Twitter profile ID
 
