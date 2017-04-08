@@ -3,7 +3,7 @@ builddrafts         = false
 relativeURLs        = false
 contentdir          = "content"
 languageCode        = "en-US"
-publishdir          = "doc"
+publishdir          = "docs"
 title               = "ultinomics.org"
 
 
