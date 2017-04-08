@@ -1,4 +1,4 @@
-baseurl             = "https://ultinomics.github.io/ultinomics.org/"
+baseurl             = "http://ultinomics"
 builddrafts         = false
 relativeURLs        = false
 contentdir          = "content"
