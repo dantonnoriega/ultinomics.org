@@ -1,0 +1,69 @@
+baseurl             = "https://ultinomics.github.io/ultinomics.org"
+builddrafts         = false
+relativeURLs        = false
+contentdir          = "content"
+languageCode        = "en-US"
+publishdir          = "doc"
+title               = "ultinomics.org"
+
+
+# Copyright
+copyright = "(c) 2017 Danton Noriega."
+
+
+# Metadata format
+# "yaml", "toml", "json"
+metaDataFormat = "yaml"
+
+# Theme to use (located in /themes/THEMENAME/)
+theme = "hyde-y"
+
+# Pagination
+paginate = 10
+paginatePath = "page"
+
+[permalinks]
+    post = "/:year/:month/:day/:slug/"
+    code = "/:slug/"
+
+[taxonomies]
+    tag = "tags"
+    topic = "topics"
+
+[author]
+    name = "Danton Noriega"
+    email = "danton_dot_noriega_at_gmail_dot_com"
+
+#
+# All parameters below here are optional and can be mixed and matched.
+#
+[params]
+    # You can use markdown here.
+    topline = "random, infrequent posts about R and programming.<br/><br/><p style=\"font-style:italic\">mediocre economist.<br>aspiring data scientist.<br>ultimate player.</p>"
+    footline = "throw discs and code with <i class='fa fa-heart'></i>"
+
+    # Sidebar position
+    # false, true, "left", "right"
+    sidebar = "left"
+
+    # Text for the top menu link, which goes the root URL for the site.
+    # Default (if omitted) is "Home".
+    home = "home"
+
+    # Select a syntax highight.
+    # Check the static/css/highlight directory for options.
+    highlight = "tomorrow-night-eighties"
+
+    # Sidebar social links.
+    github = "github" # Your Github profile ID
+    linkedin = "dantonnoriega" # Your LinkedIn profile ID (from public URL)
+    twitter = "dantonnoriega" # Your Twitter profile ID
+
+[blackfriday]
+    angledQuotes = true
+    fractions = false
+    hrefTargetBlank = false
+    latexDashes = true
+    plainIdAnchors = true
+    extensions = []
+    extensionmask = []

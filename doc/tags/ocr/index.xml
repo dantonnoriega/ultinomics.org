@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Ocr on ultinomics.org</title>
+    <link>/tags/ocr/index.xml</link>
+    <description>Recent content in Ocr on ultinomics.org</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-US</language>
+    <managingEditor>danton_dot_noriega_at_gmail_dot_com (Danton Noriega)</managingEditor>
+    <webMaster>danton_dot_noriega_at_gmail_dot_com (Danton Noriega)</webMaster>
+    <copyright>(c) 2017 Danton Noriega.</copyright>
+    <atom:link href="/tags/ocr/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Converting Unsearchable PDF Files (aka PDF scans) to Raw Text Using Command Line Tools `convert` and `tesseract`</title>
+      <link>/2016/03/29/converting-unsearchable-pdf-files-aka-pdf-scans-to-raw-text-using-command-line-tools-convert-and-tesseract/</link>
+      <pubDate>Tue, 29 Mar 2016 00:00:00 +0000</pubDate>
+      <author>danton_dot_noriega_at_gmail_dot_com (Danton Noriega)</author>
+      <guid>/2016/03/29/converting-unsearchable-pdf-files-aka-pdf-scans-to-raw-text-using-command-line-tools-convert-and-tesseract/</guid>
+      <description>
+
+&lt;p&gt;Often, one gets a PDF file that is a scan of a book or text, which cannot be searched (boo!). A good (but not perfect) solution is to use Optical Character Recognition (OCR) to convert the pdf to a txt file and search that instead.&lt;/p&gt;
+
+&lt;p&gt;Here is my solution.&lt;/p&gt;
+
+&lt;h1 id=&#34;requirements&#34;&gt;Requirements&lt;/h1&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;Command line tools&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;convert&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;tesseract&lt;/code&gt;
+&lt;br /&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;I installed both using &lt;a href=&#34;http://brew.sh/&#34;&gt;&lt;code&gt;homebrew&lt;/code&gt;&lt;/a&gt;. I&amp;rsquo;m using Mac OS X 10.11.3. This is important because it affects the location of where these are install of my system &lt;code&gt;/usr/local/&lt;/code&gt;.&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Knowledge and comfort using command line. Helps if you understand how to use the &lt;code&gt;find&lt;/code&gt; command.&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h1 id=&#34;workflow&#34;&gt;Workflow&lt;/h1&gt;
+
+&lt;h2 id=&#34;1-convert-pdf-to-tiff&#34;&gt;1. Convert &lt;code&gt;pdf&lt;/code&gt; to &lt;code&gt;tiff&lt;/code&gt;&lt;/h2&gt;
+
+&lt;p&gt;Say we have pdf &lt;code&gt;Bookscan.pdf&lt;/code&gt;. We can create a new directory &lt;code&gt;tiffs/&lt;/code&gt; and then use the command line tool &lt;code&gt;convert&lt;/code&gt; to convert the pdf to a tiff.&lt;/p&gt;
+
+&lt;p&gt;Below, we create a new directory called &lt;code&gt;tiffs/&lt;/code&gt; in the same directory as &lt;code&gt;Bookscan.pdf&lt;/code&gt; then convert the pdf to a tiff (here, its called &lt;code&gt;bookdown.tiff&lt;/code&gt;).&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;mkdir tiffs
+convert -density 600 -depth 4 -monochrome -background white -blur &#39;0x2&#39; -shave &#39;0x200&#39; Bookscan.pdf tiffs/bookdown.tiff
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;To learn more about the commands, visit the &lt;a href=&#34;http://www.imagemagick.org/script/command-line-options.php&#34;&gt;imagemagick site&lt;/a&gt;. But in brief:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;density&lt;/code&gt; adjust dpi&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;depth&lt;/code&gt; is the number of bits&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;monochrome&lt;/code&gt; black and white only&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;blur&lt;/code&gt; is useful for super sharp scans (thin letters are bad, thick good)&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;shave&lt;/code&gt; used to strip pixels from the output image (so you need to figure out the size of the final image). Useful when books have chapter names or numbers at the top (&lt;code&gt;0&lt;/code&gt; is width, &lt;code&gt;200&lt;/code&gt; is height)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;(&lt;em&gt;Note that the option in the sample code above just happen to work for the set of documents I was converting.&lt;/em&gt;)&lt;/p&gt;
+
+&lt;h2 id=&#34;2-make-sure-we-ignore-annoying-characters-like-ligatures&#34;&gt;2. Make Sure We Ignore Annoying Characters Like &amp;lsquo;ligatures&amp;rsquo;&lt;/h2&gt;
+
+&lt;p&gt;I found that, consistently, &lt;code&gt;tesseract&lt;/code&gt; will add in &lt;a href=&#34;https://en.wikipedia.org/wiki/Typographic_ligature&#34;&gt;ligatures&lt;/a&gt;, ruining the ability to search some words. But it is possible to keep &lt;code&gt;tesseract&lt;/code&gt; from using them by creating a &lt;em&gt;blacklist&lt;/em&gt;. I copied a list of ligatures from &lt;a href=&#34;https://en.wikipedia.org/wiki/List_of_precomposed_Latin_characters_in_Unicode&#34;&gt;this page&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;One needs to add a file to &lt;code&gt;/usr/local/share/tessdata/configs/&lt;/code&gt; (this assumes a &lt;code&gt;brew&lt;/code&gt; installation in Mac OS X) to a file which contains the following:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;tessedit_char_blacklist ꜲꜳÆæꜴꜵꜶꜷꜸꜹꜼꜽǱǲǳǄǅǆﬀﬃﬄﬁﬂĲĳǇǈǉǊǋǌŒœꝎꝏﬅᵫꝠꝡ
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://www.dropbox.com/s/z7rhn1v66cm4jli/ligatures.png?raw=1&#34; alt=&#34;Here is a screen shot of the file (named it `ligatures`).&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://www.dropbox.com/s/24nwja0r0y6v2bo/ligatures_dir.png?raw=1&#34; alt=&#34;And here is what the directory `/usr/local/share/tessdata/configs/` looks like on my computer.&#34; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;3-convert-the-tiff-to-text&#34;&gt;3. Convert the tiff to text&lt;/h2&gt;
+
+&lt;p&gt;This is pretty straight-forward. &lt;code&gt;cd&lt;/code&gt; into the folder with the tiffs then run the command:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;cd tiffs/
+tesseract bookscan.tiff bookscan -l eng ligatures                                                            
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Here, we are assuming the text is in English (&lt;code&gt;-l eng&lt;/code&gt;) and we load the &lt;code&gt;ligature&lt;/code&gt; configs file (which loads the blacklist variable).&lt;/p&gt;
+
+&lt;p&gt;For other tips, see the &lt;a href=&#34;https://github.com/tesseract-ocr/tesseract/wiki/FAQ&#34;&gt;Tesseract FAQ&lt;/a&gt;. Sometimes, files are just too noisy or tilted to work. Most of the scans I&amp;rsquo;ve worked with are pretty clean, so I&amp;rsquo;ve not had to struggle with something too complicated.&lt;/p&gt;
+
+&lt;p&gt;Granted, if there are problems with the image, the fixes would all have to be done in the conversion stage!&lt;/p&gt;
+
+&lt;h2 id=&#34;4-optional-looping-through-tiffs&#34;&gt;4. (optional) Looping Through Tiffs&lt;/h2&gt;
+
+&lt;p&gt;If you &lt;code&gt;cd&lt;/code&gt; into the folder full of tiffs, you can loop through all the tiffs and convert them to texts.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;cd tiffs/
+find . -type f | while read F; do tesseract ${F} ${F%.tiff} -l eng ligatures; done;                          
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Boom. Loops through and converts any and all tiffs in the directory (here, called &lt;code&gt;tiffs/&lt;/code&gt;).&lt;/p&gt;
+
+&lt;p&gt;And that&amp;rsquo;s it!&lt;/p&gt;
+
+&lt;h1 id=&#34;an-example&#34;&gt;An Example&lt;/h1&gt;
+
+&lt;p&gt;If you to try a real example, try it with the following pdf: &lt;a href=&#34;https://www.dropbox.com/s/ihn23r2olq211za/bookscan.pdf?dl=0&#34;&gt;&lt;code&gt;bookscan.pdf&lt;/code&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Let&amp;rsquo;s pretend you put &lt;code&gt;bookscan.pdf&lt;/code&gt; in your downloads folder. We&amp;rsquo;ll make a new folder called &lt;code&gt;tiffs/&lt;/code&gt;, convert the pdf, then use &lt;code&gt;tesseract&lt;/code&gt;.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;cd ~/Downloads
+mkdir tiffs
+convert -density 600 -depth 4 -monochrome -background white -blur &#39;0x2&#39; -shave &#39;200x450&#39; bookscan.pdf tiffs/bookscan.tiff
+cd tiffs
+tesseract bookscan.tiff bookscan -l eng ligatures
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;I get the resulting &lt;a href=&#34;https://www.dropbox.com/s/4twn7egdkdj0ox0/bookscan.tiff?raw=1&#34;&gt;tiff&lt;/a&gt; and &lt;a href=&#34;https://www.dropbox.com/s/ik27dm6dmjsq05n/bookscan.txt?raw=1&#34;&gt;txt&lt;/a&gt; files.&lt;/p&gt;
+
+&lt;script&gt;
+  (function(i,s,o,g,r,a,m){i[&#39;GoogleAnalyticsObject&#39;]=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,&#39;script&#39;,&#39;https://www.google-analytics.com/analytics.js&#39;,&#39;ga&#39;);
+
+  ga(&#39;create&#39;, &#39;UA-76163349-1&#39;, &#39;auto&#39;);
+  ga(&#39;send&#39;, &#39;pageview&#39;);
+
+&lt;/script&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>
