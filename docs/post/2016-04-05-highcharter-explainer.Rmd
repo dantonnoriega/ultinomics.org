@@ -4,6 +4,10 @@ author: "Danton Noriega"
 date: 2017-04-05
 categories: ["R", "highcharter"]
 tags: ["R Markdown", "highcharter", "Highcharts"]
+output:
+  blogdown::html_page:
+    toc: true
+    toc_depth: 3
 ---
 
 ```{r setup, include=FALSE}
@@ -415,7 +419,7 @@ If you just want a plot with no special customizations, no problem! Easy, clean,
 
 
 
-# Outline
+# Outline for Future Posts
 
 - Basics
     - [x] Understanding the series
