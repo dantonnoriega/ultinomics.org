@@ -14,7 +14,7 @@ output:
 knitr::opts_chunk$set(echo = TRUE, cache = FALSE, comment = NA, message = FALSE, warning = FALSE)
 ```
 
-Rstudio's Mine Cetinkaya-Rundel had a [recent post about the `highcharter` package](https://www.rstudio.com/rviews/2016/10/19/creating-interactive-plots-with-r-and-highcharts/), a wrapper for the [Highcharts](http://www.highcharts.com) javascripts library that lets you create super sweet interactive charts in R.
+Rstudio's Mine Cetinkaya-Rundel had a [post about the `highcharter` package](https://www.rstudio.com/rviews/2016/10/19/creating-interactive-plots-with-r-and-highcharts/), a wrapper for the [Highcharts](http://www.highcharts.com) javascripts library that lets you create super sweet interactive charts in R.
 
 [Joshua Kunst's `highcharter` package](http://jkunst.com/highcharter/) has become my go-to plotting package once I reach the production phase and know I will be using HTML. This is mainly for 3 reasons:
 
@@ -42,7 +42,7 @@ But I also want to say that my approach to building plots in `highcharter` can f
 
 ## Prerequisites
 
-This post assumes that you have a good handle of the `tidyverse` as well as basic object and list construction. In short, this is not a beginner's tutorial but also no an advanced `R` tutorial.
+This post assumes that you have a good handle of the `tidyverse` as well as basic object and list construction. In short, this is not a beginner's tutorial but also not an advanced `R` tutorial.
 
 
 # Series: `highcharter` and Highcharts building blocks
@@ -205,7 +205,7 @@ Let's work through an example by editing the x-axis looking only at the [Highcha
 ![](/img/xaxis-clean.png)
 &nbsp;
 
-If I want to change the min, max, the line width, and some labeling quicks of the x-axis, then I just look at the API options for `xAxis` and locate the corresponding values. 
+If I want to change the min, max, the line width, and some labeling quirks of the x-axis, then I just look at the API options for `xAxis` and locate the corresponding values. 
 
 In this case, three of these suboptions (`min`, `max`, `lineWidth`) are "unnested" level options, one is a "nested" level option (`labels`). What I call an "unnested" level suboption make up the majority of suboptions---any *without* `{ ... }`, easily found by the little gray expansion triangle. "Unnested" suboptions can be accessed by using the unnested level API names asis plus a proper value. "Nested" level suboptions---those that are followed by `{...}` or just any `{ `---require `list(...)` calls.
 
