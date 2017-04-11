@@ -5,7 +5,7 @@ contentdir          = "content"
 languageCode        = "en-US"
 publishdir          = "docs"
 title               = "ultinomics.org"
-disqusShortname     = "XYW"
+disqusShortname     = "ultinomics-org"
 
 
 # Copyright
