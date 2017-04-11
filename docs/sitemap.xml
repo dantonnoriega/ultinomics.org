@@ -2,141 +2,141 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>/2017/04/05/thinking-in-highcharter---how-to-build-any-highcharts-plot-in-r/</loc>
+    <loc>http://ultinomics.org/2017/04/05/thinking-in-highcharter---how-to-build-any-highcharts-plot-in-r/</loc>
     <lastmod>2017-04-05T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/2016/04/14/rmarkdown-.rmd-to-ms-word-.docx-aka-rmarkdown2docx/</loc>
+    <loc>http://ultinomics.org/2016/04/14/rmarkdown-.rmd-to-ms-word-.docx-aka-rmarkdown2docx/</loc>
     <lastmod>2016-04-14T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/2016/03/29/converting-unsearchable-pdf-files-aka-pdf-scans-to-raw-text-using-command-line-tools-convert-and-tesseract/</loc>
+    <loc>http://ultinomics.org/2016/03/29/converting-unsearchable-pdf-files-aka-pdf-scans-to-raw-text-using-command-line-tools-convert-and-tesseract/</loc>
     <lastmod>2016-03-29T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/tags/conversion/</loc>
+    <loc>http://ultinomics.org/tags/conversion/</loc>
     <lastmod>2016-04-14T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/tags/convert/</loc>
+    <loc>http://ultinomics.org/tags/convert/</loc>
     <lastmod>2016-03-29T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/tags/docx/</loc>
+    <loc>http://ultinomics.org/tags/docx/</loc>
     <lastmod>2016-04-14T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/tags/highcharter/</loc>
-    <lastmod>2017-04-05T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/tags/highcharts/</loc>
+    <loc>http://ultinomics.org/tags/highcharter/</loc>
     <lastmod>2017-04-05T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/tags/mac-os-x/</loc>
-    <lastmod>2016-03-29T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/tags/markdown/</loc>
-    <lastmod>2016-04-14T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/tags/ocr/</loc>
-    <lastmod>2016-03-29T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/tags/pdf/</loc>
-    <lastmod>2016-03-29T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/post/</loc>
+    <loc>http://ultinomics.org/tags/highcharts/</loc>
     <lastmod>2017-04-05T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/tags/r-markdown/</loc>
+    <loc>http://ultinomics.org/tags/mac-os-x/</loc>
+    <lastmod>2016-03-29T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://ultinomics.org/tags/markdown/</loc>
+    <lastmod>2016-04-14T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://ultinomics.org/tags/ocr/</loc>
+    <lastmod>2016-03-29T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://ultinomics.org/tags/pdf/</loc>
+    <lastmod>2016-03-29T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://ultinomics.org/post/</loc>
     <lastmod>2017-04-05T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/tags/reproducible/</loc>
+    <loc>http://ultinomics.org/tags/r-markdown/</loc>
+    <lastmod>2017-04-05T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://ultinomics.org/tags/reproducible/</loc>
     <lastmod>2016-04-14T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/tags/rmarkdown/</loc>
+    <loc>http://ultinomics.org/tags/rmarkdown/</loc>
     <lastmod>2016-04-14T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/tags/rmd/</loc>
+    <loc>http://ultinomics.org/tags/rmd/</loc>
     <lastmod>2016-04-14T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/tags/</loc>
+    <loc>http://ultinomics.org/tags/</loc>
     <lastmod>2016-04-14T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/tags/terminal/</loc>
+    <loc>http://ultinomics.org/tags/terminal/</loc>
     <lastmod>2016-03-29T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/tags/tesseract/</loc>
+    <loc>http://ultinomics.org/tags/tesseract/</loc>
     <lastmod>2016-03-29T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/topics/</loc>
+    <loc>http://ultinomics.org/topics/</loc>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/tags/txt/</loc>
+    <loc>http://ultinomics.org/tags/txt/</loc>
     <lastmod>2016-03-29T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/tags/word/</loc>
+    <loc>http://ultinomics.org/tags/word/</loc>
     <lastmod>2016-04-14T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/</loc>
+    <loc>http://ultinomics.org/</loc>
     <lastmod>2017-04-05T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
