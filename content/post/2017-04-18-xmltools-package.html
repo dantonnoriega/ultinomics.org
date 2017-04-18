@@ -1,0 +1,424 @@
+---
+title: "xmltools package to help convert XML data to tidy data frames"
+date: 2017-04-18
+categories: ["R", "XML"]
+tags: ["R Markdown", "XML", "xml2"]
+output: blogdown::html_page
+---
+
+<!-- BLOGDOWN-HEAD -->
+<!-- /BLOGDOWN-HEAD -->
+
+<!-- BLOGDOWN-BODY-BEFORE -->
+<!-- /BLOGDOWN-BODY-BEFORE -->
+<p>I created a new, small <a href="https://github.com/ultinomics/xmltools">package called <code>xmltools</code></a> that helps simplify the process of converting XML data into tidy data frames.</p>
+<p>It has not yet been tested on a ton of XML files so it may have some bugs. I also have not created any tests. But, at least for me, it helps drastically cut down on the code I have to write to get the data I want from an XML file.</p>
+<p>Below is what I wrote as part of the README to the package (it’s really more of a vignette.)</p>
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+<div id="motivation-for-xmltools" class="section level1">
+<h1>Motivation for <code>xmltools</code></h1>
+<p>There are 3 things I felt were missing from the two wonderful packages <a href="https://cran.r-project.org/web/packages/XML/index.html"><code>XML</code></a> and <a href="https://github.com/hadley/xml2"><code>xml2</code></a>:</p>
+<ol style="list-style-type: decimal">
+<li>A easier, more condensed way to see the structure of xml data.</li>
+</ol>
+<ul>
+<li><code>xml2::xml_structure</code> provides a way to look at the structure, but I find that it is not very easy to read and takes up too much console space.</li>
+<li><code>xmltools::xml_view_tree</code> is more condense and attempts to emulate the <code>tree</code> command line program.</li>
+</ul>
+<ol start="2" style="list-style-type: decimal">
+<li>A quick way to determine all feasible xpaths and to identify terminal nodes. Data values of interest are contained in terminal nodes (nodes of “length zero” that do no dig any deeper). Quickly getting xpaths to the <em>parents</em> of these nodes makes extracting data much easier—and faster if you do not recursively dig deeper.</li>
+</ol>
+<ul>
+<li><code>xmltools::xml_get_paths</code> can find all paths for a given nodeset or xml document. It has options to help tag terminal nodes (<code>mark_terminal</code>) and the option to return the parent of any terminal nodes (<code>mark_terminal_parent</code>).</li>
+</ul>
+<ol start="3" style="list-style-type: decimal">
+<li>Other alternatives for converting xml data to data frames.</li>
+</ol>
+<ul>
+<li><code>XML::xmlToDataFrame</code> exists but it seems to always dig recursively. This leads to some crappy data frames.</li>
+<li>I offer two alternatives, <code>xml_to_df</code> and <code>xml_dig_df</code>.
+<ul>
+<li><code>xml_to_df</code> uses the <code>XML</code> and <code>data.table</code> packages</li>
+<li><code>xml_dig_df</code> is based of <code>xml2</code> and <code>tidyverse</code> packages.</li>
+</ul></li>
+</ul>
+</div>
+<div id="installation" class="section level1">
+<h1>Installation</h1>
+<p>Run the following.</p>
+<pre class="r"><code>devtools::install_github(&#39;ultinomics/xmltools&#39;)
+library(xmltools)</code></pre>
+</div>
+<div id="examples" class="section level1">
+<h1>Examples</h1>
+<p>Let’s set up the first example using some ebay data from the <a href="http://aiweb.cs.washington.edu/research/projects/xmltk/xmldata/www/repository.html">UW XML Data Repository</a>. These data come as part of the package because I dropped the really annoying <code>description</code> field that makes the data hard to look at. (Parses it just fine!)</p>
+<pre class="r"><code>library(xmltools)
+
+# USING ebay.xml ------------------------------------------------
+# load the data
+file &lt;- system.file(&quot;extdata&quot;, &quot;ebay.xml&quot;, package = &quot;xmlExtras&quot;)
+doc &lt;- file %&gt;%
+  xml2::read_xml()
+nodeset &lt;- doc %&gt;%
+  xml2::xml_children() # get top level nodeset</code></pre>
+<div id="view-xml-treesstructures" class="section level2">
+<h2>View XML trees/structures</h2>
+<p>Let’s look at the structure of the data. The function</p>
+<pre class="r"><code># `xml_view_tree` structure
+# we can get a tree for each node of the doc
+doc %&gt;% 
+  xml_view_tree()
+doc %&gt;% # we can also vary the depth
+  xml_view_tree(depth = 2)</code></pre>
+<pre class="r"><code># easier to read and understand than `xml2::xml_structure()` and has the `depth` option
+nodeset[1] %&gt;% xml2::xml_structure()
+#&gt; [[1]]
+#&gt; &lt;listing&gt;
+#&gt;   &lt;seller_info&gt;
+#&gt;     &lt;seller_name&gt;
+#&gt;       {text}
+#&gt;     &lt;seller_rating&gt;
+#&gt;       {text}
+#&gt;   &lt;payment_types&gt;
+#&gt;     {text}
+#&gt;   &lt;shipping_info&gt;
+#&gt;     {text}
+#&gt;   &lt;buyer_protection_info&gt;
+#&gt;     {text}
+#&gt;   &lt;auction_info&gt;
+#&gt;     &lt;current_bid&gt;
+#&gt;       {text}
+#&gt;     &lt;time_left&gt;
+#&gt;       {text}
+#&gt;     &lt;high_bidder&gt;
+#&gt;       &lt;bidder_name&gt;
+#&gt;         {text}
+#&gt;       &lt;bidder_rating&gt;
+#&gt;         {text}
+#&gt;     &lt;num_items&gt;
+#&gt;       {text}
+#&gt;     &lt;num_bids&gt;
+#&gt;       {text}
+#&gt;     &lt;started_at&gt;
+#&gt;       {text}
+#&gt;     &lt;bid_increment&gt;
+#&gt;       {text}
+#&gt;     &lt;location&gt;
+#&gt;       {text}
+#&gt;     &lt;opened&gt;
+#&gt;       {text}
+#&gt;     &lt;closed&gt;
+#&gt;       {text}
+#&gt;     &lt;id_num&gt;
+#&gt;       {text}
+#&gt;     &lt;notes&gt;
+#&gt;       {text}
+#&gt;   &lt;bid_history&gt;
+#&gt;     &lt;highest_bid_amount&gt;
+#&gt;       {text}
+#&gt;     &lt;quantity&gt;
+#&gt;       {text}
+#&gt;   &lt;item_info&gt;
+#&gt;     &lt;memory&gt;
+#&gt;       {text}
+#&gt;     &lt;hard_drive&gt;
+#&gt;       {text}
+#&gt;     &lt;cpu&gt;
+#&gt;       {text}
+#&gt;     &lt;brand&gt;
+#&gt;       {text}
+
+## or, we can extract from nodesets
+class(nodeset[1])
+#&gt; [1] &quot;xml_nodeset&quot;
+nodeset[1] %&gt;%
+  xml_view_trees()
+#&gt; └── listing
+#&gt;   ├── payment_types
+#&gt;   ├── shipping_info
+#&gt;   ├── buyer_protection_info
+#&gt;   ├── seller_info
+#&gt;     ├── seller_name
+#&gt;     └── seller_rating
+#&gt;   ├── auction_info
+#&gt;     ├── current_bid
+#&gt;     ├── time_left
+#&gt;     ├── num_items
+#&gt;     ├── num_bids
+#&gt;     ├── started_at
+#&gt;     ├── bid_increment
+#&gt;     ├── location
+#&gt;     ├── opened
+#&gt;     ├── closed
+#&gt;     ├── id_num
+#&gt;     ├── notes
+#&gt;     └── high_bidder
+#&gt;       ├── bidder_name
+#&gt;       └── bidder_rating
+#&gt;   ├── bid_history
+#&gt;     ├── highest_bid_amount
+#&gt;     └── quantity
+#&gt;   └── item_info
+#&gt;     ├── memory
+#&gt;     ├── hard_drive
+#&gt;     ├── cpu
+#&gt;     └── brand
+nodeset[1] %&gt;%
+  xml_view_trees(depth=2)
+#&gt; └── listing
+#&gt;   ├── payment_types
+#&gt;   ├── shipping_info
+#&gt;   ├── buyer_protection_info
+#&gt;   ├── seller_info
+#&gt;   ├── auction_info
+#&gt;   ├── bid_history
+#&gt;   └── item_info
+
+## will not work with class &quot;xml_node&quot; (can&#39;t use lapply on those, apparently)
+class(nodeset[[1]])
+#&gt; [1] &quot;xml_node&quot;
+try(nodeset[[1]] %&gt;%
+  xml_view_tree()
+)</code></pre>
+</div>
+<div id="get-terminal-nodes" class="section level2">
+<h2>Get Terminal Nodes</h2>
+<p>Terminal nodes in XMLs are nodes that do no have any “children”. These nodes contain the information we generally want to extract into a tidy data frame.</p>
+<p>I’ve found myself wanting easy access to all XML paths but could find no tool to do so easily and quickly. I especially wanted the xpaths to terminal nodes for any XML structure. This is accomplished using the <code>xml_get_paths</code> function.</p>
+<pre class="r"><code># one can see all the paths per node of a doc
+doc %&gt;%
+  xml_get_paths()</code></pre>
+<pre class="r"><code># can look at one nodeset
+## NOTE that nodesets can vary, so looking at one doesn&#39;t mean you&#39;ll find all feasible paths
+
+nodeset[1] %&gt;%
+  xml_get_paths()
+#&gt; [[1]]
+#&gt;  [1] &quot;/root/listing&quot;                                       
+#&gt;  [2] &quot;/root/listing/payment_types&quot;                         
+#&gt;  [3] &quot;/root/listing/shipping_info&quot;                         
+#&gt;  [4] &quot;/root/listing/buyer_protection_info&quot;                 
+#&gt;  [5] &quot;/root/listing/seller_info&quot;                           
+#&gt;  [6] &quot;/root/listing/seller_info/seller_name&quot;               
+#&gt;  [7] &quot;/root/listing/seller_info/seller_rating&quot;             
+#&gt;  [8] &quot;/root/listing/auction_info&quot;                          
+#&gt;  [9] &quot;/root/listing/auction_info/current_bid&quot;              
+#&gt; [10] &quot;/root/listing/auction_info/time_left&quot;                
+#&gt; [11] &quot;/root/listing/auction_info/num_items&quot;                
+#&gt; [12] &quot;/root/listing/auction_info/num_bids&quot;                 
+#&gt; [13] &quot;/root/listing/auction_info/started_at&quot;               
+#&gt; [14] &quot;/root/listing/auction_info/bid_increment&quot;            
+#&gt; [15] &quot;/root/listing/auction_info/location&quot;                 
+#&gt; [16] &quot;/root/listing/auction_info/opened&quot;                   
+#&gt; [17] &quot;/root/listing/auction_info/closed&quot;                   
+#&gt; [18] &quot;/root/listing/auction_info/id_num&quot;                   
+#&gt; [19] &quot;/root/listing/auction_info/notes&quot;                    
+#&gt; [20] &quot;/root/listing/auction_info/high_bidder&quot;              
+#&gt; [21] &quot;/root/listing/auction_info/high_bidder/bidder_name&quot;  
+#&gt; [22] &quot;/root/listing/auction_info/high_bidder/bidder_rating&quot;
+#&gt; [23] &quot;/root/listing/bid_history&quot;                           
+#&gt; [24] &quot;/root/listing/bid_history/highest_bid_amount&quot;        
+#&gt; [25] &quot;/root/listing/bid_history/quantity&quot;                  
+#&gt; [26] &quot;/root/listing/item_info&quot;                             
+#&gt; [27] &quot;/root/listing/item_info/memory&quot;                      
+#&gt; [28] &quot;/root/listing/item_info/hard_drive&quot;                  
+#&gt; [29] &quot;/root/listing/item_info/cpu&quot;                         
+#&gt; [30] &quot;/root/listing/item_info/brand&quot;
+
+nodeset[1] %&gt;%
+  xml_get_paths(mark_terminal = &quot;&gt;&gt;&quot;) # can mark terminal nodes
+#&gt; [[1]]
+#&gt;  [1] &quot;/root/listing&quot;                                         
+#&gt;  [2] &quot;&gt;&gt;/root/listing/payment_types&quot;                         
+#&gt;  [3] &quot;&gt;&gt;/root/listing/shipping_info&quot;                         
+#&gt;  [4] &quot;&gt;&gt;/root/listing/buyer_protection_info&quot;                 
+#&gt;  [5] &quot;/root/listing/seller_info&quot;                             
+#&gt;  [6] &quot;&gt;&gt;/root/listing/seller_info/seller_name&quot;               
+#&gt;  [7] &quot;&gt;&gt;/root/listing/seller_info/seller_rating&quot;             
+#&gt;  [8] &quot;/root/listing/auction_info&quot;                            
+#&gt;  [9] &quot;&gt;&gt;/root/listing/auction_info/current_bid&quot;              
+#&gt; [10] &quot;&gt;&gt;/root/listing/auction_info/time_left&quot;                
+#&gt; [11] &quot;&gt;&gt;/root/listing/auction_info/num_items&quot;                
+#&gt; [12] &quot;&gt;&gt;/root/listing/auction_info/num_bids&quot;                 
+#&gt; [13] &quot;&gt;&gt;/root/listing/auction_info/started_at&quot;               
+#&gt; [14] &quot;&gt;&gt;/root/listing/auction_info/bid_increment&quot;            
+#&gt; [15] &quot;&gt;&gt;/root/listing/auction_info/location&quot;                 
+#&gt; [16] &quot;&gt;&gt;/root/listing/auction_info/opened&quot;                   
+#&gt; [17] &quot;&gt;&gt;/root/listing/auction_info/closed&quot;                   
+#&gt; [18] &quot;&gt;&gt;/root/listing/auction_info/id_num&quot;                   
+#&gt; [19] &quot;&gt;&gt;/root/listing/auction_info/notes&quot;                    
+#&gt; [20] &quot;/root/listing/auction_info/high_bidder&quot;                
+#&gt; [21] &quot;&gt;&gt;/root/listing/auction_info/high_bidder/bidder_name&quot;  
+#&gt; [22] &quot;&gt;&gt;/root/listing/auction_info/high_bidder/bidder_rating&quot;
+#&gt; [23] &quot;/root/listing/bid_history&quot;                             
+#&gt; [24] &quot;&gt;&gt;/root/listing/bid_history/highest_bid_amount&quot;        
+#&gt; [25] &quot;&gt;&gt;/root/listing/bid_history/quantity&quot;                  
+#&gt; [26] &quot;/root/listing/item_info&quot;                               
+#&gt; [27] &quot;&gt;&gt;/root/listing/item_info/memory&quot;                      
+#&gt; [28] &quot;&gt;&gt;/root/listing/item_info/hard_drive&quot;                  
+#&gt; [29] &quot;&gt;&gt;/root/listing/item_info/cpu&quot;                         
+#&gt; [30] &quot;&gt;&gt;/root/listing/item_info/brand&quot;
+
+## we can find all feasible paths then collapse
+
+terminal &lt;- doc %&gt;% ## get all xpaths
+  xml_get_paths()
+
+xpaths &lt;- terminal %&gt;% ## collapse xpaths to unique only
+  unlist() %&gt;%
+  unique()
+
+## but what we really want is the parent node of terminal nodes.
+## use the `only_terminal_parent = TRUE` to do this
+
+terminal_parent &lt;- doc %&gt;% ## get all xpaths to parents of parent node
+  xml_get_paths(only_terminal_parent = TRUE)
+
+terminal_xpaths &lt;- terminal_parent %&gt;% ## collapse xpaths to unique only
+  unlist() %&gt;%
+  unique()</code></pre>
+</div>
+<div id="extracting-xml-data-to-tidy-data-frames" class="section level2">
+<h2>Extracting XML Data to Tidy Data Frames</h2>
+<p>Next, we use the terminal xpaths above to extract the data we want.</p>
+<p>First, I want to show the issue with using <code>XML::xmlToDataFrame</code>.</p>
+<pre class="r"><code># xmlToDataFrame works great on terminal nodes IF there are no non-terminal nodes any deeper.
+## we extract a data frame for each parent of terminal nodes
+
+df0 &lt;- lapply(terminal_xpaths, function(x) {
+  doc &lt;- file %&gt;% XML::xmlInternalTreeParse()
+  nodeset &lt;- XML::getNodeSet(doc, x)
+  XML::xmlToDataFrame(nodeset, stringsAsFactors = FALSE) %&gt;%
+    dplyr::as_data_frame()
+})</code></pre>
+<p>There is data contained in the terminal nodes</p>
+<pre><code>/root/listing/payment_types
+/root/listing/shipping_info
+/root/listing/buyer_protection_info</code></pre>
+<p>with the parent node</p>
+<pre><code>/root/listing</code></pre>
+<p>But <code>XML::xmlToDataFrame</code> will keep digging into <code>/root/listing</code> and extract data from xpaths like <code>/root/listing/seller_info</code>. But it does so extracting data in a non tidy way. We can see this below comparing the data in <code>df0[[1]] %&gt;% dplyr::select(seller_info)</code> vs <code>df0[[2]]</code>, which is data extracted from just from <code>/root/listing/seller_info</code> and deeper.</p>
+<pre class="r"><code># problem with xmlToDataFrame is it keeps digging into other nodes recursively in &quot;/root/listing&quot;
+
+xpaths[1] # /root/listing is terminal parent but xmlToDataFrame keeps digging
+#&gt; [1] &quot;/root/listing&quot;
+
+df0[[1]] %&gt;%
+  dplyr::select(seller_info) # not good; keeps diving into other nodes but fails to separate
+#&gt; # A tibble: 5 × 1
+#&gt;             seller_info
+#&gt;                   &lt;chr&gt;
+#&gt; 1       cubsfantony 848
+#&gt; 2            ct-inc 403
+#&gt; 3            ct-inc 403
+#&gt; 4  bestbuys4systems  28
+#&gt; 5  sales@ctgcom.com 219
+
+xpaths[2]
+#&gt; [1] &quot;/root/listing/payment_types&quot;
+
+df0[[2]] # works because the recursive dig down hits only the terminal nodes
+#&gt; # A tibble: 5 × 2
+#&gt;         seller_name seller_rating
+#&gt;               &lt;chr&gt;         &lt;chr&gt;
+#&gt; 1       cubsfantony           848
+#&gt; 2            ct-inc           403
+#&gt; 3            ct-inc           403
+#&gt; 4 bestbuys4systems             28
+#&gt; 5  sales@ctgcom.com           219</code></pre>
+<p>The solution that worked for me was to write a function that, by default, does not dig into non-terminal nodes. That is, when given the xpath <code>/root/listing</code>, the function will only go into terminal nodes</p>
+<pre><code>/root/listing/payment_types
+/root/listing/shipping_info
+/root/listing/buyer_protection_info</code></pre>
+<p>And ignore the other, non-terminal nodes unless instructed to do so otherwise by setting option <code>dig = TRUE</code>.</p>
+<div id="the-xml_to_df-function" class="section level3">
+<h3>The <code>xml_to_df</code> Function</h3>
+<p>The <code>xml_to_df</code> function is built on the <code>XML</code> package and <code>data.table</code>. By default, it does not dig into non-terminal nodes (<code>dig = FALSE</code>) when given any xpath. One can pass an xpath to an XML file (<code>is_xml = FALSE</code>) or an already parsed XML file (<code>is_xml = TRUE</code>).</p>
+<pre class="r"><code># xml_to_df (XML package based)
+## does not dig by default
+## use the terminal xpaths to get data frames
+terminal_xpaths
+#&gt; [1] &quot;/root/listing&quot;                         
+#&gt; [2] &quot;/root/listing/seller_info&quot;             
+#&gt; [3] &quot;/root/listing/auction_info&quot;            
+#&gt; [4] &quot;/root/listing/auction_info/high_bidder&quot;
+#&gt; [5] &quot;/root/listing/bid_history&quot;             
+#&gt; [6] &quot;/root/listing/item_info&quot;
+
+## we send each terminal xpath to `xml_to_df`. 
+## the file source is the parsed xml object `doc`, so we set `is_xml = TRUE`
+## we do no want to dig, which quickly gets us the data we want for each terminal xpath `dig = FALSE` (default)
+df1 &lt;- lapply(terminal_xpaths, xml_to_df, file = doc, is_xml = TRUE, dig = FALSE) %&gt;%
+  dplyr::bind_cols()
+#&gt; [1] &quot;/root/listing&quot;
+#&gt; [1] &quot;/root/listing/seller_info&quot;
+#&gt; [1] &quot;/root/listing/auction_info&quot;
+#&gt; [1] &quot;/root/listing/auction_info/high_bidder&quot;
+#&gt; [1] &quot;/root/listing/bid_history&quot;
+#&gt; [1] &quot;/root/listing/item_info&quot;</code></pre>
+</div>
+<div id="the-xml_dig_df-function" class="section level3">
+<h3>The <code>xml_dig_df</code> Function</h3>
+<p>The other fuction is <code>xml_dig_df</code> which is built on <code>xml2</code> and <code>tidyverse</code> packages.</p>
+<p>The important distinction is that we first need to find all the terminal nodesets we want to parse. We find these using <code>xml2::xml_find_all</code> on each of the <code>terminal_xpaths</code> on the original parsed xml file (<code>doc</code>).</p>
+<p>For each <code>terminal_nodeset</code>, we then apply <code>xml_dig_df</code>. For each nodeset, we will get single row of data, so we bind the results for each nodeset. The final data frame is created by column binding. (I convert all empty strings to <code>NA</code> for good measure.)</p>
+<pre class="r"><code># xml_dig_df (xml2 package based)
+terminal_nodesets &lt;- lapply(terminal_xpaths, xml2::xml_find_all, x = doc)
+df2 &lt;- terminal_nodesets %&gt;%
+  purrr::map(xml_dig_df) %&gt;% ## does not dig by default
+  purrr::map(dplyr::bind_rows) %&gt;%
+  dplyr::bind_cols() %&gt;%
+  dplyr::mutate_all(empty_as_na)</code></pre>
+<pre class="r"><code># they&#39;re the same!
+identical(df1, data.table::as.data.table(df2))
+#&gt; [1] TRUE</code></pre>
+</div>
+</div>
+</div>
+<div id="example-2" class="section level1">
+<h1>Example 2</h1>
+<p>Below is another example to work through. The output is hidden but copy and paste the code or find the source file in this repository <code>examples.R</code>.</p>
+<pre class="r"><code># USING wsu.xml ------------------------------------------------
+# larger file
+
+# using xml_to_df
+file &lt;- &quot;http://aiweb.cs.washington.edu/research/projects/xmltk/xmldata/data/courses/wsu.xml&quot;
+doc &lt;- file %&gt;%
+  xml2::read_xml()
+nodeset &lt;- doc %&gt;%
+  xml2::xml_children()
+length(nodeset) # lots of nodes!
+nodeset[1] %&gt;% # lets look at ONE node&#39;s tree
+  xml_view_tree()
+
+## takes a long time. likely can extract from a single node
+# terminal_paths &lt;- doc %&gt;% ## get the xpath to parents of terminal node
+#   xml_get_paths(only_terminal_parent = TRUE)
+
+# lets assume that most nodes share the same structure
+terminal_paths &lt;- nodeset[1] %&gt;%
+  xml_get_paths(only_terminal_parent = TRUE)
+
+terminal_xpaths &lt;- terminal_paths %&gt;% ## collapse xpaths to unique only
+  unlist() %&gt;%
+  unique()
+
+# xml_to_df (XML package based)
+## note that we use file, not doc, hence is_xml = FALSE
+df1 &lt;- lapply(xpaths, xml_to_df, file = file, is_xml = FALSE, dig = FALSE) %&gt;%
+  dplyr::bind_cols()
+df1
+
+# xml_dig_df (xml2 package based)
+## faster!
+terminal_nodesets &lt;- lapply(terminal_xpaths, xml2::xml_find_all, x = doc) # use xml docs, not nodesets! I think this is because it searches the &#39;root&#39;.
+df2 &lt;- terminal_nodesets %&gt;%
+  purrr::map(xml_dig_df) %&gt;%
+  purrr::map(dplyr::bind_rows) %&gt;%
+  dplyr::bind_cols() %&gt;%
+  dplyr::mutate_all(empty_as_na)
+df2
+
+# they&#39;re the same!
+identical(df1, data.table::as.data.table(df2))</code></pre>
+</div>
