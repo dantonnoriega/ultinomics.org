@@ -51,9 +51,13 @@ paginatePath = "page"
     # Default (if omitted) is "Home".
     home = "home"
 
-    # Select a syntax highight.
+    # Select a syntax highlight.
     # Check the static/css/highlight directory for options.
-    highlight = "tomorrow-night-eighties"
+    # options for highlight.js (version, additional languages, and theme)
+    highlightjsVersion = "9.10.0"
+    highlightjsCDN = "//cdn.bootcss.com"
+    highlightjsLang = ["r", "yaml"]
+    highlightjsTheme = "tomorrow-night-eighties"
 
     # Sidebar social links.
     github = "ultinomics" # Your Github profile ID
