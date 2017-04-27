@@ -2,7 +2,7 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Conversion on ultinomics.org</title>
-    <link>http://ultinomics.org/tags/conversion/</link>
+    <link>/tags/conversion/</link>
     <description>Recent content in Conversion on ultinomics.org</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
@@ -11,15 +11,15 @@
     <copyright>(c) 2017 Danton Noriega.</copyright>
     <lastBuildDate>Thu, 14 Apr 2016 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="http://ultinomics.org/tags/conversion/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="/tags/conversion/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>RMarkdown (.Rmd) to MS Word (.docx) aka rmarkdown2docx</title>
-      <link>http://ultinomics.org/2016/04/14/rmarkdown-.rmd-to-ms-word-.docx-aka-rmarkdown2docx/</link>
+      <link>/2016/04/14/rmarkdown-.rmd-to-ms-word-.docx-aka-rmarkdown2docx/</link>
       <pubDate>Thu, 14 Apr 2016 00:00:00 +0000</pubDate>
       <author>danton.noriega@gmail.com (Danton Noriega)</author>
-      <guid>http://ultinomics.org/2016/04/14/rmarkdown-.rmd-to-ms-word-.docx-aka-rmarkdown2docx/</guid>
+      <guid>/2016/04/14/rmarkdown-.rmd-to-ms-word-.docx-aka-rmarkdown2docx/</guid>
       <description>This post is just a copy of README.md file for the repo https://github.com/ultinomics/rmarkdown2docx. But it&amp;rsquo;s got everything you need to get your R Markdown file (.Rmd) to a clean, useful MS Word file (.docx).
 Description This set of scripts help convert the output of Rmd files to docx files. It is done by creating a clean html file, then opening, converting, and saving the html to docx using Applescript and Microsoft Word.</description>
     </item>
