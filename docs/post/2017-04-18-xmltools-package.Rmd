@@ -12,5 +12,11 @@ It has not yet been tested on a ton of XML files so it may have some bugs. I als
 
 Below is what I wrote as part of the README to the package (it's really more of a vignette.)
 
-```{r readme, child = "/Users/danton/GitHub/xmltools/README.Rmd"}
+```{r setup, echo=FALSE, results='hide'}
+x <- tempfile(fileext = ".Rmd")
+on.exit(unlink(x))
+download.file("https://raw.githubusercontent.com/ultinomics/xmltools/master/README.Rmd", x)
+```
+
+```{r readme, child=normalizePath(x)}
 ```

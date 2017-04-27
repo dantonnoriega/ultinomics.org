@@ -438,20 +438,21 @@ The pros of this is you have *total* control over what you want to plot! The dow
 
 If you just want a plot with no special customizations, no problem! Easy, clean, straightforward. But the moment you want to customize even one point in a series, the amount and complexity of code you have to write just ballooned 2 or 3 fold.
 
+My next post will cover how to deal with these more complex plots. It can be tedious but the results are beautiful. As I told my old boss, "It is amazing how much you have to code to make there be *less* in a plot."
 
 
-# Outline for Future Posts
+<!-- # Outline for Future Posts -->
 
-- Basics
-    - [x] Understanding the series
-        - `highchart()` plus `hc_add_series_list()` for most everything
-    - [x] translating highcharts api to highcharter syntax
-        - list of nested lists!
-        - example translating Highcharts API to highcharter
-    - [x] `hchart()` for tidy data frames
-- Advanced
-    - [ ] `hc$x$hc_opts$series` for understanding structure of series in highcharts
-        - a single vector defaults to `data` or `y`
-        - any more data than a single vector and you end up with a series being list of lists e.g. build an object with `hchart()` and `highchart()` and `hc_add_series_list()`
-- Random 
-    - [ ] things. highcharter likes as.Date(), but not character values of dates.
+<!-- - Basics -->
+<!--     - [x] Understanding the series -->
+<!--         - `highchart()` plus `hc_add_series_list()` for most everything -->
+<!--     - [x] translating highcharts api to highcharter syntax -->
+<!--         - list of nested lists! -->
+<!--         - example translating Highcharts API to highcharter -->
+<!--     - [x] `hchart()` for tidy data frames -->
+<!-- - Advanced -->
+<!--     - [x] `hc\$x\$hc_opts\$series` for understanding structure of series in highcharts -->
+<!--         - a single vector defaults to `data` or `y` -->
+<!--         - any more data than a single vector and you end up with a series being list of lists e.g. build an object with `hchart()` and `highchart()` and `hc_add_series_list()` -->
+<!-- - Random things -->
+<!--     - [ ] highcharter likes as.Date(), but not character values of dates. -->

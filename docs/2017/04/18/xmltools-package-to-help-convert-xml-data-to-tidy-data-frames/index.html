@@ -19,7 +19,7 @@
 
 <meta property="og:title" content="xmltools package to help convert XML data to tidy data frames  &middot; ultinomics.org ">
 <meta property="og:site_name" content="ultinomics.org"/>
-<meta property="og:url" content="/2017/04/18/xmltools-package-to-help-convert-xml-data-to-tidy-data-frames/" />
+<meta property="og:url" content="http://ultinomics.org/2017/04/18/xmltools-package-to-help-convert-xml-data-to-tidy-data-frames/" />
 <meta property="og:locale" content="en-US">
 
 
@@ -44,8 +44,8 @@
 <meta name="twitter:creator" content="@dantonnoriega" />
 <meta name="twitter:title" content="xmltools package to help convert XML data to tidy data frames" />
 <meta name="twitter:description" content="" />
-<meta name="twitter:url" content="/2017/04/18/xmltools-package-to-help-convert-xml-data-to-tidy-data-frames/" />
-<meta name="twitter:domain" content="/">
+<meta name="twitter:url" content="http://ultinomics.org/2017/04/18/xmltools-package-to-help-convert-xml-data-to-tidy-data-frames/" />
+<meta name="twitter:domain" content="http://ultinomics.org/">
   
 
 <script type="application/ld+json">
@@ -59,23 +59,23 @@
     },
     "datePublished": "2017-04-18",
     "description": "",
-    "wordCount": 1918
+    "wordCount": 1900
   }
 </script>
 
 
 
-<link rel="canonical" href="/2017/04/18/xmltools-package-to-help-convert-xml-data-to-tidy-data-frames/" />
+<link rel="canonical" href="http://ultinomics.org/2017/04/18/xmltools-package-to-help-convert-xml-data-to-tidy-data-frames/" />
 
-<link rel="apple-touch-icon-precomposed" sizes="144x144" href="/touch-icon-144-precomposed.png">
-<link href="/favicon.png" rel="icon">
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://ultinomics.org/touch-icon-144-precomposed.png">
+<link href="http://ultinomics.org/favicon.png" rel="icon">
 
-<meta name="generator" content="Hugo 0.20.2" />
+<meta name="generator" content="Hugo 0.20.5" />
 
   
 
 
-<link href='//cdn.bootcss.com/highlight.js/9.10.0/styles/tomorrow-night-eighties.min.css' rel='stylesheet' type='text/css'>
+<link href='//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/styles/tomorrow-night-eighties.min.css' rel='stylesheet' type='text/css'>
 
 
 
@@ -87,8 +87,8 @@
 
 
 <link href='https://fonts.googleapis.com/css?family=Merriweather:300%7CRaleway%7COpen+Sans' rel='stylesheet' type='text/css'>
-<link rel="stylesheet" href="/css/font-awesome.min.css">
-<link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="http://ultinomics.org/css/font-awesome.min.css">
+<link rel="stylesheet" href="http://ultinomics.org/css/style.css">
 
 
   
@@ -99,7 +99,7 @@
     <header id="main-header" class="container main_header">
   <div class="container brand">
   <div class="container title h1-like">
-  <a class="baselink" href="/">
+  <a class="baselink" href="http://ultinomics.org/">
   ultinomics.org
 
 </a>
@@ -120,13 +120,13 @@
   <nav class="container nav primary no-print">
   
 
-<a class="homelink" href="/">home</a>
+<a class="homelink" href="http://ultinomics.org/">home</a>
 
 
   
 <a href="//dantonnoriega.me">about</a>
 
-<a href="/post">posts</a>
+<a href="http://ultinomics.org/post">posts</a>
 
 
 </nav>
@@ -187,15 +187,15 @@
 
 
   
-  &middot; Read in about 10 min
-  &middot; (1918 Words)
+  &middot; Read in about 9 min
+  &middot; (1900 Words)
   <br>
   
-<a class="label" href="/tags/r-markdown">R Markdown</a>
+<a class="label" href="http://ultinomics.org/tags/r-markdown">R Markdown</a>
 
-<a class="label" href="/tags/xml">XML</a>
+<a class="label" href="http://ultinomics.org/tags/xml">XML</a>
 
-<a class="label" href="/tags/xml2">xml2</a>
+<a class="label" href="http://ultinomics.org/tags/xml2">xml2</a>
 
 
 
@@ -217,21 +217,16 @@
 <h1>Motivation for <code>xmltools</code></h1>
 <p>There are 3 things I felt were missing from the two wonderful packages <a href="https://cran.r-project.org/web/packages/XML/index.html"><code>XML</code></a> and <a href="https://github.com/hadley/xml2"><code>xml2</code></a>:</p>
 <ol style="list-style-type: decimal">
-<li>A easier, more condensed way to see the structure of xml data.</li>
-</ol>
+<li>A easier, more condensed way to see the structure of xml data.
 <ul>
 <li><code>xml2::xml_structure</code> provides a way to look at the structure, but I find that it is not very easy to read and takes up too much console space.</li>
 <li><code>xmltools::xml_view_tree</code> is more condense and attempts to emulate the <code>tree</code> command line program.</li>
-</ul>
-<ol start="2" style="list-style-type: decimal">
-<li>A quick way to determine all feasible xpaths and to identify terminal nodes. Data values of interest are contained in terminal nodes (nodes of “length zero” that do no dig any deeper). Quickly getting xpaths to the <em>parents</em> of these nodes makes extracting data much easier—and faster if you do not recursively dig deeper.</li>
-</ol>
+</ul></li>
+<li>A quick way to determine all feasible xpaths and to identify terminal nodes. Data values of interest are contained in terminal nodes (nodes of “length zero” that do no dig any deeper). Quickly getting xpaths to the <em>parents</em> of these nodes makes extracting data much easier—and faster if you do not recursively dig deeper.
 <ul>
 <li><code>xmltools::xml_get_paths</code> can find all paths for a given nodeset or xml document. It has options to help tag terminal nodes (<code>mark_terminal</code>) and the option to return the parent of any terminal nodes (<code>mark_terminal_parent</code>).</li>
-</ul>
-<ol start="3" style="list-style-type: decimal">
-<li>Other alternatives for converting xml data to data frames.</li>
-</ol>
+</ul></li>
+<li>Other alternatives for converting xml data to data frames.
 <ul>
 <li><code>XML::xmlToDataFrame</code> exists but it seems to always dig recursively. This leads to some crappy data frames.</li>
 <li>I offer two alternatives, <code>xml_to_df</code> and <code>xml_dig_df</code>.
@@ -239,7 +234,8 @@
 <li><code>xml_to_df</code> uses the <code>XML</code> and <code>data.table</code> packages</li>
 <li><code>xml_dig_df</code> is based of <code>xml2</code> and <code>tidyverse</code> packages.</li>
 </ul></li>
-</ul>
+</ul></li>
+</ol>
 </div>
 <div id="installation" class="section level1">
 <h1>Installation</h1>
@@ -254,7 +250,7 @@ library(xmltools)</code></pre>
 
 # USING ebay.xml ------------------------------------------------
 # load the data
-file &lt;- system.file(&quot;extdata&quot;, &quot;ebay.xml&quot;, package = &quot;xmlExtras&quot;)
+file &lt;- system.file(&quot;extdata&quot;, &quot;ebay.xml&quot;, package = &quot;xmltools&quot;)
 doc &lt;- file %&gt;%
   xml2::read_xml()
 nodeset &lt;- doc %&gt;%
@@ -268,6 +264,7 @@ doc %&gt;%
   xml_view_tree()
 doc %&gt;% # we can also vary the depth
   xml_view_tree(depth = 2)</code></pre>
+<p> </p>
 <pre class="r"><code># easier to read and understand than `xml2::xml_structure()` and has the `depth` option
 nodeset[1] %&gt;% xml2::xml_structure()
 #&gt; [[1]]
@@ -386,6 +383,7 @@ try(nodeset[[1]] %&gt;%
 <pre class="r"><code># one can see all the paths per node of a doc
 doc %&gt;%
   xml_get_paths()</code></pre>
+<p> </p>
 <pre class="r"><code># can look at one nodeset
 ## NOTE that nodesets can vary, so looking at one doesn&#39;t mean you&#39;ll find all feasible paths
 
@@ -547,13 +545,7 @@ terminal_xpaths
 ## the file source is the parsed xml object `doc`, so we set `is_xml = TRUE`
 ## we do no want to dig, which quickly gets us the data we want for each terminal xpath `dig = FALSE` (default)
 df1 &lt;- lapply(terminal_xpaths, xml_to_df, file = doc, is_xml = TRUE, dig = FALSE) %&gt;%
-  dplyr::bind_cols()
-#&gt; [1] &quot;/root/listing&quot;
-#&gt; [1] &quot;/root/listing/seller_info&quot;
-#&gt; [1] &quot;/root/listing/auction_info&quot;
-#&gt; [1] &quot;/root/listing/auction_info/high_bidder&quot;
-#&gt; [1] &quot;/root/listing/bid_history&quot;
-#&gt; [1] &quot;/root/listing/item_info&quot;</code></pre>
+  dplyr::bind_cols()</code></pre>
 </div>
 <div id="the-xml_dig_df-function" class="section level3">
 <h3>The <code>xml_dig_df</code> Function</h3>
@@ -631,7 +623,7 @@ identical(df1, data.table::as.data.table(df2))</code></pre>
   
 
     
-    <a class="prev" href="/2017/04/05/thinking-in-highcharter---how-to-build-any-highcharts-plot-in-r/" title="Thinking in `highcharter` - How to build any Highcharts plot in R">
+    <a class="prev" href="http://ultinomics.org/2017/04/05/thinking-in-highcharter---how-to-build-any-highcharts-plot-in-r/" title="Thinking in `highcharter` - How to build any Highcharts plot in R">
       Previous
     </a>
     
@@ -729,10 +721,10 @@ identical(df1, data.table::as.data.table(df2))</code></pre>
 
 
 
-<script src="//cdn.bootcss.com/highlight.js/9.10.0/highlight.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/highlight.min.js"></script>
 
-<script src="//cdn.bootcss.com/highlight.js/9.10.0/languages/r.min.js"></script>
-<script src="//cdn.bootcss.com/highlight.js/9.10.0/languages/yaml.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/languages/r.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/languages/yaml.min.js"></script>
 <script>hljs.configure({languages: []}); hljs.initHighlightingOnLoad();</script>
 
 

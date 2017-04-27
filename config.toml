@@ -54,8 +54,8 @@ paginatePath = "page"
     # Select a syntax highlight.
     # Check the static/css/highlight directory for options.
     # options for highlight.js (version, additional languages, and theme)
-    highlightjsVersion = "9.10.0"
-    highlightjsCDN = "//cdn.bootcss.com"
+    highlightjsVersion = "9.11.0"
+    highlightjsCDN = "//cdnjs.cloudflare.com/ajax/libs"
     highlightjsLang = ["r", "yaml"]
     highlightjsTheme = "tomorrow-night-eighties"
 

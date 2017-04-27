@@ -19,21 +19,16 @@ output: blogdown::html_page
 <h1>Motivation for <code>xmltools</code></h1>
 <p>There are 3 things I felt were missing from the two wonderful packages <a href="https://cran.r-project.org/web/packages/XML/index.html"><code>XML</code></a> and <a href="https://github.com/hadley/xml2"><code>xml2</code></a>:</p>
 <ol style="list-style-type: decimal">
-<li>A easier, more condensed way to see the structure of xml data.</li>
-</ol>
+<li>A easier, more condensed way to see the structure of xml data.
 <ul>
 <li><code>xml2::xml_structure</code> provides a way to look at the structure, but I find that it is not very easy to read and takes up too much console space.</li>
 <li><code>xmltools::xml_view_tree</code> is more condense and attempts to emulate the <code>tree</code> command line program.</li>
-</ul>
-<ol start="2" style="list-style-type: decimal">
-<li>A quick way to determine all feasible xpaths and to identify terminal nodes. Data values of interest are contained in terminal nodes (nodes of “length zero” that do no dig any deeper). Quickly getting xpaths to the <em>parents</em> of these nodes makes extracting data much easier—and faster if you do not recursively dig deeper.</li>
-</ol>
+</ul></li>
+<li>A quick way to determine all feasible xpaths and to identify terminal nodes. Data values of interest are contained in terminal nodes (nodes of “length zero” that do no dig any deeper). Quickly getting xpaths to the <em>parents</em> of these nodes makes extracting data much easier—and faster if you do not recursively dig deeper.
 <ul>
 <li><code>xmltools::xml_get_paths</code> can find all paths for a given nodeset or xml document. It has options to help tag terminal nodes (<code>mark_terminal</code>) and the option to return the parent of any terminal nodes (<code>mark_terminal_parent</code>).</li>
-</ul>
-<ol start="3" style="list-style-type: decimal">
-<li>Other alternatives for converting xml data to data frames.</li>
-</ol>
+</ul></li>
+<li>Other alternatives for converting xml data to data frames.
 <ul>
 <li><code>XML::xmlToDataFrame</code> exists but it seems to always dig recursively. This leads to some crappy data frames.</li>
 <li>I offer two alternatives, <code>xml_to_df</code> and <code>xml_dig_df</code>.
@@ -41,7 +36,8 @@ output: blogdown::html_page
 <li><code>xml_to_df</code> uses the <code>XML</code> and <code>data.table</code> packages</li>
 <li><code>xml_dig_df</code> is based of <code>xml2</code> and <code>tidyverse</code> packages.</li>
 </ul></li>
-</ul>
+</ul></li>
+</ol>
 </div>
 <div id="installation" class="section level1">
 <h1>Installation</h1>
@@ -56,7 +52,7 @@ library(xmltools)</code></pre>
 
 # USING ebay.xml ------------------------------------------------
 # load the data
-file &lt;- system.file(&quot;extdata&quot;, &quot;ebay.xml&quot;, package = &quot;xmlExtras&quot;)
+file &lt;- system.file(&quot;extdata&quot;, &quot;ebay.xml&quot;, package = &quot;xmltools&quot;)
 doc &lt;- file %&gt;%
   xml2::read_xml()
 nodeset &lt;- doc %&gt;%
@@ -70,6 +66,7 @@ doc %&gt;%
   xml_view_tree()
 doc %&gt;% # we can also vary the depth
   xml_view_tree(depth = 2)</code></pre>
+<p> </p>
 <pre class="r"><code># easier to read and understand than `xml2::xml_structure()` and has the `depth` option
 nodeset[1] %&gt;% xml2::xml_structure()
 #&gt; [[1]]
@@ -188,6 +185,7 @@ try(nodeset[[1]] %&gt;%
 <pre class="r"><code># one can see all the paths per node of a doc
 doc %&gt;%
   xml_get_paths()</code></pre>
+<p> </p>
 <pre class="r"><code># can look at one nodeset
 ## NOTE that nodesets can vary, so looking at one doesn&#39;t mean you&#39;ll find all feasible paths
 
@@ -349,13 +347,7 @@ terminal_xpaths
 ## the file source is the parsed xml object `doc`, so we set `is_xml = TRUE`
 ## we do no want to dig, which quickly gets us the data we want for each terminal xpath `dig = FALSE` (default)
 df1 &lt;- lapply(terminal_xpaths, xml_to_df, file = doc, is_xml = TRUE, dig = FALSE) %&gt;%
-  dplyr::bind_cols()
-#&gt; [1] &quot;/root/listing&quot;
-#&gt; [1] &quot;/root/listing/seller_info&quot;
-#&gt; [1] &quot;/root/listing/auction_info&quot;
-#&gt; [1] &quot;/root/listing/auction_info/high_bidder&quot;
-#&gt; [1] &quot;/root/listing/bid_history&quot;
-#&gt; [1] &quot;/root/listing/item_info&quot;</code></pre>
+  dplyr::bind_cols()</code></pre>
 </div>
 <div id="the-xml_dig_df-function" class="section level3">
 <h3>The <code>xml_dig_df</code> Function</h3>
