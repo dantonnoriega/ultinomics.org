@@ -4,10 +4,8 @@ author: "Danton Noriega"
 date: 2017-04-05
 categories: ["R", "highcharter"]
 tags: ["R Markdown", "highcharter", "Highcharts"]
-output:
-  blogdown::html_page:
-    toc: true
-    toc_depth: 3
+output: blogdown::html_page
+
 ---
 
 ```{r setup, include=FALSE}
@@ -27,6 +25,29 @@ Rstudio's Mine Cetinkaya-Rundel had a [post about the `highcharter` package](htt
 As Mine noted, all products in this library are free for non-commercial use. If you plan to use `highcharter` in `R` for commericial use, please purchase Highcharts: https://shop.highsoft.com/
 
 Also, a special thanks to [Joshua Kunst](http://jkunst.com) for developing this package. I've learned a lot about `R` and `javascript` thanks to you. Y, gracias a ti mi amigo, siempre estaré empleado.
+
+<!--html_preserve-->
+<div id="TOC">
+<ul>
+<li><a href="#goal-of-this-post">Goal of this Post</a></li>
+<li><a href="#what-i-will-not-cover">What I will not cover</a></li>
+<li><a href="#prerequisites">Prerequisites</a></li>
+<li><a href="#series-highcharter-and-highcharts-building-blocks">Series: <code>highcharter</code> and Highcharts building blocks</a><ul>
+<li><a href="#series-in-highcharter-are-a-list-of-lists-with-a-specific-structure">Series in <code>highcharter</code> are a list of lists with a specific structure</a><ul>
+<li><a href="#hc_add_series_list-vs-hc_add_series"><code>hc_add_series_list()</code> vs <code>hc_add_series()</code></a></li>
+</ul></li>
+<li><a href="#highcharts-api-and-highcharter-functions">Highcharts API and <code>highcharter</code> functions</a><ul>
+<li><a href="#just-throw-an-hc_-infront-of-it">Just throw an <code>hc_</code> infront of it</a></li>
+</ul></li>
+<li><a href="#use-hchart-with-tidy-data">Use <code>hchart()</code> with Tidy Data</a></li>
+</ul></li>
+<li><a href="#your-best-friend-the-hcxhc_optsseries-list">Your Best Friend, the <code>hc$x$hc_opts$series</code> List</a><ul>
+<li><a href="#one-dimensional-array-easy-multi-dimensional-arrays-damn.">One-dimensional array? Easy! Multi-dimensional arrays? Damn.</a></li>
+</ul></li>
+<li><a href="#outline-for-future-posts">Outline for Future Posts</a></li>
+</ul>
+</div>
+<!--/html_preserve-->
 
 ## Goal of this Post
 
@@ -417,20 +438,21 @@ The pros of this is you have *total* control over what you want to plot! The dow
 
 If you just want a plot with no special customizations, no problem! Easy, clean, straightforward. But the moment you want to customize even one point in a series, the amount and complexity of code you have to write just ballooned 2 or 3 fold.
 
+My next post will cover how to deal with these more complex plots. It can be tedious but the results are beautiful. As I told my old boss, "It is amazing how much you have to code to make there be *less* in a plot."
 
 
-# Outline for Future Posts
+<!-- # Outline for Future Posts -->
 
-- Basics
-    - [x] Understanding the series
-        - `highchart()` plus `hc_add_series_list()` for most everything
-    - [x] translating highcharts api to highcharter syntax
-        - list of nested lists!
-        - example translating Highcharts API to highcharter
-    - [x] `hchart()` for tidy data frames
-- Advanced
-    - [ ] `hc$x$hc_opts$series` for understanding structure of series in highcharts
-        - a single vector defaults to `data` or `y`
-        - any more data than a single vector and you end up with a series being list of lists e.g. build an object with `hchart()` and `highchart()` and `hc_add_series_list()`
-- Random 
-    - [ ] things. highcharter likes as.Date(), but not character values of dates.
+<!-- - Basics -->
+<!--     - [x] Understanding the series -->
+<!--         - `highchart()` plus `hc_add_series_list()` for most everything -->
+<!--     - [x] translating highcharts api to highcharter syntax -->
+<!--         - list of nested lists! -->
+<!--         - example translating Highcharts API to highcharter -->
+<!--     - [x] `hchart()` for tidy data frames -->
+<!-- - Advanced -->
+<!--     - [x] `hc\$x\$hc_opts\$series` for understanding structure of series in highcharts -->
+<!--         - a single vector defaults to `data` or `y` -->
+<!--         - any more data than a single vector and you end up with a series being list of lists e.g. build an object with `hchart()` and `highchart()` and `hc_add_series_list()` -->
+<!-- - Random things -->
+<!--     - [ ] highcharter likes as.Date(), but not character values of dates. -->

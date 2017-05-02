@@ -37,15 +37,18 @@
 <meta name="generator" content="Hugo 0.21-DEV" />
 
   
-<!--[if lt IE 9]>
+
+  <!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
 <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 <![endif]-->
 
+
+
 <link href='https://fonts.googleapis.com/css?family=Merriweather:300%7CRaleway%7COpen+Sans' rel='stylesheet' type='text/css'>
 <link rel="stylesheet" href="http://ultinomics.org/css/font-awesome.min.css">
 <link rel="stylesheet" href="http://ultinomics.org/css/style.css">
-<link rel="stylesheet" href="http://ultinomics.org/css/highlight/tomorrow-night-eighties.css">
+
 
   
   
@@ -138,6 +141,36 @@
   
     <article class="container content summary">
   <div class="container hat">
+  <h2><a href="http://ultinomics.org/2017/04/18/xmltools-package-to-help-convert-xml-data-to-tidy-data-frames/">xmltools package to help convert XML data to tidy data frames
+</a>
+</h2>
+
+  <time datetime="2017-04-18">18 Apr, 2017</time>
+
+</div>
+
+  <p class="container content">
+  
+  
+    I created a new, small package called xmltools that helps simplify the process of converting XML data into tidy data frames.
+It has not yet been tested on a ton of XML files so it may have some bugs. I also have not created any tests. But, at least for me, it helps drastically cut down on the code I have to write to get the data I want from an XML file.
+  
+
+
+</p>
+
+
+  <div class="container readlink">
+  <a href="http://ultinomics.org/2017/04/18/xmltools-package-to-help-convert-xml-data-to-tidy-data-frames/">Read more &rarr;</a>
+
+</div>
+
+
+</article>
+
+  
+    <article class="container content summary">
+  <div class="container hat">
   <h2><a href="http://ultinomics.org/2017/04/05/thinking-in-highcharter---how-to-build-any-highcharts-plot-in-r/">Thinking in `highcharter` - How to build any Highcharts plot in R
 </a>
 </h2>
@@ -149,7 +182,8 @@
   <p class="container content">
   
   
-    Goal of this Post What I will not cover Prerequisites Series: highcharter and Highcharts building blocks Series in highcharter are a list of lists with a specific structure hc_add_series_list() vs hc_add_series()  Highcharts API and highcharter functions Just throw an hc_ infront of it  Use hchart() with Tidy Data  Your Best Friend, the hc$x$hc_opts$series List One-dimensional array?
+    Rstudio’s Mine Cetinkaya-Rundel had a post about the highcharter package, a wrapper for the Highcharts javascripts library that lets you create super sweet interactive charts in R.
+Joshua Kunst’s highcharter package has become my go-to plotting package once I reach the production phase and know I will be using HTML.
   
 
 
@@ -276,11 +310,22 @@ Requirements  Command line tools
       src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
     </script>
     
+<script type="text/javascript">
+  (function() {
+    
+    
+    if (window.location.hostname == "localhost")
+      return;
 
+    var dsq = document.createElement('script'); dsq.async = true; dsq.type = 'text/javascript';
+    dsq.src = '//ultinomics-org.disqus.com/count.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
 
-<script src="http://ultinomics.org/js/highlight.pack.js"></script>
-<script>hljs.initHighlightingOnLoad();</script>
+    
 
+    
 
     
   </body>

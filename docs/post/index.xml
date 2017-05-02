@@ -9,10 +9,20 @@
     <managingEditor>danton.noriega@gmail.com (Danton Noriega)</managingEditor>
     <webMaster>danton.noriega@gmail.com (Danton Noriega)</webMaster>
     <copyright>(c) 2017 Danton Noriega.</copyright>
-    <lastBuildDate>Wed, 05 Apr 2017 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 18 Apr 2017 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="http://ultinomics.org/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>xmltools package to help convert XML data to tidy data frames</title>
+      <link>http://ultinomics.org/2017/04/18/xmltools-package-to-help-convert-xml-data-to-tidy-data-frames/</link>
+      <pubDate>Tue, 18 Apr 2017 00:00:00 +0000</pubDate>
+      <author>danton.noriega@gmail.com (Danton Noriega)</author>
+      <guid>http://ultinomics.org/2017/04/18/xmltools-package-to-help-convert-xml-data-to-tidy-data-frames/</guid>
+      <description>I created a new, small package called xmltools that helps simplify the process of converting XML data into tidy data frames.
+It has not yet been tested on a ton of XML files so it may have some bugs. I also have not created any tests. But, at least for me, it helps drastically cut down on the code I have to write to get the data I want from an XML file.</description>
+    </item>
     
     <item>
       <title>Thinking in `highcharter` - How to build any Highcharts plot in R</title>
@@ -20,7 +30,8 @@
       <pubDate>Wed, 05 Apr 2017 00:00:00 +0000</pubDate>
       <author>danton.noriega@gmail.com (Danton Noriega)</author>
       <guid>http://ultinomics.org/2017/04/05/thinking-in-highcharter---how-to-build-any-highcharts-plot-in-r/</guid>
-      <description>Goal of this Post What I will not cover Prerequisites Series: highcharter and Highcharts building blocks Series in highcharter are a list of lists with a specific structure hc_add_series_list() vs hc_add_series()  Highcharts API and highcharter functions Just throw an hc_ infront of it  Use hchart() with Tidy Data  Your Best Friend, the hc$x$hc_opts$series List One-dimensional array?</description>
+      <description>Rstudio’s Mine Cetinkaya-Rundel had a post about the highcharter package, a wrapper for the Highcharts javascripts library that lets you create super sweet interactive charts in R.
+Joshua Kunst’s highcharter package has become my go-to plotting package once I reach the production phase and know I will be using HTML.</description>
     </item>
     
     <item>
