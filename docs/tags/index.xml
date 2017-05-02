@@ -2,7 +2,7 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on ultinomics.org</title>
-    <link>/tags/</link>
+    <link>http://ultinomics.org/tags/</link>
     <description>Recent content in Tags on ultinomics.org</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
@@ -11,159 +11,159 @@
     <copyright>(c) 2017 Danton Noriega.</copyright>
     <lastBuildDate>Thu, 14 Apr 2016 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="http://ultinomics.org/tags/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Conversion</title>
-      <link>/tags/conversion/</link>
+      <link>http://ultinomics.org/tags/conversion/</link>
       <pubDate>Thu, 14 Apr 2016 00:00:00 +0000</pubDate>
       <author>danton.noriega@gmail.com (Danton Noriega)</author>
-      <guid>/tags/conversion/</guid>
+      <guid>http://ultinomics.org/tags/conversion/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Convert</title>
-      <link>/tags/convert/</link>
+      <link>http://ultinomics.org/tags/convert/</link>
       <pubDate>Tue, 29 Mar 2016 00:00:00 +0000</pubDate>
       <author>danton.noriega@gmail.com (Danton Noriega)</author>
-      <guid>/tags/convert/</guid>
+      <guid>http://ultinomics.org/tags/convert/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Docx</title>
-      <link>/tags/docx/</link>
+      <link>http://ultinomics.org/tags/docx/</link>
       <pubDate>Thu, 14 Apr 2016 00:00:00 +0000</pubDate>
       <author>danton.noriega@gmail.com (Danton Noriega)</author>
-      <guid>/tags/docx/</guid>
+      <guid>http://ultinomics.org/tags/docx/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Highcharter</title>
-      <link>/tags/highcharter/</link>
+      <link>http://ultinomics.org/tags/highcharter/</link>
       <pubDate>Wed, 05 Apr 2017 00:00:00 +0000</pubDate>
       <author>danton.noriega@gmail.com (Danton Noriega)</author>
-      <guid>/tags/highcharter/</guid>
+      <guid>http://ultinomics.org/tags/highcharter/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Highcharts</title>
-      <link>/tags/highcharts/</link>
+      <link>http://ultinomics.org/tags/highcharts/</link>
       <pubDate>Wed, 05 Apr 2017 00:00:00 +0000</pubDate>
       <author>danton.noriega@gmail.com (Danton Noriega)</author>
-      <guid>/tags/highcharts/</guid>
+      <guid>http://ultinomics.org/tags/highcharts/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Mac Os X</title>
-      <link>/tags/mac-os-x/</link>
+      <link>http://ultinomics.org/tags/mac-os-x/</link>
       <pubDate>Tue, 29 Mar 2016 00:00:00 +0000</pubDate>
       <author>danton.noriega@gmail.com (Danton Noriega)</author>
-      <guid>/tags/mac-os-x/</guid>
+      <guid>http://ultinomics.org/tags/mac-os-x/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Markdown</title>
-      <link>/tags/markdown/</link>
+      <link>http://ultinomics.org/tags/markdown/</link>
       <pubDate>Thu, 14 Apr 2016 00:00:00 +0000</pubDate>
       <author>danton.noriega@gmail.com (Danton Noriega)</author>
-      <guid>/tags/markdown/</guid>
+      <guid>http://ultinomics.org/tags/markdown/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Ocr</title>
-      <link>/tags/ocr/</link>
+      <link>http://ultinomics.org/tags/ocr/</link>
       <pubDate>Tue, 29 Mar 2016 00:00:00 +0000</pubDate>
       <author>danton.noriega@gmail.com (Danton Noriega)</author>
-      <guid>/tags/ocr/</guid>
+      <guid>http://ultinomics.org/tags/ocr/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Pdf</title>
-      <link>/tags/pdf/</link>
+      <link>http://ultinomics.org/tags/pdf/</link>
       <pubDate>Tue, 29 Mar 2016 00:00:00 +0000</pubDate>
       <author>danton.noriega@gmail.com (Danton Noriega)</author>
-      <guid>/tags/pdf/</guid>
+      <guid>http://ultinomics.org/tags/pdf/</guid>
       <description></description>
     </item>
     
     <item>
       <title>R Markdown</title>
-      <link>/tags/r-markdown/</link>
+      <link>http://ultinomics.org/tags/r-markdown/</link>
       <pubDate>Wed, 05 Apr 2017 00:00:00 +0000</pubDate>
       <author>danton.noriega@gmail.com (Danton Noriega)</author>
-      <guid>/tags/r-markdown/</guid>
+      <guid>http://ultinomics.org/tags/r-markdown/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Reproducible</title>
-      <link>/tags/reproducible/</link>
+      <link>http://ultinomics.org/tags/reproducible/</link>
       <pubDate>Thu, 14 Apr 2016 00:00:00 +0000</pubDate>
       <author>danton.noriega@gmail.com (Danton Noriega)</author>
-      <guid>/tags/reproducible/</guid>
+      <guid>http://ultinomics.org/tags/reproducible/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Rmarkdown</title>
-      <link>/tags/rmarkdown/</link>
+      <link>http://ultinomics.org/tags/rmarkdown/</link>
       <pubDate>Thu, 14 Apr 2016 00:00:00 +0000</pubDate>
       <author>danton.noriega@gmail.com (Danton Noriega)</author>
-      <guid>/tags/rmarkdown/</guid>
+      <guid>http://ultinomics.org/tags/rmarkdown/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Rmd</title>
-      <link>/tags/rmd/</link>
+      <link>http://ultinomics.org/tags/rmd/</link>
       <pubDate>Thu, 14 Apr 2016 00:00:00 +0000</pubDate>
       <author>danton.noriega@gmail.com (Danton Noriega)</author>
-      <guid>/tags/rmd/</guid>
+      <guid>http://ultinomics.org/tags/rmd/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Terminal</title>
-      <link>/tags/terminal/</link>
+      <link>http://ultinomics.org/tags/terminal/</link>
       <pubDate>Tue, 29 Mar 2016 00:00:00 +0000</pubDate>
       <author>danton.noriega@gmail.com (Danton Noriega)</author>
-      <guid>/tags/terminal/</guid>
+      <guid>http://ultinomics.org/tags/terminal/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Tesseract</title>
-      <link>/tags/tesseract/</link>
+      <link>http://ultinomics.org/tags/tesseract/</link>
       <pubDate>Tue, 29 Mar 2016 00:00:00 +0000</pubDate>
       <author>danton.noriega@gmail.com (Danton Noriega)</author>
-      <guid>/tags/tesseract/</guid>
+      <guid>http://ultinomics.org/tags/tesseract/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Txt</title>
-      <link>/tags/txt/</link>
+      <link>http://ultinomics.org/tags/txt/</link>
       <pubDate>Tue, 29 Mar 2016 00:00:00 +0000</pubDate>
       <author>danton.noriega@gmail.com (Danton Noriega)</author>
-      <guid>/tags/txt/</guid>
+      <guid>http://ultinomics.org/tags/txt/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Word</title>
-      <link>/tags/word/</link>
+      <link>http://ultinomics.org/tags/word/</link>
       <pubDate>Thu, 14 Apr 2016 00:00:00 +0000</pubDate>
       <author>danton.noriega@gmail.com (Danton Noriega)</author>
-      <guid>/tags/word/</guid>
+      <guid>http://ultinomics.org/tags/word/</guid>
       <description></description>
     </item>
     
