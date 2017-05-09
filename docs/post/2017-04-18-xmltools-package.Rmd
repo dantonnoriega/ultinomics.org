@@ -6,7 +6,7 @@ tags: ["R Markdown", "XML", "xml2"]
 output: blogdown::html_page
 ---
 
-I created a new, small [package called `xmltools`](https://github.com/ultinomics/xmltools) that helps simplify the process of converting XML data into tidy data frames.
+I created a new, small [package called `xmltools`](https://github.com/dantonnoriega/xmltools) that helps simplify the process of converting XML data into tidy data frames.
 
 It has not yet been tested on a ton of XML files so it may have some bugs. I also have not created any tests. But, at least for me, it helps drastically cut down on the code I have to write to get the data I want from an XML file.
 
@@ -15,7 +15,7 @@ Below is what I wrote as part of the README to the package (it's really more of 
 ```{r setup, echo=FALSE, results='hide'}
 x <- tempfile(fileext = ".Rmd")
 on.exit(unlink(x))
-download.file("https://raw.githubusercontent.com/ultinomics/xmltools/master/README.Rmd", x)
+download.file("https://raw.githubusercontent.com/dantonnoriega/xmltools/master/README.Rmd", x)
 ```
 
 ```{r readme, child=normalizePath(x)}

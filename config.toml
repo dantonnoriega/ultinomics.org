@@ -60,7 +60,7 @@ paginatePath = "page"
     highlightjsTheme = "tomorrow-night-eighties"
 
     # Sidebar social links.
-    github = "ultinomics" # Your Github profile ID
+    github = "dantonnoriega" # Your Github profile ID
     linkedin = "dantonnoriega" # Your LinkedIn profile ID (from public URL)
     twitter = "dantonnoriega" # Your Twitter profile ID
 

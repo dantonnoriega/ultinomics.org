@@ -5,7 +5,7 @@ tags: ["markdown", "rmarkdown", "rmd", "docx", "word", "conversion", "reproducib
 date: 2016-04-14
 ---
 
-This post is just a copy of README.md file for the repo [https://github.com/ultinomics/rmarkdown2docx](https://github.com/ultinomics/rmarkdown2docx). But it's got everything you need to get your R Markdown file (.Rmd) to a clean, useful MS Word file (.docx).
+This post is just a copy of README.md file for the repo [https://github.com/dantonnoriega/rmarkdown2docx](https://github.com/dantonnoriega/rmarkdown2docx). But it's got everything you need to get your R Markdown file (.Rmd) to a clean, useful MS Word file (.docx).
 
 # Description
 
