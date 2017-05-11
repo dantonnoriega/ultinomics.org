@@ -2,24 +2,24 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Rmd on ultinomics.org</title>
-    <link>/tags/rmd/</link>
+    <link>/ultinomics.org/tags/rmd/</link>
     <description>Recent content in Rmd on ultinomics.org</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
-    <managingEditor>danton.noriega@gmail.com (Danton Noriega)</managingEditor>
-    <webMaster>danton.noriega@gmail.com (Danton Noriega)</webMaster>
+    <managingEditor>danton_dot_noriega-at-gmail_dot_com (Danton Noriega)</managingEditor>
+    <webMaster>danton_dot_noriega-at-gmail_dot_com (Danton Noriega)</webMaster>
     <copyright>(c) 2017 Danton Noriega.</copyright>
     <lastBuildDate>Thu, 14 Apr 2016 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="/tags/rmd/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="/ultinomics.org/tags/rmd/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>RMarkdown (.Rmd) to MS Word (.docx) aka rmarkdown2docx</title>
-      <link>/2016/04/14/rmarkdown-.rmd-to-ms-word-.docx-aka-rmarkdown2docx/</link>
+      <link>/ultinomics.org/2016/04/14/rmarkdown-.rmd-to-ms-word-.docx-aka-rmarkdown2docx/</link>
       <pubDate>Thu, 14 Apr 2016 00:00:00 +0000</pubDate>
-      <author>danton.noriega@gmail.com (Danton Noriega)</author>
-      <guid>/2016/04/14/rmarkdown-.rmd-to-ms-word-.docx-aka-rmarkdown2docx/</guid>
+      <author>danton_dot_noriega-at-gmail_dot_com (Danton Noriega)</author>
+      <guid>/ultinomics.org/2016/04/14/rmarkdown-.rmd-to-ms-word-.docx-aka-rmarkdown2docx/</guid>
       <description>This post is just a copy of README.md file for the repo https://github.com/dantonnoriega/rmarkdown2docx. But it&amp;rsquo;s got everything you need to get your R Markdown file (.Rmd) to a clean, useful MS Word file (.docx).
 Description This set of scripts help convert the output of Rmd files to docx files. It is done by creating a clean html file, then opening, converting, and saving the html to docx using Applescript and Microsoft Word.</description>
     </item>

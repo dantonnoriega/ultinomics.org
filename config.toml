@@ -1,4 +1,4 @@
-baseurl             = "http://dantonnoriega.github.io/ultinomics.org/"
+baseurl             = "https://dantonnoriega.github.io/ultinomics.org/"
 builddrafts         = false
 relativeURLs        = false
 contentdir          = "content"
@@ -33,7 +33,7 @@ paginatePath = "page"
 
 [author]
     name = "Danton Noriega"
-    email = "danton.noriega@gmail.com"
+    email = "danton_dot_noriega-at-gmail_dot_com"
 
 #
 # All parameters below here are optional and can be mixed and matched.

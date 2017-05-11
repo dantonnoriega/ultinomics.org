@@ -2,54 +2,54 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>ultinomics.org</title>
-    <link>/</link>
+    <link>/ultinomics.org/</link>
     <description>Recent content on ultinomics.org</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
-    <managingEditor>danton.noriega@gmail.com (Danton Noriega)</managingEditor>
-    <webMaster>danton.noriega@gmail.com (Danton Noriega)</webMaster>
+    <managingEditor>danton_dot_noriega-at-gmail_dot_com (Danton Noriega)</managingEditor>
+    <webMaster>danton_dot_noriega-at-gmail_dot_com (Danton Noriega)</webMaster>
     <copyright>(c) 2017 Danton Noriega.</copyright>
     <lastBuildDate>Tue, 18 Apr 2017 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="/ultinomics.org/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>xmltools package to help convert XML data to tidy data frames</title>
-      <link>/2017/04/18/xmltools-package-to-help-convert-xml-data-to-tidy-data-frames/</link>
+      <link>/ultinomics.org/2017/04/18/xmltools-package-to-help-convert-xml-data-to-tidy-data-frames/</link>
       <pubDate>Tue, 18 Apr 2017 00:00:00 +0000</pubDate>
-      <author>danton.noriega@gmail.com (Danton Noriega)</author>
-      <guid>/2017/04/18/xmltools-package-to-help-convert-xml-data-to-tidy-data-frames/</guid>
+      <author>danton_dot_noriega-at-gmail_dot_com (Danton Noriega)</author>
+      <guid>/ultinomics.org/2017/04/18/xmltools-package-to-help-convert-xml-data-to-tidy-data-frames/</guid>
       <description>I created a new, small package called xmltools that helps simplify the process of converting XML data into tidy data frames.
 It has not yet been tested on a ton of XML files so it may have some bugs. I also have not created any tests. But, at least for me, it helps drastically cut down on the code I have to write to get the data I want from an XML file.</description>
     </item>
     
     <item>
       <title>Thinking in `highcharter` - How to build any Highcharts plot in R</title>
-      <link>/2017/04/05/thinking-in-highcharter---how-to-build-any-highcharts-plot-in-r/</link>
+      <link>/ultinomics.org/2017/04/05/thinking-in-highcharter---how-to-build-any-highcharts-plot-in-r/</link>
       <pubDate>Wed, 05 Apr 2017 00:00:00 +0000</pubDate>
-      <author>danton.noriega@gmail.com (Danton Noriega)</author>
-      <guid>/2017/04/05/thinking-in-highcharter---how-to-build-any-highcharts-plot-in-r/</guid>
+      <author>danton_dot_noriega-at-gmail_dot_com (Danton Noriega)</author>
+      <guid>/ultinomics.org/2017/04/05/thinking-in-highcharter---how-to-build-any-highcharts-plot-in-r/</guid>
       <description>Rstudio’s Mine Cetinkaya-Rundel had a post about the highcharter package, a wrapper for the Highcharts javascripts library that lets you create super sweet interactive charts in R.
 Joshua Kunst’s highcharter package has become my go-to plotting package once I reach the production phase and know I will be using HTML.</description>
     </item>
     
     <item>
       <title>RMarkdown (.Rmd) to MS Word (.docx) aka rmarkdown2docx</title>
-      <link>/2016/04/14/rmarkdown-.rmd-to-ms-word-.docx-aka-rmarkdown2docx/</link>
+      <link>/ultinomics.org/2016/04/14/rmarkdown-.rmd-to-ms-word-.docx-aka-rmarkdown2docx/</link>
       <pubDate>Thu, 14 Apr 2016 00:00:00 +0000</pubDate>
-      <author>danton.noriega@gmail.com (Danton Noriega)</author>
-      <guid>/2016/04/14/rmarkdown-.rmd-to-ms-word-.docx-aka-rmarkdown2docx/</guid>
+      <author>danton_dot_noriega-at-gmail_dot_com (Danton Noriega)</author>
+      <guid>/ultinomics.org/2016/04/14/rmarkdown-.rmd-to-ms-word-.docx-aka-rmarkdown2docx/</guid>
       <description>This post is just a copy of README.md file for the repo https://github.com/dantonnoriega/rmarkdown2docx. But it&amp;rsquo;s got everything you need to get your R Markdown file (.Rmd) to a clean, useful MS Word file (.docx).
 Description This set of scripts help convert the output of Rmd files to docx files. It is done by creating a clean html file, then opening, converting, and saving the html to docx using Applescript and Microsoft Word.</description>
     </item>
     
     <item>
       <title>Converting Unsearchable PDF Files (aka PDF scans) to Raw Text Using Command Line Tools `convert` and `tesseract`</title>
-      <link>/2016/03/29/converting-unsearchable-pdf-files-aka-pdf-scans-to-raw-text-using-command-line-tools-convert-and-tesseract/</link>
+      <link>/ultinomics.org/2016/03/29/converting-unsearchable-pdf-files-aka-pdf-scans-to-raw-text-using-command-line-tools-convert-and-tesseract/</link>
       <pubDate>Tue, 29 Mar 2016 00:00:00 +0000</pubDate>
-      <author>danton.noriega@gmail.com (Danton Noriega)</author>
-      <guid>/2016/03/29/converting-unsearchable-pdf-files-aka-pdf-scans-to-raw-text-using-command-line-tools-convert-and-tesseract/</guid>
+      <author>danton_dot_noriega-at-gmail_dot_com (Danton Noriega)</author>
+      <guid>/ultinomics.org/2016/03/29/converting-unsearchable-pdf-files-aka-pdf-scans-to-raw-text-using-command-line-tools-convert-and-tesseract/</guid>
       <description>Often, one gets a PDF file that is a scan of a book or text, which cannot be searched (boo!). A good (but not perfect) solution is to use Optical Character Recognition (OCR) to convert the pdf to a txt file and search that instead.
 Here is my solution.
 Requirements  Command line tools
