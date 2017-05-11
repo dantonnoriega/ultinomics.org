@@ -180,6 +180,7 @@ try(nodeset[[1]] %&gt;%
 <p>Terminal nodes in XMLs are nodes that do no have any “children”. These nodes contain the information we generally want to extract into a tidy data frame.</p>
 <p>I’ve found myself wanting easy access to all XML paths but could find no tool to do so easily and quickly. I especially wanted the xpaths to terminal nodes for any XML structure. This is accomplished using the <code>xml_get_paths</code> function.</p>
 <pre class="r"><code># one can see all the paths per node of a doc
+# NOTE EXECUTED
 doc %&gt;%
   xml_get_paths()</code></pre>
 <p> </p>
@@ -394,7 +395,7 @@ terminal_xpaths &lt;- terminal_paths %&gt;% ## collapse xpaths to unique only
 
 # xml_to_df (XML package based)
 ## note that we use file, not doc, hence is_xml = FALSE
-df1 &lt;- lapply(xpaths, xml_to_df, file = file, is_xml = FALSE, dig = FALSE) %&gt;%
+df1 &lt;- lapply(terminal_xpaths, xml_to_df, file = file, is_xml = FALSE, dig = FALSE) %&gt;%
   dplyr::bind_cols()
 df1
 

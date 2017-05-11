@@ -19,7 +19,7 @@
 
 <meta property="og:title" content="xmltools package to help convert XML data to tidy data frames  &middot; ultinomics.org ">
 <meta property="og:site_name" content="ultinomics.org"/>
-<meta property="og:url" content="/ultinomics.org/2017/04/18/xmltools-package-to-help-convert-xml-data-to-tidy-data-frames/" />
+<meta property="og:url" content="https://dantonnoriega.github.io/ultinomics.org/2017/04/18/xmltools-package-to-help-convert-xml-data-to-tidy-data-frames/" />
 <meta property="og:locale" content="en-US">
 
 
@@ -44,8 +44,8 @@
 <meta name="twitter:creator" content="@dantonnoriega" />
 <meta name="twitter:title" content="xmltools package to help convert XML data to tidy data frames" />
 <meta name="twitter:description" content="" />
-<meta name="twitter:url" content="/ultinomics.org/2017/04/18/xmltools-package-to-help-convert-xml-data-to-tidy-data-frames/" />
-<meta name="twitter:domain" content="/ultinomics.org/">
+<meta name="twitter:url" content="https://dantonnoriega.github.io/ultinomics.org/2017/04/18/xmltools-package-to-help-convert-xml-data-to-tidy-data-frames/" />
+<meta name="twitter:domain" content="https://dantonnoriega.github.io/ultinomics.org/">
   
 
 <script type="application/ld+json">
@@ -59,16 +59,16 @@
     },
     "datePublished": "2017-04-18",
     "description": "",
-    "wordCount": 1900
+    "wordCount": 1903
   }
 </script>
 
 
 
-<link rel="canonical" href="/ultinomics.org/2017/04/18/xmltools-package-to-help-convert-xml-data-to-tidy-data-frames/" />
+<link rel="canonical" href="https://dantonnoriega.github.io/ultinomics.org/2017/04/18/xmltools-package-to-help-convert-xml-data-to-tidy-data-frames/" />
 
-<link rel="apple-touch-icon-precomposed" sizes="144x144" href="/touch-icon-144-precomposed.png">
-<link href="/favicon.png" rel="icon">
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://dantonnoriega.github.io/touch-icon-144-precomposed.png">
+<link href="https://dantonnoriega.github.io/favicon.png" rel="icon">
 
 <meta name="generator" content="Hugo 0.20.7" />
 
@@ -87,8 +87,8 @@
 
 
 <link href='https://fonts.googleapis.com/css?family=Merriweather:300%7CRaleway%7COpen+Sans' rel='stylesheet' type='text/css'>
-<link rel="stylesheet" href="/ultinomics.org/css/font-awesome.min.css">
-<link rel="stylesheet" href="/ultinomics.org/css/style.css">
+<link rel="stylesheet" href="https://dantonnoriega.github.io/ultinomics.org/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://dantonnoriega.github.io/ultinomics.org/css/style.css">
 
 
   
@@ -99,7 +99,7 @@
     <header id="main-header" class="container main_header">
   <div class="container brand">
   <div class="container title h1-like">
-  <a class="baselink" href="/ultinomics.org/">
+  <a class="baselink" href="https://dantonnoriega.github.io/ultinomics.org/">
   ultinomics.org
 
 </a>
@@ -120,13 +120,13 @@
   <nav class="container nav primary no-print">
   
 
-<a class="homelink" href="/ultinomics.org/">home</a>
+<a class="homelink" href="https://dantonnoriega.github.io/ultinomics.org/">home</a>
 
 
   
 <a href="//dantonnoriega.me">about</a>
 
-<a href="/post">posts</a>
+<a href="https://dantonnoriega.github.io/post">posts</a>
 
 
 </nav>
@@ -188,14 +188,14 @@
 
   
   &middot; Read in about 9 min
-  &middot; (1900 Words)
+  &middot; (1903 Words)
   <br>
   
-<a class="label" href="/tags/r-markdown">R Markdown</a>
+<a class="label" href="https://dantonnoriega.github.io/tags/r-markdown">R Markdown</a>
 
-<a class="label" href="/tags/xml">XML</a>
+<a class="label" href="https://dantonnoriega.github.io/tags/xml">XML</a>
 
-<a class="label" href="/tags/xml2">xml2</a>
+<a class="label" href="https://dantonnoriega.github.io/tags/xml2">xml2</a>
 
 
 
@@ -376,6 +376,7 @@ try(nodeset[[1]] %&gt;%
 <p>Terminal nodes in XMLs are nodes that do no have any “children”. These nodes contain the information we generally want to extract into a tidy data frame.</p>
 <p>I’ve found myself wanting easy access to all XML paths but could find no tool to do so easily and quickly. I especially wanted the xpaths to terminal nodes for any XML structure. This is accomplished using the <code>xml_get_paths</code> function.</p>
 <pre class="r"><code># one can see all the paths per node of a doc
+# NOTE EXECUTED
 doc %&gt;%
   xml_get_paths()</code></pre>
 <p> </p>
@@ -590,7 +591,7 @@ terminal_xpaths &lt;- terminal_paths %&gt;% ## collapse xpaths to unique only
 
 # xml_to_df (XML package based)
 ## note that we use file, not doc, hence is_xml = FALSE
-df1 &lt;- lapply(xpaths, xml_to_df, file = file, is_xml = FALSE, dig = FALSE) %&gt;%
+df1 &lt;- lapply(terminal_xpaths, xml_to_df, file = file, is_xml = FALSE, dig = FALSE) %&gt;%
   dplyr::bind_cols()
 df1
 
@@ -618,7 +619,7 @@ identical(df1, data.table::as.data.table(df2))</code></pre>
   
 
     
-    <a class="prev" href="/ultinomics.org/2017/04/05/thinking-in-highcharter---how-to-build-any-highcharts-plot-in-r/" title="Thinking in `highcharter` - How to build any Highcharts plot in R">
+    <a class="prev" href="https://dantonnoriega.github.io/ultinomics.org/2017/04/05/thinking-in-highcharter---how-to-build-any-highcharts-plot-in-r/" title="Thinking in `highcharter` - How to build any Highcharts plot in R">
       Previous
     </a>
     
