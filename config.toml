@@ -1,6 +1,8 @@
-baseurl             = "https://dantonnoriega.github.io/ultinomics.org/"
+baseurl             = ""
 builddrafts         = false
+uglyurls            = true
 relativeURLs        = true
+canonifyURLs        = true
 contentdir          = "content"
 languageCode        = "en-US"
 publishdir          = "docs"
