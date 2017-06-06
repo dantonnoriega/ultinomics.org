@@ -301,7 +301,7 @@ xpaths[1] # /root/listing is terminal parent but xmlToDataFrame keeps digging
 
 df0[[1]] %&gt;%
   dplyr::select(seller_info) # not good; keeps diving into other nodes but fails to separate
-#&gt; # A tibble: 5 × 1
+#&gt; # A tibble: 5 x 1
 #&gt;             seller_info
 #&gt;                   &lt;chr&gt;
 #&gt; 1       cubsfantony 848
@@ -314,7 +314,7 @@ xpaths[2]
 #&gt; [1] &quot;/root/listing/payment_types&quot;
 
 df0[[2]] # works because the recursive dig down hits only the terminal nodes
-#&gt; # A tibble: 5 × 2
+#&gt; # A tibble: 5 x 2
 #&gt;         seller_name seller_rating
 #&gt;               &lt;chr&gt;         &lt;chr&gt;
 #&gt; 1       cubsfantony           848
