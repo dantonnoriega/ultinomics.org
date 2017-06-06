@@ -1,4 +1,4 @@
-baseurl             = ""
+baseurl             = "https://dantonnoriega.github.io/ultinomics.org/"
 builddrafts         = false
 uglyurls            = true
 relativeURLs        = true
@@ -57,7 +57,7 @@ paginatePath = "page"
     # Check the static/css/highlight directory for options.
     # options for highlight.js (version, additional languages, and theme)
     highlightjsVersion = "9.11.0"
-    highlightjsCDN = "//cdnjs.cloudflare.com/ajax/libs"
+    highlightjsCDN = "http://cdnjs.cloudflare.com/ajax/libs"
     highlightjsLang = ["r", "yaml"]
     highlightjsTheme = "tomorrow-night-eighties"
 

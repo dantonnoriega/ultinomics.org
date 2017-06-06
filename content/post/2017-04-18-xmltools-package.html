@@ -39,13 +39,14 @@ output: blogdown::html_page
 <div id="installation" class="section level1">
 <h1>Installation</h1>
 <p>Run the following.</p>
-<pre class="r"><code>devtools::install_github(&#39;ultinomics/xmltools&#39;)
+<pre class="r"><code>devtools::install_github(&#39;dantonnoriega/xmltools&#39;)
 library(xmltools)</code></pre>
 </div>
 <div id="examples" class="section level1">
 <h1>Examples</h1>
 <p>Let’s set up the first example using some ebay data from the <a href="http://aiweb.cs.washington.edu/research/projects/xmltk/xmldata/www/repository.html">UW XML Data Repository</a>. These data come as part of the package because I dropped the really annoying <code>description</code> field that makes the data hard to look at. (Parses it just fine!)</p>
 <pre class="r"><code>library(xmltools)
+library(magrittr)
 
 # USING ebay.xml ------------------------------------------------
 # load the data

@@ -3,158 +3,158 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>/2017/04/18/xmltools-package-to-help-convert-xml-data-to-tidy-data-frames.html</loc>
+    <loc>https://dantonnoriega.github.io/ultinomics.org/2017/04/18/xmltools-package-to-help-convert-xml-data-to-tidy-data-frames.html</loc>
     <lastmod>2017-04-18T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/2017/04/05/thinking-in-highcharter---how-to-build-any-highcharts-plot-in-r.html</loc>
+    <loc>https://dantonnoriega.github.io/ultinomics.org/2017/04/05/thinking-in-highcharter---how-to-build-any-highcharts-plot-in-r.html</loc>
     <lastmod>2017-04-05T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/2016/04/14/rmarkdown-.rmd-to-ms-word-.docx-aka-rmarkdown2docx.html</loc>
+    <loc>https://dantonnoriega.github.io/ultinomics.org/2016/04/14/rmarkdown-.rmd-to-ms-word-.docx-aka-rmarkdown2docx.html</loc>
     <lastmod>2016-04-14T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/2016/03/29/converting-unsearchable-pdf-files-aka-pdf-scans-to-raw-text-using-command-line-tools-convert-and-tesseract.html</loc>
+    <loc>https://dantonnoriega.github.io/ultinomics.org/2016/03/29/converting-unsearchable-pdf-files-aka-pdf-scans-to-raw-text-using-command-line-tools-convert-and-tesseract.html</loc>
     <lastmod>2016-03-29T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/tags/conversion.html</loc>
+    <loc>https://dantonnoriega.github.io/ultinomics.org/tags/conversion.html</loc>
     <lastmod>2016-04-14T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/tags/convert.html</loc>
+    <loc>https://dantonnoriega.github.io/ultinomics.org/tags/convert.html</loc>
     <lastmod>2016-03-29T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/tags/docx.html</loc>
+    <loc>https://dantonnoriega.github.io/ultinomics.org/tags/docx.html</loc>
     <lastmod>2016-04-14T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/tags/highcharter.html</loc>
-    <lastmod>2017-04-05T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/tags/highcharts.html</loc>
+    <loc>https://dantonnoriega.github.io/ultinomics.org/tags/highcharter.html</loc>
     <lastmod>2017-04-05T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/tags/mac-os-x.html</loc>
+    <loc>https://dantonnoriega.github.io/ultinomics.org/tags/highcharts.html</loc>
+    <lastmod>2017-04-05T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://dantonnoriega.github.io/ultinomics.org/tags/mac-os-x.html</loc>
     <lastmod>2016-03-29T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/tags/markdown.html</loc>
+    <loc>https://dantonnoriega.github.io/ultinomics.org/tags/markdown.html</loc>
     <lastmod>2016-04-14T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/tags/ocr.html</loc>
+    <loc>https://dantonnoriega.github.io/ultinomics.org/tags/ocr.html</loc>
     <lastmod>2016-03-29T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/tags/pdf.html</loc>
+    <loc>https://dantonnoriega.github.io/ultinomics.org/tags/pdf.html</loc>
     <lastmod>2016-03-29T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/post.html</loc>
+    <loc>https://dantonnoriega.github.io/ultinomics.org/post.html</loc>
     <lastmod>2017-04-18T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/tags/r-markdown.html</loc>
+    <loc>https://dantonnoriega.github.io/ultinomics.org/tags/r-markdown.html</loc>
     <lastmod>2017-04-18T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/tags/reproducible.html</loc>
+    <loc>https://dantonnoriega.github.io/ultinomics.org/tags/reproducible.html</loc>
     <lastmod>2016-04-14T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/tags/rmarkdown.html</loc>
+    <loc>https://dantonnoriega.github.io/ultinomics.org/tags/rmarkdown.html</loc>
     <lastmod>2016-04-14T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/tags/rmd.html</loc>
+    <loc>https://dantonnoriega.github.io/ultinomics.org/tags/rmd.html</loc>
     <lastmod>2016-04-14T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/tags.html</loc>
+    <loc>https://dantonnoriega.github.io/ultinomics.org/tags.html</loc>
     <lastmod>2016-04-14T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/tags/terminal.html</loc>
+    <loc>https://dantonnoriega.github.io/ultinomics.org/tags/terminal.html</loc>
     <lastmod>2016-03-29T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/tags/tesseract.html</loc>
+    <loc>https://dantonnoriega.github.io/ultinomics.org/tags/tesseract.html</loc>
     <lastmod>2016-03-29T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/topics.html</loc>
+    <loc>https://dantonnoriega.github.io/ultinomics.org/topics.html</loc>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/tags/txt.html</loc>
+    <loc>https://dantonnoriega.github.io/ultinomics.org/tags/txt.html</loc>
     <lastmod>2016-03-29T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/tags/word.html</loc>
+    <loc>https://dantonnoriega.github.io/ultinomics.org/tags/word.html</loc>
     <lastmod>2016-04-14T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/tags/xml.html</loc>
+    <loc>https://dantonnoriega.github.io/ultinomics.org/tags/xml.html</loc>
     <lastmod>2017-04-18T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/tags/xml2.html</loc>
+    <loc>https://dantonnoriega.github.io/ultinomics.org/tags/xml2.html</loc>
     <lastmod>2017-04-18T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/</loc>
+    <loc>https://dantonnoriega.github.io/ultinomics.org/</loc>
     <lastmod>2017-04-18T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
