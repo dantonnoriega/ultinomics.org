@@ -9,7 +9,7 @@ output: blogdown::html_page
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE, cache = FALSE, comment = NA, message = FALSE, warning = FALSE)
+knitr::opts_chunk$set(echo = TRUE, cache = FALSE, comment = "#>", message = FALSE, warning = FALSE)
 ```
 
 Rstudio's Mine Cetinkaya-Rundel had a [post about the `highcharter` package](https://www.rstudio.com/rviews/2016/10/19/creating-interactive-plots-with-r-and-highcharts/), a wrapper for the [Highcharts](http://www.highcharts.com) javascripts library that lets you create super sweet interactive charts in R.
