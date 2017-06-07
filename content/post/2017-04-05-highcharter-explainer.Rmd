@@ -41,7 +41,7 @@ Also, a special thanks to [Joshua Kunst](http://jkunst.com) for developing this 
 </ul></li>
 <li><a href="#use-hchart-with-tidy-data">Use <code>hchart()</code> with Tidy Data</a></li>
 </ul></li>
-<li><a href="#your-best-friend-the-hcxhc_optsseries-list">Your Best Friend, the <code>hc$x$hc_opts$series</code> List</a><ul>
+<li><a href="#your-best-friend-the-hcxhc_optsseries-list">Your Best Friend, the <code>hc\$x\$hc_opts\$series</code> List</a><ul>
 <li><a href="#one-dimensional-array-easy-multi-dimensional-arrays-damn.">One-dimensional array? Easy! Multi-dimensional arrays? Damn.</a></li>
 </ul></li>
 <li><a href="#outline-for-future-posts">Outline for Future Posts</a></li>
@@ -332,9 +332,9 @@ hc2
 >NOTE: whatever is passed as the `x` variable must generally be of class `Date`, `character` or `numeric`. Other types aren't handled nicely, like class `yearmon` from the `zoo` package. Often, the best strategy is to order the data, NOT pass a `x` variable, then label the x-axis later using the `hc_xAxis(categories = some_vector_of_strings)` option.
 
 
-# Your Best Friend, the `hc$x$hc_opts$series` List
+# Your Best Friend, the `hc\$x\$hc_opts\$series` List
 
-Pretend you assigned your chart to the variable `hc`. You can extract the underlying series data used in the chart by digging into the lists `hc$x$hc_opts$series`. Referencing these series list is actually how I learned to finally start connecting the Highcharts API with tooltip options and series construction.
+Pretend you assigned your chart to the variable `hc`. You can extract the underlying series data used in the chart by digging into the lists `hc\$x\$hc_opts\$series`. Referencing these series list is actually how I learned to finally start connecting the Highcharts API with tooltip options and series construction.
 
 But this is where things also start to get tricky. *How* you pass data to `highcharter` or *how* you build a series affects the underlying structure of the data used for plotting. I will again show this by example.
 
@@ -358,7 +358,7 @@ hc2 <- hchart(citytemp2, type = 'line', hcaes(y = temperature, group = city, x =
 hc2
 ```
 
-So what? If the output is the same, what is there to fret about? Enter `.$x$hc_opts$series`. 
+So what? If the output is the same, what is there to fret about? Enter `.\$x\$hc_opts\$series`. 
 
 Here is the underlying structure of the data used to make the `hc1` plot.
 
@@ -370,11 +370,11 @@ hc1$x$hc_opts$series[[1]]$data # also just the plotting data, which is a vector 
 ```
 
 
-`hc1$x$hc_opts$series` is therefore a list of lists, where each element of the list `.$series` contains the plotting data. The structure of the data in this case is pretty simple and clean.
+`hc1\$x\$hc_opts\$series` is therefore a list of lists, where each element of the list `.$series` contains the plotting data. The structure of the data in this case is pretty simple and clean.
 
 But now let's look at `hc2`.
 
-There series count is the same (`2`). But I'm not going to display the output of `hc2$x$hc_opts$series` because it is crazy long. However, I recommend running the code `hc2$x$hc_opts$series` yourself in the console and taking a look.
+There series count is the same (`2`). But I'm not going to display the output of `hc2\$x\$hc_opts\$series` because it is crazy long. However, I recommend running the code `hc2\$x\$hc_opts\$series` yourself in the console and taking a look.
 
 ```{r}
 length(hc2$x$hc_opts$series)
@@ -386,7 +386,7 @@ hc2$x$hc_opts$series[[2]]$data %>% head(3) # extract the first 3 elements of the
 >**IMPORTANT NOTE:** Why is the `tokyo` data the second series in `hc2`, which used `hchart`, but the first series in `hc1`? This is because, when you build the chart series by series (using `hc_add_series`), the index follows the order of inclusion. The `tokyo` data is added to `hc1` chart first, so it becomes the first series (`.$series[[1]]`). On the other hand, if you use `hchart`, then highcharter orders series *alphabetically*. `london` comes before `tokyo`, so `tokyo` is the second series (`.$series[[2]]`). Given that the order of how a series is plotted can matter, this is a very important caveat to remember when using `hchart`!
 
 
-The fact that `hc2$x$hc_opts$series` is so much longer than the very concise `hc1$x$hc_opts$series` is telling you that `hchart` is a very different beast than building using `hc_add_series` or `hc_add_series_list`. Yet, despite having very different underlying series structures, each produces the same visual output.
+The fact that `hc2\$x\$hc_opts\$series` is so much longer than the very concise `hc1\$x\$hc_opts\$series` is telling you that `hchart` is a very different beast than building using `hc_add_series` or `hc_add_series_list`. Yet, despite having very different underlying series structures, each produces the same visual output.
 
 What's going on? Why is the structure so different? 
 
@@ -411,20 +411,20 @@ hc2 <- hchart(citytemp2, type = 'line', hcaes(y = temperature, group = city, x =
 ```
 
 
-The value of `hc1$x$hc_opts$series[[1]]$data[[1]]` is `7`. This maps directly with `citytemp$tokyo[1]`. This is because the data for each series in `hc1` is a single vector (or array) of data (`..., data = citytemp$tokyo)`). A nice chart is still generated because the API handles the translation of the 1d `data` vector to `y` values and creates the corresponding `x` index values.
+The value of `hc1\$x\$hc_opts\$series[[1]]\$data[[1]]` is `7`. This maps directly with `citytemp$tokyo[1]`. This is because the data for each series in `hc1` is a single vector (or array) of data (`..., data = citytemp\$tokyo)`). A nice chart is still generated because the API handles the translation of the 1d `data` vector to `y` values and creates the corresponding `x` index values.
 
-But the value of `hc2$x$hc_opts$series[[2]]$data[[1]]` is a list of 5 named elements.
+But the value of `hc2\$x\$hc_opts\$series[[2]]\$data[[1]]` is a list of 5 named elements.
 
 ```{r}
 hc2$x$hc_opts$series[[2]]$data[[1]] %>% str()
 ```
 
-The best way to think of element `hc2$x$hc_opts$series[[2]]$data[[1]]` is as a point with, in this case, 5 bits of data. While each bit of data exists as part of the point, not all of the data is used when creating the chart. The only bits of data used are those that have names used by the Highcharts API, like `y` and `name`.
+The best way to think of element `hc2\$x\$hc_opts\$series[[2]]\$data[[1]]` is as a point with, in this case, 5 bits of data. While each bit of data exists as part of the point, not all of the data is used when creating the chart. The only bits of data used are those that have names used by the Highcharts API, like `y` and `name`.
 
 There are a few things to notice, each rooted in the code `hchart(., type = 'line', hcaes(y = temperature, group = city, x = month))`:
 
 1. The dataframe `citytemp2` had only 3 variables (`month`, `city`, `temperature`). `hchart` not only passes these variables as data, it then passes the variables assigned to the `y` and `x` arguments (`y = temperature`, `x = month`). 
-2. But wait, there is no `x` named element? The variable assigned to `x` was renamed to `name`, *which is not to be confused with the __series__ name `hc2$x$hc_opts$series[[2]]$name`. This is because the variable assigned to `x` was of class `character`. Highcharts cannot chart a non-numeric value to the x-axis. Instead, `highcharther` automatically maps string values assigned to `x` to the list element `name`. Index values are then generated for `x` by the API and each is labeled by the `name` value.
+2. But wait, there is no `x` named element? The variable assigned to `x` was renamed to `name`, *which is not to be confused with the __series__ name `hc2\$x\$hc_opts\$series[[2]]\$name`. This is because the variable assigned to `x` was of class `character`. Highcharts cannot chart a non-numeric value to the x-axis. Instead, `highcharter` automatically maps string values assigned to `x` to the list element `name`. Index values are then generated for `x` by the API and each is labeled by the `name` value.
 
 ### One-dimensional array? Easy! Multi-dimensional arrays? Damn.
 
