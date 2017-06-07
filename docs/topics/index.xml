@@ -2,7 +2,7 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Topics on ultinomics.org</title>
-    <link>https://dantonnoriega.github.io/ultinomics.org/topics.html</link>
+    <link>https://dantonnoriega.github.io/ultinomics.org/topics/</link>
     <description>Recent content in Topics on ultinomics.org</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>

@@ -2,7 +2,7 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tesseract on ultinomics.org</title>
-    <link>https://dantonnoriega.github.io/ultinomics.org/tags/tesseract.html</link>
+    <link>https://dantonnoriega.github.io/ultinomics.org/tags/tesseract/</link>
     <description>Recent content in Tesseract on ultinomics.org</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
@@ -16,10 +16,10 @@
     
     <item>
       <title>Converting Unsearchable PDF Files (aka PDF scans) to Raw Text Using Command Line Tools `convert` and `tesseract`</title>
-      <link>https://dantonnoriega.github.io/ultinomics.org/2016/03/29/converting-unsearchable-pdf-files-aka-pdf-scans-to-raw-text-using-command-line-tools-convert-and-tesseract.html</link>
+      <link>https://dantonnoriega.github.io/ultinomics.org/2016/03/29/converting-unsearchable-pdf-files-aka-pdf-scans-to-raw-text-using-command-line-tools-convert-and-tesseract/</link>
       <pubDate>Tue, 29 Mar 2016 00:00:00 +0000</pubDate>
       <author>danton_dot_noriega-at-gmail_dot_com (Danton Noriega)</author>
-      <guid>https://dantonnoriega.github.io/ultinomics.org/2016/03/29/converting-unsearchable-pdf-files-aka-pdf-scans-to-raw-text-using-command-line-tools-convert-and-tesseract.html</guid>
+      <guid>https://dantonnoriega.github.io/ultinomics.org/2016/03/29/converting-unsearchable-pdf-files-aka-pdf-scans-to-raw-text-using-command-line-tools-convert-and-tesseract/</guid>
       <description>Often, one gets a PDF file that is a scan of a book or text, which cannot be searched (boo!). A good (but not perfect) solution is to use Optical Character Recognition (OCR) to convert the pdf to a txt file and search that instead.
 Here is my solution.
 Requirements  Command line tools
