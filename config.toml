@@ -1,6 +1,7 @@
 baseurl             = "https://dantonnoriega.github.io/ultinomics.org/"
 builddrafts         = false
 relativeURLs        = false
+uglyURLs            = true
 contentdir          = "content"
 languageCode        = "en-US"
 publishdir          = "docs"
@@ -24,8 +25,8 @@ paginate = 10
 paginatePath = "page"
 
 [permalinks]
-    post = "/:year/:month/:day/:slug/"
-    code = "/:slug/"
+    #post = "/:year/:month/:day/:slug/" # disable for easy reference of pics
+    #code = "/:slug/"
 
 [taxonomies]
     tag = "tags"

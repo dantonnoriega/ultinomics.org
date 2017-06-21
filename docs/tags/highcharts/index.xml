@@ -2,7 +2,7 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Highcharts on ultinomics.org</title>
-    <link>https://dantonnoriega.github.io/ultinomics.org/tags/highcharts/</link>
+    <link>https://dantonnoriega.github.io/ultinomics.org/tags/highcharts.html</link>
     <description>Recent content in Highcharts on ultinomics.org</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
@@ -16,10 +16,10 @@
     
     <item>
       <title>Thinking in `highcharter` - How to build any Highcharts plot in R</title>
-      <link>https://dantonnoriega.github.io/ultinomics.org/2017/04/05/thinking-in-highcharter---how-to-build-any-highcharts-plot-in-r/</link>
+      <link>https://dantonnoriega.github.io/ultinomics.org/post/2017-04-05-highcharter-explainer.html</link>
       <pubDate>Wed, 05 Apr 2017 00:00:00 +0000</pubDate>
       <author>danton_dot_noriega-at-gmail_dot_com (Danton Noriega)</author>
-      <guid>https://dantonnoriega.github.io/ultinomics.org/2017/04/05/thinking-in-highcharter---how-to-build-any-highcharts-plot-in-r/</guid>
+      <guid>https://dantonnoriega.github.io/ultinomics.org/post/2017-04-05-highcharter-explainer.html</guid>
       <description>Rstudio’s Mine Cetinkaya-Rundel had a post about the highcharter package, a wrapper for the Highcharts javascripts library that lets you create super sweet interactive charts in R.
 Joshua Kunst’s highcharter package has become my go-to plotting package once I reach the production phase and know I will be using HTML.</description>
     </item>

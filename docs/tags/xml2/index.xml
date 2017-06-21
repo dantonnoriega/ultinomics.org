@@ -2,7 +2,7 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Xml2 on ultinomics.org</title>
-    <link>https://dantonnoriega.github.io/ultinomics.org/tags/xml2/</link>
+    <link>https://dantonnoriega.github.io/ultinomics.org/tags/xml2.html</link>
     <description>Recent content in Xml2 on ultinomics.org</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
@@ -16,10 +16,10 @@
     
     <item>
       <title>xmltools package to help convert XML data to tidy data frames</title>
-      <link>https://dantonnoriega.github.io/ultinomics.org/2017/04/18/xmltools-package-to-help-convert-xml-data-to-tidy-data-frames/</link>
+      <link>https://dantonnoriega.github.io/ultinomics.org/post/2017-04-18-xmltools-package.html</link>
       <pubDate>Tue, 18 Apr 2017 00:00:00 +0000</pubDate>
       <author>danton_dot_noriega-at-gmail_dot_com (Danton Noriega)</author>
-      <guid>https://dantonnoriega.github.io/ultinomics.org/2017/04/18/xmltools-package-to-help-convert-xml-data-to-tidy-data-frames/</guid>
+      <guid>https://dantonnoriega.github.io/ultinomics.org/post/2017-04-18-xmltools-package.html</guid>
       <description>I created a new, small package called xmltools that helps simplify the process of converting XML data into tidy data frames.
 It has not yet been tested on a ton of XML files so it may have some bugs. I also have not created any tests. But, at least for me, it helps drastically cut down on the code I have to write to get the data I want from an XML file.</description>
     </item>
