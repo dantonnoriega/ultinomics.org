@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://dantonnoriega.github.io/ultinomics.org/post/2017-07-21-cropping-pdfs.html</loc>
+    <lastmod>2017-07-21T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://dantonnoriega.github.io/ultinomics.org/post/2017-04-18-xmltools-package.html</loc>
     <lastmod>2017-04-18T00:00:00+00:00</lastmod>
   </url>
@@ -20,6 +25,12 @@
   <url>
     <loc>https://dantonnoriega.github.io/ultinomics.org/post/2016-03-29-pdf-text-convert-ocr-tesseract.html</loc>
     <lastmod>2016-03-29T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://dantonnoriega.github.io/ultinomics.org/tags/command-line.html</loc>
+    <lastmod>2017-07-21T00:00:00+00:00</lastmod>
+    <priority>0</priority>
   </url>
   
   <url>
@@ -59,6 +70,12 @@
   </url>
   
   <url>
+    <loc>https://dantonnoriega.github.io/ultinomics.org/tags/macos.html</loc>
+    <lastmod>2017-07-21T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://dantonnoriega.github.io/ultinomics.org/tags/markdown.html</loc>
     <lastmod>2016-04-14T00:00:00+00:00</lastmod>
     <priority>0</priority>
@@ -78,7 +95,7 @@
   
   <url>
     <loc>https://dantonnoriega.github.io/ultinomics.org/post.html</loc>
-    <lastmod>2017-04-18T00:00:00+00:00</lastmod>
+    <lastmod>2017-07-21T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -108,7 +125,7 @@
   
   <url>
     <loc>https://dantonnoriega.github.io/ultinomics.org/tags.html</loc>
-    <lastmod>2016-04-14T00:00:00+00:00</lastmod>
+    <lastmod>2017-07-21T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -155,7 +172,7 @@
   
   <url>
     <loc>https://dantonnoriega.github.io/ultinomics.org/</loc>
-    <lastmod>2017-04-18T00:00:00+00:00</lastmod>
+    <lastmod>2017-07-21T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   

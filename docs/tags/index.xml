@@ -9,10 +9,19 @@
     <managingEditor>danton_dot_noriega-at-gmail_dot_com (Danton Noriega)</managingEditor>
     <webMaster>danton_dot_noriega-at-gmail_dot_com (Danton Noriega)</webMaster>
     <copyright>(c) 2017 Danton Noriega.</copyright>
-    <lastBuildDate>Thu, 14 Apr 2016 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 21 Jul 2017 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://dantonnoriega.github.io/ultinomics.org/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Command Line</title>
+      <link>https://dantonnoriega.github.io/ultinomics.org/tags/command-line.html</link>
+      <pubDate>Fri, 21 Jul 2017 00:00:00 +0000</pubDate>
+      <author>danton_dot_noriega-at-gmail_dot_com (Danton Noriega)</author>
+      <guid>https://dantonnoriega.github.io/ultinomics.org/tags/command-line.html</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>Conversion</title>
@@ -65,6 +74,15 @@
       <pubDate>Tue, 29 Mar 2016 00:00:00 +0000</pubDate>
       <author>danton_dot_noriega-at-gmail_dot_com (Danton Noriega)</author>
       <guid>https://dantonnoriega.github.io/ultinomics.org/tags/mac-os-x.html</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Macos</title>
+      <link>https://dantonnoriega.github.io/ultinomics.org/tags/macos.html</link>
+      <pubDate>Fri, 21 Jul 2017 00:00:00 +0000</pubDate>
+      <author>danton_dot_noriega-at-gmail_dot_com (Danton Noriega)</author>
+      <guid>https://dantonnoriega.github.io/ultinomics.org/tags/macos.html</guid>
       <description></description>
     </item>
     
