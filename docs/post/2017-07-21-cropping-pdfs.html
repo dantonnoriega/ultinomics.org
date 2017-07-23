@@ -57,7 +57,7 @@
     },
     "datePublished": "2017-07-21",
     "description": "",
-    "wordCount": 350
+    "wordCount": 357
   }
 </script>
 
@@ -186,7 +186,7 @@
 
   
   &middot; Read in about 2 min
-  &middot; (350 Words)
+  &middot; (357 Words)
   <br>
   
 <a class="label" href="https://dantonnoriega.github.io/tags/command-line">command line</a>
@@ -203,7 +203,7 @@
   <div id="pdfcrop-command" class="section level1">
 <h1><code>pdfcrop</code> command</h1>
 <p>I learned about <code>pdfcrop</code> in a <a href="https://askubuntu.com/questions/124692/command-line-tool-to-crop-pdf-files">stackoverflow post</a>. <code>pdfcrop</code> is a tool that can crop <em>multiple-page</em> PDFs (not to be confused with multiple PDFs).</p>
-<p>Discovering it was memorable enough that I think it warranted a post.</p>
+<p>Discovering it was memorable enough that I thought it warranted a post.</p>
 <div id="installation" class="section level2">
 <h2>Installation</h2>
 <p>The full version of <a href="http://www.tug.org/mactex/">MacTex</a> comes with a command line tool called <code>pdfcrop</code>. See if you have it by typing:</p>
@@ -230,10 +230,10 @@ v59i10-crop.pdf</code></pre>
 </div>
 <div id="usage-with-older-pdfs" class="section level2">
 <h2>Usage with Older PDFs</h2>
-<p>As mentioned, newer PDFs with margins meta data, the <code>--margins</code> removes the margin white space prior to adjustment. This is <strong>NOT</strong> the case with older PDFs. With older PDFs, you generally only want to <em>remove</em> margins (<code>--margins</code> with negative values) because <code>pdfcrop</code> finds no margins meta data. Here is an example where we trim 1 inch around a very old PDF.</p>
+<p>As mentioned, newer PDFs with margins meta data, the <code>--margins</code> removes the margin white space prior to adjustment. This is <strong>NOT</strong> the case with older PDFs. With older PDFs, you generally only want to <em>remove</em> margins (<code>--margins</code> with negative values) because <code>pdfcrop</code> finds no margins meta data. Here is an example where we trim <code>0.75</code> inches (<code>0.75 in = 72*0.75 = 54 bp</code>) around a very old PDF.</p>
 <pre><code>$ wget http://seismo.berkeley.edu/~kirchner/eps_120/Odds_n_ends/Students_original_paper.pdf
-$ pdfcrop --margins &#39;-72&#39; --xetex Students_original_paper.pdf
-pdfcrop --margins &#39;-72&#39; --xetex Students_original_paper.pdf
+$ pdfcrop --margins &#39;-54&#39; --xetex Students_original_paper.pdf
+pdfcrop --margins &#39;-54&#39; --xetex Students_original_paper.pdf
 PDFCROP 1.38, 2012/11/02 - Copyright (c) 2002-2012 by Heiko Oberdiek.
 ==&gt; 26 pages written on `Students_original_paper-crop.pdf&#39;.
 $ ls Students*crop.pdf
@@ -242,7 +242,15 @@ Students_original_paper-crop.pdf</code></pre>
 <div id="for-the-lazy" class="section level2">
 <h2>For the Lazy</h2>
 <p>If you don’t feel like running the code above, you can get the PDFs downloaded then adjusted in the examples below:</p>
-<p><a href="https://danton.updog.co/pdfcrop/v59i10.pdf">v59i10.pdf</a> <a href="https://danton.updog.co/pdfcrop/v59i10-crop.pdf">v59i10-crop.pdf</a> <a href="https://danton.updog.co/pdfcrop/students_original_paper.pdf">students_original_paper.pdf</a> <a href="https://danton.updog.co/pdfcrop/students_original_paper-crop.pdf">students_original_paper-crop.pdf</a></p>
+<ul>
+<li><a href="https://danton.updog.co/pdfcrop/v59i10.pdf">v59i10.pdf</a><br />
+</li>
+<li><a href="https://danton.updog.co/pdfcrop/v59i10-crop.pdf">v59i10-crop.pdf</a><br />
+</li>
+<li><a href="https://danton.updog.co/pdfcrop/students_original_paper.pdf">students_original_paper.pdf</a><br />
+</li>
+<li><a href="https://danton.updog.co/pdfcrop/students_original_paper-crop.pdf">students_original_paper-crop.pdf</a></li>
+</ul>
 </div>
 </div>
 

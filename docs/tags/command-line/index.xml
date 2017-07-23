@@ -21,7 +21,7 @@
       <author>danton_dot_noriega-at-gmail_dot_com (Danton Noriega)</author>
       <guid>https://dantonnoriega.github.io/ultinomics.org/post/2017-07-21-cropping-pdfs.html</guid>
       <description>pdfcrop command I learned about pdfcrop in a stackoverflow post. pdfcrop is a tool that can crop multiple-page PDFs (not to be confused with multiple PDFs).
-Discovering it was memorable enough that I think it warranted a post.
+Discovering it was memorable enough that I thought it warranted a post.
 Installation The full version of MacTex comes with a command line tool called pdfcrop. See if you have it by typing:
 $ which pdfcrop /Library/TeX/texbin/pdfcrop If you don’t have, it can be installed from TexLive:</description>
     </item>
