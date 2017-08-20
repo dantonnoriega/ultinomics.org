@@ -53,7 +53,7 @@ Also, a special thanks to [Joshua Kunst](http://jkunst.com) for developing this 
 
 My goal is to show you how I think about, learn about, and then build more complicated `highcharter` objects in `R`. I want you to be able to see a graph on the [Highcharts demo](http://www.highcharts.com/demo) page and think to yourself, "yeah, I can build that". This will means some bouncing between the Highcharts demo and API websites. I do this a lot myself and I hope, by the end of this document, you'll find it a useful habit.
 
-But I also want to say that my approach to building plots in `highcharter` can feel a bit complicated. Generally, I like to build plots from the ground up. However, if have tidy data and I know the structure is well suited for plotting in `highcharter`, I will opt to use the `hchart()`. Otherwise, for almost anything more complicated, I will build the data structure (known as a "series") from scratch and use the `highchart()` and `hc_add_series_list()` functions. This process is the result after having built many, many plots, hacking away at the great many functions in `highcharter`. While it may seem complicated, I assure you that it is the easiest and cleanest way to make complicated plots.
+But I also want to say that my approach to building plots in `highcharter` can feel a bit complicated. Generally, I like to build plots from the ground up. However, if I have tidy data and I know the structure is well suited for plotting in `highcharter`, I will opt to use the `hchart()`. Otherwise, for almost anything more complicated, I will build the data structure (known as a "series") from scratch and use the `highchart()` and `hc_add_series_list()` functions. This process is the result after having built many, many plots, hacking away at the great many functions in `highcharter`. While it may seem complicated, I assure you that it is the easiest and cleanest way to make complicated plots.
 
 ## What I will not cover
 
@@ -310,7 +310,7 @@ hc1
 
 ```{r}
 citytemp2 <- citytemp %>%
-  tidyr::gather(key = city, value = temperature, tokyo:london)
+  tidyr::gather(key = city, value = temperature, tokyo, london)
 ```
 
 I can now use the `hchart()` function to plot these data. How the data splits into separate series is via the `group` variable in the `hchart()` function. Notice that the mapping of variables uses the function `highcharter::hcaes()`, which was inspired by the `ggplot2` function `ggplot2::aes()` and has the same syntax.
@@ -352,7 +352,7 @@ hc1
 ```{r}
 # build using hchart
 citytemp2 <- citytemp %>%
-  tidyr::gather(key = city, value = temperature, tokyo:london)
+  tidyr::gather(key = city, value = temperature, tokyo, london)
 
 hc2 <- hchart(citytemp2, type = 'line', hcaes(y = temperature, group = city, x = month))
 hc2
