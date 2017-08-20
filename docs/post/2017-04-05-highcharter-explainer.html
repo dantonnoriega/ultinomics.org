@@ -59,7 +59,7 @@
     },
     "datePublished": "2017-04-05",
     "description": "",
-    "wordCount": 4257
+    "wordCount": 4212
   }
 </script>
 
@@ -190,7 +190,7 @@
     &middot; by Danton Noriega
   
   &middot; Read in about 20 min
-  &middot; (4257 Words)
+  &middot; (4212 Words)
   <br>
   
 <a class="label" href="https://dantonnoriega.github.io/tags/r-markdown">R Markdown</a>
@@ -544,7 +544,7 @@ hc2</code></pre>
 <pre class="r"><code># hc2$x$hc_opts$series # commented out because its so long
 hc2$x$hc_opts$series[[2]][[&quot;name&quot;]] # notice how we are extracting from the second series, &quot;tokyo&quot;, not the first! Why is that? See the &quot;Important Note&quot; below.</code></pre>
 <pre><code>#&gt; [1] &quot;tokyo&quot;</code></pre>
-<pre class="r"><code>hc2$x$hc_opts$series[[2]]$data %&gt;% head(3) # extract the first 3 elements of the data for the tokyo series</code></pre>
+<pre class="r"><code>hc2$x$hc_opts$series[[2]]$data %&gt;% head(2) # extract the first 2 elements of the data for the tokyo series</code></pre>
 <pre><code>#&gt; [[1]]
 #&gt; [[1]]$month
 #&gt; [1] &quot;Jan&quot;
@@ -588,36 +588,13 @@ hc2$x$hc_opts$series[[2]][[&quot;name&quot;]] # notice how we are extracting fro
 #&gt; [1] 6.9
 #&gt; 
 #&gt; [[2]]$name
-#&gt; [1] &quot;Feb&quot;
-#&gt; 
-#&gt; 
-#&gt; [[3]]
-#&gt; [[3]]$month
-#&gt; [1] &quot;Mar&quot;
-#&gt; 
-#&gt; [[3]]$new_york
-#&gt; [1] 5.7
-#&gt; 
-#&gt; [[3]]$berlin
-#&gt; [1] 3.5
-#&gt; 
-#&gt; [[3]]$city
-#&gt; [1] &quot;tokyo&quot;
-#&gt; 
-#&gt; [[3]]$temperature
-#&gt; [1] 9.5
-#&gt; 
-#&gt; [[3]]$y
-#&gt; [1] 9.5
-#&gt; 
-#&gt; [[3]]$name
-#&gt; [1] &quot;Mar&quot;</code></pre>
+#&gt; [1] &quot;Feb&quot;</code></pre>
 <blockquote>
 <p><strong>IMPORTANT NOTE:</strong> Why is the <code>tokyo</code> data the second series in <code>hc2</code>, which used <code>hchart</code>, but the first series in <code>hc1</code>? This is because, when you build the chart series by series (using <code>hc_add_series</code>), the index follows the order of inclusion. The <code>tokyo</code> data is added to <code>hc1</code> chart first, so it becomes the first series (<code>.$series[[1]]</code>). On the other hand, if you use <code>hchart</code>, then highcharter orders series <em>alphabetically</em>. <code>london</code> comes before <code>tokyo</code>, so <code>tokyo</code> is the second series (<code>.$series[[2]]</code>). Given that the order of how a series is plotted can matter, this is a very important caveat to remember when using <code>hchart</code>!</p>
 </blockquote>
 <p>The fact that <code>hc2\$x\$hc_opts\$series</code> is so much longer than the very concise <code>hc1\$x\$hc_opts\$series</code> is telling you that <code>hchart</code> is a very different beast than building using <code>hc_add_series</code> or <code>hc_add_series_list</code>. Yet, despite having very different underlying series structures, each produces the same visual output.</p>
 <p>What’s going on? Why is the structure so different?</p>
-<p>Let’s dive deeper by looking at the first element of the <code>data</code> list for the <code>tokyo</code> series in <code>hc1</code> and <code>hc2</code>. Remember, the <code>tokyo</code> data is the first series in <code>hc1</code> and the second in <code>hc2</code>.</p>
+<p>Let’s dive deeper by looking at the <em>first element</em> of the <code>data</code> list for the <code>tokyo</code> series in <code>hc1</code> and <code>hc2</code>. Remember, the <code>tokyo</code> data is the first series in <code>hc1</code> and the second in <code>hc2</code>.</p>
 <pre class="r"><code># first data element of tokyo series
 hc1$x$hc_opts$series[[1]]$data[[1]] # first series here (ordered by how series was added)</code></pre>
 <pre><code>#&gt; [1] 7</code></pre>

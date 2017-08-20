@@ -380,7 +380,7 @@ There series count is the same (`2`). But I'm not going to display the output of
 length(hc2$x$hc_opts$series)
 # hc2$x$hc_opts$series # commented out because its so long
 hc2$x$hc_opts$series[[2]][["name"]] # notice how we are extracting from the second series, "tokyo", not the first! Why is that? See the "Important Note" below.
-hc2$x$hc_opts$series[[2]]$data %>% head(3) # extract the first 3 elements of the data for the tokyo series
+hc2$x$hc_opts$series[[2]]$data %>% head(2) # extract the first 2 elements of the data for the tokyo series
 ```
 
 >**IMPORTANT NOTE:** Why is the `tokyo` data the second series in `hc2`, which used `hchart`, but the first series in `hc1`? This is because, when you build the chart series by series (using `hc_add_series`), the index follows the order of inclusion. The `tokyo` data is added to `hc1` chart first, so it becomes the first series (`.$series[[1]]`). On the other hand, if you use `hchart`, then highcharter orders series *alphabetically*. `london` comes before `tokyo`, so `tokyo` is the second series (`.$series[[2]]`). Given that the order of how a series is plotted can matter, this is a very important caveat to remember when using `hchart`!
@@ -390,7 +390,7 @@ The fact that `hc2\$x\$hc_opts\$series` is so much longer than the very concise 
 
 What's going on? Why is the structure so different? 
 
-Let's dive deeper by looking at the first element of the `data` list for the `tokyo` series in `hc1` and `hc2`. Remember, the `tokyo` data is the first series in `hc1` and the second in `hc2`.
+Let's dive deeper by looking at the *first element* of the `data` list for the `tokyo` series in `hc1` and `hc2`. Remember, the `tokyo` data is the first series in `hc1` and the second in `hc2`.
 
 
 ```{r}
@@ -411,7 +411,7 @@ hc2 <- hchart(citytemp2, type = 'line', hcaes(y = temperature, group = city, x =
 ```
 
 
-The value of `hc1\$x\$hc_opts\$series[[1]]\$data[[1]]` is `7`. This maps directly with `citytemp$tokyo[1]`. This is because the data for each series in `hc1` is a single vector (or array) of data (`..., data = citytemp\$tokyo)`). A nice chart is still generated because the API handles the translation of the 1d `data` vector to `y` values and creates the corresponding `x` index values.
+The value of `hc1\$x\$hc_opts\$series[[1]]\$data[[1]]` is ``r hc1$x$hc_opts$series[[1]]$data[[1]]``. This maps directly with `citytemp$tokyo[1]`. This is because the data for each series in `hc1` is a single vector (or array) of data (`..., data = citytemp\$tokyo)`). A nice chart is still generated because the API handles the translation of the 1d `data` vector to `y` values and creates the corresponding `x` index values.
 
 But the value of `hc2\$x\$hc_opts\$series[[2]]\$data[[1]]` is a list of 5 named elements.
 
