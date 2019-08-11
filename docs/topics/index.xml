@@ -2,7 +2,7 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Topics on ultinomics.org</title>
-    <link>https://dantonnoriega.github.io/ultinomics.org/topics.html</link>
+    <link>/ultinomics.org/topics.html</link>
     <description>Recent content in Topics on ultinomics.org</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
@@ -10,7 +10,7 @@
     <webMaster>danton_dot_noriega-at-gmail_dot_com (Danton Noriega)</webMaster>
     <copyright>(c) 2017 Danton Noriega.</copyright>
     
-	<atom:link href="https://dantonnoriega.github.io/ultinomics.org/topics/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="/ultinomics.org/topics/index.xml" rel="self" type="application/rss+xml" />
     
     
   </channel>
