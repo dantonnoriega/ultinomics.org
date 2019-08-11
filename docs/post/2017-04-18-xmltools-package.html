@@ -19,7 +19,7 @@
 
 <meta property="og:title" content="xmltools package to help convert XML data to tidy data frames  &middot; ultinomics.org ">
 <meta property="og:site_name" content="ultinomics.org"/>
-<meta property="og:url" content="/ultinomics.org/post/2017-04-18-xmltools-package.html" />
+<meta property="og:url" content="https://dantonnoriega.github.io/ultinomics.org/post/2017-04-18-xmltools-package.html" />
 <meta property="og:locale" content="en-US">
 
 
@@ -44,8 +44,8 @@
 <meta name="twitter:creator" content="@dantonnoriega" />
 <meta name="twitter:title" content="xmltools package to help convert XML data to tidy data frames" />
 <meta name="twitter:description" content="" />
-<meta name="twitter:url" content="/ultinomics.org/post/2017-04-18-xmltools-package.html" />
-<meta name="twitter:domain" content="/ultinomics.org/">
+<meta name="twitter:url" content="https://dantonnoriega.github.io/ultinomics.org/post/2017-04-18-xmltools-package.html" />
+<meta name="twitter:domain" content="https://dantonnoriega.github.io/ultinomics.org/">
   
 
 <script type="application/ld+json">
@@ -59,14 +59,14 @@
     },
     "datePublished": "2017-04-18",
     "description": "",
-    "wordCount":  1904 
+    "wordCount":  1956 
   }
 </script>
 
 
 
-<link rel="apple-touch-icon-precomposed" sizes="144x144" href="/touch-icon-144-precomposed.png">
-<link href="/favicon.png" rel="icon">
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://dantonnoriega.github.io/touch-icon-144-precomposed.png">
+<link href="https://dantonnoriega.github.io/favicon.png" rel="icon">
 
 <meta name="generator" content="Hugo 0.56.3" />
 
@@ -88,7 +88,7 @@
     <header id="main-header" class="container main_header">
   <div class="container brand">
   <div class="container title h1-like">
-  <a class="baselink" href="/ultinomics.org/">
+  <a class="baselink" href="https://dantonnoriega.github.io/ultinomics.org/">
   ultinomics.org
 
 </a>
@@ -110,7 +110,7 @@
   <nav class="container nav primary no-print">
   
 
-<a class="homelink" href="/ultinomics.org/">home</a>
+<a class="homelink" href="https://dantonnoriega.github.io/ultinomics.org/">home</a>
 
 
   
@@ -174,15 +174,15 @@
 
 
   
-  &middot; Read in about 9 min
-  &middot; (1904 Words)
+  &middot; Read in about 10 min
+  &middot; (1956 Words)
   <br>
   
-<a class="label" href="/tags/r-markdown">R Markdown</a>
+<a class="label" href="https://dantonnoriega.github.io/tags/r-markdown">R Markdown</a>
 
-<a class="label" href="/tags/xml">XML</a>
+<a class="label" href="https://dantonnoriega.github.io/tags/xml">XML</a>
 
-<a class="label" href="/tags/xml2">xml2</a>
+<a class="label" href="https://dantonnoriega.github.io/tags/xml2">xml2</a>
 
 
 
@@ -360,7 +360,9 @@ class(nodeset[[1]])
 #&gt; [1] &quot;xml_node&quot;
 try(nodeset[[1]] %&gt;%
   xml_view_tree()
-)</code></pre>
+)
+#&gt; Error in xml_view_trees(xml, depth = depth) : 
+#&gt;   any(c(&quot;xml_tree&quot;, &quot;xml_tree_list&quot;, &quot;xml_document&quot;, &quot;xml_nodeset&quot;) %in%  .... is not TRUE</code></pre>
 </div>
 <div id="get-terminal-nodes" class="section level2">
 <h2>Get Terminal Nodes</h2>
@@ -473,7 +475,9 @@ df0 &lt;- lapply(terminal_xpaths, function(x) {
   nodeset &lt;- XML::getNodeSet(doc, x)
   XML::xmlToDataFrame(nodeset, stringsAsFactors = FALSE) %&gt;%
     dplyr::as_data_frame()
-})</code></pre>
+})
+#&gt; Warning: `as_data_frame()` is deprecated, use `as_tibble()` (but mind the new semantics).
+#&gt; This warning is displayed once per session.</code></pre>
 <p>There is data contained in the terminal nodes</p>
 <pre><code>/root/listing/payment_types
 /root/listing/shipping_info
@@ -489,26 +493,26 @@ xpaths[1] # /root/listing is terminal parent but xmlToDataFrame keeps digging
 df0[[1]] %&gt;%
   dplyr::select(seller_info) # not good; keeps diving into other nodes but fails to separate
 #&gt; # A tibble: 5 x 1
-#&gt;             seller_info
-#&gt;                   &lt;chr&gt;
-#&gt; 1       cubsfantony 848
-#&gt; 2            ct-inc 403
-#&gt; 3            ct-inc 403
-#&gt; 4  bestbuys4systems  28
-#&gt; 5  sales@ctgcom.com 219
+#&gt;   seller_info            
+#&gt;   &lt;chr&gt;                  
+#&gt; 1 &quot; cubsfantony 848&quot;     
+#&gt; 2 &quot; ct-inc 403&quot;          
+#&gt; 3 &quot; ct-inc 403&quot;          
+#&gt; 4 bestbuys4systems  28   
+#&gt; 5 &quot; sales@ctgcom.com 219&quot;
 
 xpaths[2]
 #&gt; [1] &quot;/root/listing/payment_types&quot;
 
 df0[[2]] # works because the recursive dig down hits only the terminal nodes
 #&gt; # A tibble: 5 x 2
-#&gt;         seller_name seller_rating
-#&gt;               &lt;chr&gt;         &lt;chr&gt;
-#&gt; 1       cubsfantony           848
-#&gt; 2            ct-inc           403
-#&gt; 3            ct-inc           403
-#&gt; 4 bestbuys4systems             28
-#&gt; 5  sales@ctgcom.com           219</code></pre>
+#&gt;   seller_name         seller_rating
+#&gt;   &lt;chr&gt;               &lt;chr&gt;        
+#&gt; 1 &quot; cubsfantony&quot;      &quot; 848&quot;       
+#&gt; 2 &quot; ct-inc&quot;           &quot; 403&quot;       
+#&gt; 3 &quot; ct-inc&quot;           &quot; 403&quot;       
+#&gt; 4 &quot;bestbuys4systems &quot; &quot; 28&quot;        
+#&gt; 5 &quot; sales@ctgcom.com&quot; &quot; 219&quot;</code></pre>
 <p>The solution that worked for me was to write a function that, by default, does not dig into non-terminal nodes. That is, when given the xpath <code>/root/listing</code>, the function will only go into terminal nodes</p>
 <pre><code>/root/listing/payment_types
 /root/listing/shipping_info
@@ -610,13 +614,13 @@ identical(df1, data.table::as.data.table(df2))</code></pre>
   
 
     
-    <a class="prev" href="/ultinomics.org/post/2017-04-05-highcharter-explainer.html" title="Thinking in `highcharter` - How to build any Highcharts plot in R">
+    <a class="prev" href="https://dantonnoriega.github.io/ultinomics.org/post/2017-04-05-highcharter-explainer.html" title="Thinking in `highcharter` - How to build any Highcharts plot in R">
       Previous
     </a>
     
 
     
-    <a class="next" href="/ultinomics.org/post/2017-07-21-cropping-pdfs.html" title="Cropping a Multiple Page PDF Using Command Line (macOS)">
+    <a class="next" href="https://dantonnoriega.github.io/ultinomics.org/post/2017-07-21-cropping-pdfs.html" title="Cropping a Multiple Page PDF Using Command Line (macOS)">
       Next
     </a>
     

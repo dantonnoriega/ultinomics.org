@@ -174,7 +174,9 @@ class(nodeset[[1]])
 #&gt; [1] &quot;xml_node&quot;
 try(nodeset[[1]] %&gt;%
   xml_view_tree()
-)</code></pre>
+)
+#&gt; Error in xml_view_trees(xml, depth = depth) : 
+#&gt;   any(c(&quot;xml_tree&quot;, &quot;xml_tree_list&quot;, &quot;xml_document&quot;, &quot;xml_nodeset&quot;) %in%  .... is not TRUE</code></pre>
 </div>
 <div id="get-terminal-nodes" class="section level2">
 <h2>Get Terminal Nodes</h2>
@@ -287,7 +289,9 @@ df0 &lt;- lapply(terminal_xpaths, function(x) {
   nodeset &lt;- XML::getNodeSet(doc, x)
   XML::xmlToDataFrame(nodeset, stringsAsFactors = FALSE) %&gt;%
     dplyr::as_data_frame()
-})</code></pre>
+})
+#&gt; Warning: `as_data_frame()` is deprecated, use `as_tibble()` (but mind the new semantics).
+#&gt; This warning is displayed once per session.</code></pre>
 <p>There is data contained in the terminal nodes</p>
 <pre><code>/root/listing/payment_types
 /root/listing/shipping_info
@@ -303,26 +307,26 @@ xpaths[1] # /root/listing is terminal parent but xmlToDataFrame keeps digging
 df0[[1]] %&gt;%
   dplyr::select(seller_info) # not good; keeps diving into other nodes but fails to separate
 #&gt; # A tibble: 5 x 1
-#&gt;             seller_info
-#&gt;                   &lt;chr&gt;
-#&gt; 1       cubsfantony 848
-#&gt; 2            ct-inc 403
-#&gt; 3            ct-inc 403
-#&gt; 4  bestbuys4systems  28
-#&gt; 5  sales@ctgcom.com 219
+#&gt;   seller_info            
+#&gt;   &lt;chr&gt;                  
+#&gt; 1 &quot; cubsfantony 848&quot;     
+#&gt; 2 &quot; ct-inc 403&quot;          
+#&gt; 3 &quot; ct-inc 403&quot;          
+#&gt; 4 bestbuys4systems  28   
+#&gt; 5 &quot; sales@ctgcom.com 219&quot;
 
 xpaths[2]
 #&gt; [1] &quot;/root/listing/payment_types&quot;
 
 df0[[2]] # works because the recursive dig down hits only the terminal nodes
 #&gt; # A tibble: 5 x 2
-#&gt;         seller_name seller_rating
-#&gt;               &lt;chr&gt;         &lt;chr&gt;
-#&gt; 1       cubsfantony           848
-#&gt; 2            ct-inc           403
-#&gt; 3            ct-inc           403
-#&gt; 4 bestbuys4systems             28
-#&gt; 5  sales@ctgcom.com           219</code></pre>
+#&gt;   seller_name         seller_rating
+#&gt;   &lt;chr&gt;               &lt;chr&gt;        
+#&gt; 1 &quot; cubsfantony&quot;      &quot; 848&quot;       
+#&gt; 2 &quot; ct-inc&quot;           &quot; 403&quot;       
+#&gt; 3 &quot; ct-inc&quot;           &quot; 403&quot;       
+#&gt; 4 &quot;bestbuys4systems &quot; &quot; 28&quot;        
+#&gt; 5 &quot; sales@ctgcom.com&quot; &quot; 219&quot;</code></pre>
 <p>The solution that worked for me was to write a function that, by default, does not dig into non-terminal nodes. That is, when given the xpath <code>/root/listing</code>, the function will only go into terminal nodes</p>
 <pre><code>/root/listing/payment_types
 /root/listing/shipping_info
