@@ -1,18 +1,6 @@
       {{ partial "base/footer" . }}
     </main>
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Config({
-        tex2jax: {
-          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre']
-        }
-      });
-    </script>
-    <script type="text/javascript"
-      src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-    </script>
     {{ partial "base/scripts" . }}
-    {{ partial "footer_highlightjs" . }}
-    {{ partial "footer_mathjax" . }}
     {{ partial "foot-extra" . }}
   </body>
 </html>

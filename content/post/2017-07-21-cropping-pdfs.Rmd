@@ -8,16 +8,16 @@ output: blogdown::html_page
 
 # `pdfcrop` command
 
-I learned about `pdfcrop` in a [stackoverflow post](https://askubuntu.com/questions/124692/command-line-tool-to-crop-pdf-files). `pdfcrop` is a tool that can crop *multiple-page* PDFs (not to be confused with multiple PDFs). 
+I learned about `pdfcrop` in a [stackoverflow post](https://askubuntu.com/questions/124692/command-line-tool-to-crop-pdf-files). `pdfcrop` is a tool that can crop *multiple-page* PDFs (not to be confused with multiple PDFs).
 
-Discovering it was memorable enough that I thought it warranted a post. 
+Discovering it was memorable enough that I thought it warranted a post.
 
 
 ## Installation
 
 The full version of [MacTex](http://www.tug.org/mactex/) comes with a command line tool called `pdfcrop`. See if you have it by typing:
 
-```
+```{shell}
 $ which pdfcrop
 /Library/TeX/texbin/pdfcrop
 ```
@@ -42,9 +42,9 @@ $ ls *crop.pdf
 v59i10-crop.pdf
 ```
 
-- The `--margins "<left> <top> <right> <bottom>"` option adjusts the margins. *For newer PDFs with meta data*, `--margins` initially removes the entire margin before implementing the adjustment. If the numbers is *positive*, then `--margins` will actually augment the file with white space (in `bp` = big point units where `72 bp` = `1 inch`). To reduce the margins, values need to be *negative*. 
+- The `--margins "<left> <top> <right> <bottom>"` option adjusts the margins. *For newer PDFs with meta data*, `--margins` initially removes the entire margin before implementing the adjustment. If the numbers is *positive*, then `--margins` will actually augment the file with white space (in `bp` = big point units where `72 bp` = `1 inch`). To reduce the margins, values need to be *negative*.
 - Note that `--margins "<number>"` will add/remove a uniform band around the margin.
-- I use the `--xetex` option because I found that it produced a high quality PDF that took up less disk space. 
+- I use the `--xetex` option because I found that it produced a high quality PDF that took up less disk space.
 
 ## Usage with Older PDFs
 
@@ -64,8 +64,8 @@ Students_original_paper-crop.pdf
 
 If you don't feel like running the code above, you can get the PDFs downloaded then adjusted in the examples below:
 
-- [v59i10.pdf](https://danton.updog.co/pdfcrop/v59i10.pdf)  
-- [v59i10-crop.pdf](https://danton.updog.co/pdfcrop/v59i10-crop.pdf)  
-- [students_original_paper.pdf](https://danton.updog.co/pdfcrop/students_original_paper.pdf)  
+- [v59i10.pdf](https://danton.updog.co/pdfcrop/v59i10.pdf)
+- [v59i10-crop.pdf](https://danton.updog.co/pdfcrop/v59i10-crop.pdf)
+- [students_original_paper.pdf](https://danton.updog.co/pdfcrop/students_original_paper.pdf)
 - [students_original_paper-crop.pdf](https://danton.updog.co/pdfcrop/students_original_paper-crop.pdf)
 

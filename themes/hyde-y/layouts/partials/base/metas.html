@@ -53,7 +53,7 @@
     "headline": "{{ .Title }}",
     "author": {
       "@type": "Person",
-      "name": "http://profiles.google.com/+{{ .Site.Params.googleplus }}?rel=author"
+      "name": "{{ .Site.Author.name }}"
     },
     "datePublished": "{{ .Date.Format "2006-01-02" }}",
     "description": "{{ .Description }}",
@@ -62,11 +62,11 @@
 </script>
 {{ end }}
 
-{{ if .RSSLink }}
+<!-- {{ if .RSSLink }}
 <link href="{{ .RSSLink }}" rel="alternate" type="application/rss+xml" title="{{ .Title }}" />
 {{ end }}
 <link rel="canonical" href="{{ .Permalink }}" />
-
+ -->
 <link rel="apple-touch-icon-precomposed" sizes="144x144" href="{{ "/touch-icon-144-precomposed.png" | absURL }}">
 <link href="{{ "/favicon.png" | absURL }}" rel="icon">
 {{ with .Site.Params.themecolor }}

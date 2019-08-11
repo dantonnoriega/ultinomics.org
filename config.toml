@@ -46,19 +46,16 @@ paginatePath = "page"
 
     # Sidebar position
     # false, true, "left", "right"
-    sidebar = "left"
+    sidebar = false
 
     # Text for the top menu link, which goes the root URL for the site.
     # Default (if omitted) is "Home".
     home = "home"
+    
+    highlight = "tomorrow-night-eighties"
 
-    # Select a syntax highlight.
-    # Check the static/css/highlight directory for options.
-    # options for highlight.js (version, additional languages, and theme)
-    highlightjsVersion = "9.11.0"
-    highlightjsCDN = "https://cdnjs.cloudflare.com/ajax/libs"
-    highlightjsLang = ["r", "yaml"]
-    highlightjsTheme = "tomorrow-night-eighties"
+    MathJaxCDN = "//cdnjs.cloudflare.com/ajax/libs"
+    MathJaxVersion = "2.7.5"
 
     # Sidebar social links.
     github = "dantonnoriega" # Your Github profile ID
@@ -66,7 +63,7 @@ paginatePath = "page"
     twitter = "dantonnoriega" # Your Twitter profile ID
 
 [blackfriday]
-    angledQuotes = true
+    angledQuotes = false
     fractions = false
     hrefTargetBlank = false
     latexDashes = true
