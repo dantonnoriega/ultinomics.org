@@ -17,14 +17,14 @@ Discovering it was memorable enough that I thought it warranted a post.
 
 The full version of [MacTex](http://www.tug.org/mactex/) comes with a command line tool called `pdfcrop`. See if you have it by typing:
 
-```{shell}
+```shell
 $ which pdfcrop
 /Library/TeX/texbin/pdfcrop
 ```
 
 If you don't have, it can be installed from [TexLive](https://ctan.org/pkg/texlive):
 
-```
+```shell
 sudo tlmgr install pdfcrop
 ```
 
@@ -32,7 +32,7 @@ sudo tlmgr install pdfcrop
 
 Below is an example script that crops Hadley Wickam's [Tidy Data](https://www.jstatsoft.org/article/view/v059i10) paper.
 
-```
+```shell
 $ cd ~/Downloads
 $ wget https://www.jstatsoft.org/index.php/jss/article/view/v059i10/v59i10.pdf
 $ pdfcrop --margins '10 15 10 15' --xetex v59i10.pdf
@@ -50,7 +50,7 @@ v59i10-crop.pdf
 
 As mentioned, newer PDFs with margins meta data, the `--margins` removes the margin white space prior to adjustment. This is **NOT** the case with older PDFs. With older PDFs, you generally only want to *remove* margins (`--margins` with negative values) because `pdfcrop` finds no margins meta data. Here is an example where we trim `0.75` inches (`0.75 in = 72*0.75 = 54 bp`) around a very old PDF.
 
-```
+```shell
 $ wget http://seismo.berkeley.edu/~kirchner/eps_120/Odds_n_ends/Students_original_paper.pdf
 $ pdfcrop --margins '-54' --xetex Students_original_paper.pdf
 pdfcrop --margins '-54' --xetex Students_original_paper.pdf
