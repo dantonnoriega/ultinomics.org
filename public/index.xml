@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>ultinomics.org</title>
+    <link>/ultinomics.org/</link>
+    <description>Recent content on ultinomics.org</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 21 Jul 2017 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/ultinomics.org/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Cropping a Multiple Page PDF Using Command Line (macOS)</title>
+      <link>/ultinomics.org/post/2017-07-21-cropping-pdfs/</link>
+      <pubDate>Fri, 21 Jul 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/ultinomics.org/post/2017-07-21-cropping-pdfs/</guid>
+      <description>pdfcrop command I learned about pdfcrop in a stackoverflow post. pdfcrop is a tool that can crop multiple-page PDFs (not to be confused with multiple PDFs).
+Discovering it was memorable enough that I thought it warranted a post.
+Installation The full version of MacTex comes with a command line tool called pdfcrop. See if you have it by typing:
+$ which pdfcrop /Library/TeX/texbin/pdfcrop If you don’t have, it can be installed from TexLive:</description>
+    </item>
+    
+    <item>
+      <title>xmltools package to help convert XML data to tidy data frames</title>
+      <link>/ultinomics.org/post/2017-04-18-xmltools-package/</link>
+      <pubDate>Tue, 18 Apr 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/ultinomics.org/post/2017-04-18-xmltools-package/</guid>
+      <description>I created a new, small package called xmltools that helps simplify the process of converting XML data into tidy data frames.
+It has not yet been tested on a ton of XML files so it may have some bugs. I also have not created any tests. But, at least for me, it helps drastically cut down on the code I have to write to get the data I want from an XML file.</description>
+    </item>
+    
+    <item>
+      <title>Thinking in `highcharter` - How to build any Highcharts plot in R</title>
+      <link>/ultinomics.org/post/2017-04-05-highcharter-explainer/</link>
+      <pubDate>Wed, 05 Apr 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/ultinomics.org/post/2017-04-05-highcharter-explainer/</guid>
+      <description>Rstudio’s Mine Cetinkaya-Rundel had a post about the highcharter package, a wrapper for the Highcharts javascripts library that lets you create super sweet interactive charts in R.
+Joshua Kunst’s highcharter package has become my go-to plotting package once I reach the production phase and know I will be using HTML.</description>
+    </item>
+    
+    <item>
+      <title>RMarkdown (.Rmd) to MS Word (.docx) aka rmarkdown2docx</title>
+      <link>/ultinomics.org/post/2016-04-14-rmarkdown-to-docx/</link>
+      <pubDate>Thu, 14 Apr 2016 00:00:00 +0000</pubDate>
+      
+      <guid>/ultinomics.org/post/2016-04-14-rmarkdown-to-docx/</guid>
+      <description>Love Rmarkdown (.Rmd) but hate that you sometimes have to produce MS Word (.docx) files? BOOM! Solved. This post shows you how. Well, it sources the repo I made that shows you how!</description>
+    </item>
+    
+    <item>
+      <title>Converting Unsearchable PDF Files (aka PDF scans) to Raw Text Using Command Line Tools `convert` and `tesseract`</title>
+      <link>/ultinomics.org/post/2016-03-29-pdf-text-convert-ocr-tesseract/</link>
+      <pubDate>Tue, 29 Mar 2016 00:00:00 +0000</pubDate>
+      
+      <guid>/ultinomics.org/post/2016-03-29-pdf-text-convert-ocr-tesseract/</guid>
+      <description>Often, one gets a PDF file that is a scan of a book or text, which cannot be searched (boo!). A good (but not perfect) solution is to use Optical Character Recognition (OCR) to convert the pdf to a txt file and search that instead.
+Here is my solution.
+Requirements   Command line tools
+ convert tesseract  I installed both using homebrew. I&amp;rsquo;m using Mac OS X 10.11.3. This is important because it affects the location of where these are install of my system /usr/local/.</description>
+    </item>
+    
+  </channel>
+</rss>

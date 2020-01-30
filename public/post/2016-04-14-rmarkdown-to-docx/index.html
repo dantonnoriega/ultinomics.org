@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="theme-color" content="#494f5c">
+	<meta name="msapplication-TileColor" content="#494f5c">
+<meta itemprop="name" content="RMarkdown (.Rmd) to MS Word (.docx) aka rmarkdown2docx">
+<meta itemprop="description" content="Love Rmarkdown (.Rmd) but hate that you sometimes have to produce MS Word (.docx) files? BOOM! Solved. This post shows you how. Well, it sources the repo I made that shows you how!">
+<meta itemprop="datePublished" content="2016-04-14T00:00:00&#43;00:00" />
+<meta itemprop="dateModified" content="2016-04-14T00:00:00&#43;00:00" />
+<meta itemprop="wordCount" content="517">
+
+
+
+<meta itemprop="keywords" content="markdown,rmarkdown,rmd,docx,word,conversion,reproducible," /><meta property="og:title" content="RMarkdown (.Rmd) to MS Word (.docx) aka rmarkdown2docx" />
+<meta property="og:description" content="Love Rmarkdown (.Rmd) but hate that you sometimes have to produce MS Word (.docx) files? BOOM! Solved. This post shows you how. Well, it sources the repo I made that shows you how!" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/ultinomics.org/post/2016-04-14-rmarkdown-to-docx/" />
+<meta property="article:published_time" content="2016-04-14T00:00:00+00:00" />
+<meta property="article:modified_time" content="2016-04-14T00:00:00+00:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="RMarkdown (.Rmd) to MS Word (.docx) aka rmarkdown2docx"/>
+<meta name="twitter:description" content="Love Rmarkdown (.Rmd) but hate that you sometimes have to produce MS Word (.docx) files? BOOM! Solved. This post shows you how. Well, it sources the repo I made that shows you how!"/>
+
+	<link rel="apple-touch-icon" sizes="180x180" href="/ultinomics.org/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/ultinomics.org/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/ultinomics.org/favicon-16x16.png">
+	<link rel="manifest" href="/ultinomics.org/site.webmanifest">
+	<link rel="mask-icon" href="/ultinomics.org/safari-pinned-tab.svg" color="">
+	<link rel="shortcut icon" href="/ultinomics.org/favicon.ico">
+
+	<title>RMarkdown (.Rmd) to MS Word (.docx) aka rmarkdown2docx</title>
+	<link rel="stylesheet" href="/ultinomics.org/css/style.min.657bcb7af31123e4156b1a3d2ff60a636717e54ead74f882136b5114cf72b55e.css" integrity="sha256-ZXvLevMRI+QVaxo9L/YKY2cX5U6tdPiCE2tRFM9ytV4=" crossorigin="anonymous">
+	
+</head>
+
+<body id="page">
+	
+	<header id="site-header" class="animated slideInUp faster">
+		<div class="hdr-wrapper section-inner">
+			<div class="hdr-left">
+				<div class="site-branding">
+					<a href="/ultinomics.org/">ultinomics.org</a>
+				</div>
+				<nav class="site-nav hide-in-mobile">
+					
+				<a href="/ultinomics.org/posts/">Posts</a>
+				<a href="http://dantonnoriega.gitlab.io">About</a>
+
+				</nav>
+			</div>
+			<div class="hdr-right hdr-icons">
+				<span class="hdr-social hide-in-mobile"><a href="https://twitter.com/dantonnoriega" target="_blank" rel="noopener me" title="Twitter"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg></a><a href="https://instagram.com/dantonnoriega" target="_blank" rel="noopener me" title="Instagram"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.5" y2="6.5"></line></svg></a><a href="https://github.com/dantonnoriega" target="_blank" rel="noopener me" title="Github"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a></span><button id="menu-btn" class="hdr-btn" title="Menu"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+			</div>
+		</div>
+	</header>
+	<div id="mobile-menu" class="animated fast">
+		<ul>
+			<li><a href="/ultinomics.org/posts/">Posts</a></li>
+			<li><a href="http://dantonnoriega.gitlab.io">About</a></li>
+		</ul>
+	</div>
+
+
+	<main class="site-main section-inner thin animated fadeIn faster">
+		<h1>RMarkdown (.Rmd) to MS Word (.docx) aka rmarkdown2docx</h1>
+		<div class="content">
+			<p>This post is just a copy of README.md file for the repo <a href="https://github.com/dantonnoriega/rmarkdown2docx">https://github.com/dantonnoriega/rmarkdown2docx</a>. But it&rsquo;s got everything you need to get your R Markdown file (.Rmd) to a clean, useful MS Word file (.docx).</p>
+<h1 id="description">Description<a href="#description" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h1>
+<p>This set of scripts help convert the output of <code>Rmd</code> files to <code>docx</code> files. It is done by creating a clean <code>html</code> file, then opening, converting, and saving the <code>html</code> to <code>docx</code> using <a href="https://www.dropbox.com/s/4bwwsgod27w1fjo/word-2004-applescript-reference.pdf?dl=0">Applescript and Microsoft Word</a>.</p>
+<p>The workhorse script is a <code>makefile</code>. Just change the variables to convert any <code>Rmd</code> to <code>docx</code>. However, only clean (not standalone) <code>html</code> files will fully convert. There are some caveats (outlined below) if you want to keep a standalone <code>html</code> file.</p>
+<p>In this repo, the <code>makefile</code> converts <code>example.Rmd</code> to <code>example.docx</code>.</p>
+<h2 id="the-output-files">The output files<a href="#the-output-files" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<ul>
+<li><code>example.html</code></li>
+<li><code>example.docx</code></li>
+</ul>
+<h2 id="the-main-support-file">The main support file<a href="#the-main-support-file" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<ul>
+<li><code>html2docx.sh</code></li>
+</ul>
+<p>The <code>makefile</code> automatically downloads the <code>html2docx.sh</code> conversion script using <code>wget</code> if it&rsquo;s missing. (Requires unix command-line tool <code>wget</code> to download if missing.)</p>
+<h2 id="optional-support-files">Optional support files<a href="#optional-support-files" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<ul>
+<li><code>chicago-author-date.csl</code></li>
+<li><code>bibliography.bib</code></li>
+</ul>
+<p>These files are listed to show that folks can cite references (useful for academics). To learn more about these RMarkdown <code>yaml</code> options, see this <a href="http://rmarkdown.rstudio.com/authoring_bibliographies_and_citations.html">RStudio post</a>.</p>
+<h1 id="requirements">Requirements<a href="#requirements" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h1>
+<ol>
+<li>Microsoft Word for Mac in your Applications folder. This has been built and testing using Microsoft Word for Mac, Version <code>15.20</code>.</li>
+<li><code>R</code> with packages <code>rmarkdown</code> and <code>knitr</code>.</li>
+<li>An understanding of how to use GNU Make and terminal commands.</li>
+</ol>
+<h1 id="how-to-use">How to Use<a href="#how-to-use" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h1>
+<p>There are two options for going from <code>Rmd</code> to <code>docx</code>. The first <code>make</code> option is <code>all</code> and the second is <code>alt</code>. But before anything, make sure the <code>makefile</code> variables are set up accordingly. Simply change the <code>RMD_NAME</code> variable to suite your needs:</p>
+<pre><code>RMD_NAME = example.Rmd
+</code></pre><p>In this case, the <code>Rmd</code> file of interest is <code>example.Rmd</code>.</p>
+<h2 id="option-1-all">Option 1: <code>all</code><a href="#option-1-all" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>Simply run</p>
+<pre><code>make all
+</code></pre><p>Although one can knit an <code>html</code> file from a <code>Rmd</code> file&mdash;letting knitr run the <code>pandoc</code> step&mdash;there is a caveat.</p>
+<blockquote>
+<p>output options <code>self_contained</code> <strong>must</strong> be <code>FALSE</code>. Otherwise, Microsoft Word will crash during the <code>html</code> to <code>docx</code> conversion. Keep in mind that this is the default option for <code>rmarkdown</code>. But I force it to be true in the <code>makefile</code>.</p>
+</blockquote>
+<h2 id="option-2-alt">Option 2: <code>alt</code><a href="#option-2-alt" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>You cannot convert a self contained (aka standalone) <code>html</code> file to a <code>docx</code>. (At least I&rsquo;ve found that it always crashes.) If you want the option to have a standalone <code>html</code> file, then then we use option <code>alt</code>.</p>
+<p>Simply run</p>
+<pre><code>make alt
+</code></pre><p>This will produce a clean (not self contained) <code>html</code>, create a <code>docx</code> file, then replace the clean <code>html</code> file with a standalone file.</p>
+<p>It&rsquo;s a little hackish, but it allows you to create a <code>docx</code> AND keep a standalone <code>html</code> file.</p>
+<h1 id="first-run-word-will-ask-for-permission">First Run, Word will ask for permission<a href="#first-run-word-will-ask-for-permission" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h1>
+<p>When you first run the script, do not worry if Word asks for permissions. Once you give Word access to the folder and files, it should run just fine and without asking again every time after.</p>
+<h1 id="shortcomings">Shortcomings<a href="#shortcomings" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h1>
+<h2 id="footnotes">Footnotes<a href="#footnotes" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>Footnotes, not matter what, go to the bottom of the page. Just how html files work.</p>
+<h1 id="thanks">Thanks<a href="#thanks" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h1>
+<p>A special thanks to <a href="http://github.com/andrewheiss">Andrew Heiss</a>, from whom I&rsquo;ve learned almost all I know about makefiles and converting markdown files to docx files.</p>
+
+		</div>
+	</main>
+
+	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
+		<p>&copy; 2020 <a href="/ultinomics.org/">Danton Noriega-Goodwin</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
+		<p>
+			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="/ultinomics.org/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
+		</p>
+	</footer>
+
+
+
+	<script src="/ultinomics.org/js/bundle.min.4a9a0ac3d2217822c7865b4161e6c2a71de1d70492264337755427898dd718f6.js" integrity="sha256-SpoKw9IheCLHhltBYebCpx3h1wSSJkM3dVQniY3XGPY=" crossorigin="anonymous"></script>
+	
+
+</body>
+
+</html>

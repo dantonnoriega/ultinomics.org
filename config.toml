@@ -1,72 +1,72 @@
-baseurl             = "https://dantonnoriega.github.io/ultinomics.org/"
-builddrafts         = false
-relativeURLs        = false
-uglyURLs            = true
-contentdir          = "content"
-languageCode        = "en-US"
-publishdir          = "docs"
-title               = "ultinomics.org"
-disqusShortname     = "ultinomics-org"
-
-
-# Copyright
-copyright = "(c) 2017 Danton Noriega."
-
-
-# Metadata format
-# "yaml", "toml", "json"
-metaDataFormat = "yaml"
-
-# Theme to use (located in /themes/THEMENAME/)
-theme = "hyde-y"
-
-# Pagination
-paginate = 10
-paginatePath = "page"
-
-[permalinks]
-    #post = "/:year/:month/:day/:slug/" # disable for easy reference of pics
-    #code = "/:slug/"
-
-[taxonomies]
-    tag = "tags"
-    topic = "topics"
+baseURL = "https://dantonnoriega.github.io/ultinomics.org/"
+languageCode = "en-us"
+defaultContentLanguage = "en"
+title = "ultinomics.org"
+theme = "hermit"
+# enableGitInfo = true
+pygmentsCodefences  = true
+pygmentsUseClasses  = true
+rssLimit = 10  # Maximum number of items in the RSS feed.
+enableEmoji = true  # Shorthand emojis in content files - https://gohugo.io/functions/emojify/
+# googleAnalytics = "UA-123-45"
+disqusShortname = "ultinomics-org"
 
 [author]
-    name = "Danton Noriega"
-    email = "danton_dot_noriega-at-gmail_dot_com"
+  name = "Danton Noriega-Goodwin"
 
-#
-# All parameters below here are optional and can be mixed and matched.
-#
+[taxonomies]
+  tag = "tags"
+  # Categories are disabled by default.
+
 [params]
-    # You can use markdown here.
-    topline = "random, infrequent posts about R and programming.<br/><br/><p style=\"font-style:italic\">mediocre economist.<br>aspiring data scientist.<br>ultimate player.</p>"
-    footline = "throw discs and code with <i class='fa fa-heart'></i>"
+  dateform        = "Jan 2, 2006"
+  dateformShort   = "Jan 2"
+  dateformNum     = "2006-01-02"
+  dateformNumTime = "2006-01-02 15:04 -0700"
 
-    # Sidebar position
-    # false, true, "left", "right"
-    sidebar = false
+  # Metadata mostly used in document's head
+  # description = ""
+  # images = [""]
+  themeColor = "#494f5c"
 
-    # Text for the top menu link, which goes the root URL for the site.
-    # Default (if omitted) is "Home".
-    home = "home"
-    
-    highlight = "tomorrow-night-eighties"
+  homeSubtitle = "random, infrequent posts about R and programming."
+  footerCopyright = ' &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a>'  # bgImg = ""  # Homepage background-image URL
 
-    MathJaxCDN = "//cdnjs.cloudflare.com/ajax/libs"
-    MathJaxVersion = "2.7.5"
+  # Prefix of link to the git commit detail page. GitInfo must be enabled.
+  # gitUrl = "https://github.com/username/repository/commit/"
 
-    # Sidebar social links.
-    github = "dantonnoriega" # Your Github profile ID
-    linkedin = "dantonnoriega" # Your LinkedIn profile ID (from public URL)
-    twitter = "dantonnoriega" # Your Twitter profile ID
+  # Toggling this option needs to rebuild SCSS, requires Hugo extended version
+  justifyContent = false  # Set "text-align: justify" to `.content`.
 
-[blackfriday]
-    angledQuotes = false
-    fractions = false
-    hrefTargetBlank = false
-    latexDashes = true
-    plainIdAnchors = true
-    extensions = []
-    extensionmask = []
+  relatedPosts = false  # Add a related content section to all single posts page
+
+  code_copy_button = true # Turn on/off the code-copy-button for code-fields
+  
+  # Add custom css
+  # customCSS = ["css/foo.css", "css/bar.css"]
+
+  # Social Icons
+  # Check https://github.com/Track3/hermit#social-icons for more info.
+  [[params.social]]
+    name = "twitter"
+    url = "https://twitter.com/dantonnoriega"
+
+  [[params.social]]
+    name = "instagram"
+    url = "https://instagram.com/dantonnoriega"
+
+  [[params.social]]
+    name = "github"
+    url = "https://github.com/dantonnoriega"
+
+[menu]
+
+  [[menu.main]]
+    name = "Posts"
+    url = "posts/"
+    weight = 10
+
+  [[menu.main]]
+    name = "About"
+    url = "http://dantonnoriega.gitlab.io"
+    weight = 20
