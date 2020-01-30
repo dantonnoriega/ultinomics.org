@@ -1,0 +1,1100 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+	<channel>
+		<title>Posts on ultinomics.org</title>
+		<link>https://dantonnoriega.github.io/ultinomics.org/posts.html</link>
+		<description>Recent content in Posts on ultinomics.org</description>
+		<generator>Hugo -- gohugo.io</generator>
+		<language>en-us</language>
+		<lastBuildDate>Fri, 21 Jul 2017 00:00:00 +0000</lastBuildDate>
+		<atom:link href="https://dantonnoriega.github.io/ultinomics.org/posts/index.xml" rel="self" type="application/rss+xml" />
+		
+		<item>
+			<title>Cropping a Multiple Page PDF Using Command Line (macOS)</title>
+			<link>https://dantonnoriega.github.io/ultinomics.org/posts/2017-07-21-cropping-pdfs.html</link>
+			<pubDate>Fri, 21 Jul 2017 00:00:00 +0000</pubDate>
+			
+			<guid>https://dantonnoriega.github.io/ultinomics.org/posts/2017-07-21-cropping-pdfs.html</guid>
+			<description>pdfcrop command I learned about pdfcrop in a stackoverflow post. pdfcrop is a tool that can crop multiple-page PDFs (not to be confused with multiple PDFs).
+Discovering it was memorable enough that I thought it warranted a post.
+Installation The full version of MacTex comes with a command line tool called pdfcrop. See if you have it by typing:
+$ which pdfcrop /Library/TeX/texbin/pdfcrop If you don’t have, it can be installed from TexLive:</description>
+			<content type="html"><![CDATA[
+<script src="/ultinomics.org/rmarkdown-libs/header-attrs/header-attrs.js"></script>
+
+
+<div id="pdfcrop-command" class="section level1">
+<h1><code>pdfcrop</code> command</h1>
+<p>I learned about <code>pdfcrop</code> in a <a href="https://askubuntu.com/questions/124692/command-line-tool-to-crop-pdf-files">stackoverflow post</a>. <code>pdfcrop</code> is a tool that can crop <em>multiple-page</em> PDFs (not to be confused with multiple PDFs).</p>
+<p>Discovering it was memorable enough that I thought it warranted a post.</p>
+<div id="installation" class="section level2">
+<h2>Installation</h2>
+<p>The full version of <a href="http://www.tug.org/mactex/">MacTex</a> comes with a command line tool called <code>pdfcrop</code>. See if you have it by typing:</p>
+<pre class="shell"><code>$ which pdfcrop
+/Library/TeX/texbin/pdfcrop</code></pre>
+<p>If you don’t have, it can be installed from <a href="https://ctan.org/pkg/texlive">TexLive</a>:</p>
+<pre class="shell"><code>sudo tlmgr install pdfcrop</code></pre>
+</div>
+<div id="usage-with-newer-pdfs" class="section level2">
+<h2>Usage with Newer PDFs</h2>
+<p>Below is an example script that crops Hadley Wickam’s <a href="https://www.jstatsoft.org/article/view/v059i10">Tidy Data</a> paper.</p>
+<pre class="shell"><code>$ cd ~/Downloads
+$ wget https://www.jstatsoft.org/index.php/jss/article/view/v059i10/v59i10.pdf
+$ pdfcrop --margins &#39;10 15 10 15&#39; --xetex v59i10.pdf
+PDFCROP 1.38, 2012/11/02 - Copyright (c) 2002-2012 by Heiko Oberdiek.
+==&gt; 23 pages written on `v59i10-crop.pdf&#39;.
+$ ls *crop.pdf
+v59i10-crop.pdf</code></pre>
+<ul>
+<li>The <code>--margins "&lt;left&gt; &lt;top&gt; &lt;right&gt; &lt;bottom&gt;"</code> option adjusts the margins. <em>For newer PDFs with meta data</em>, <code>--margins</code> initially removes the entire margin before implementing the adjustment. If the numbers is <em>positive</em>, then <code>--margins</code> will actually augment the file with white space (in <code>bp</code> = big point units where <code>72 bp</code> = <code>1 inch</code>). To reduce the margins, values need to be <em>negative</em>.</li>
+<li>Note that <code>--margins "&lt;number&gt;"</code> will add/remove a uniform band around the margin.</li>
+<li>I use the <code>--xetex</code> option because I found that it produced a high quality PDF that took up less disk space.</li>
+</ul>
+</div>
+<div id="usage-with-older-pdfs" class="section level2">
+<h2>Usage with Older PDFs</h2>
+<p>As mentioned, newer PDFs with margins meta data, the <code>--margins</code> removes the margin white space prior to adjustment. This is <strong>NOT</strong> the case with older PDFs. With older PDFs, you generally only want to <em>remove</em> margins (<code>--margins</code> with negative values) because <code>pdfcrop</code> finds no margins meta data. Here is an example where we trim <code>0.75</code> inches (<code>0.75 in = 72*0.75 = 54 bp</code>) around a very old PDF.</p>
+<pre class="shell"><code>$ wget http://seismo.berkeley.edu/~kirchner/eps_120/Odds_n_ends/Students_original_paper.pdf
+$ pdfcrop --margins &#39;-54&#39; --xetex Students_original_paper.pdf
+pdfcrop --margins &#39;-54&#39; --xetex Students_original_paper.pdf
+PDFCROP 1.38, 2012/11/02 - Copyright (c) 2002-2012 by Heiko Oberdiek.
+==&gt; 26 pages written on `Students_original_paper-crop.pdf&#39;.
+$ ls Students*crop.pdf
+Students_original_paper-crop.pdf</code></pre>
+</div>
+<div id="for-the-lazy" class="section level2">
+<h2>For the Lazy</h2>
+<p>If you don’t feel like running the code above, you can get the PDFs downloaded then adjusted in the examples below:</p>
+<ul>
+<li><a href="https://danton.updog.co/pdfcrop/v59i10.pdf">v59i10.pdf</a></li>
+<li><a href="https://danton.updog.co/pdfcrop/v59i10-crop.pdf">v59i10-crop.pdf</a></li>
+<li><a href="https://danton.updog.co/pdfcrop/students_original_paper.pdf">students_original_paper.pdf</a></li>
+<li><a href="https://danton.updog.co/pdfcrop/students_original_paper-crop.pdf">students_original_paper-crop.pdf</a></li>
+</ul>
+</div>
+</div>
+]]></content>
+		</item>
+		
+		<item>
+			<title>xmltools package to help convert XML data to tidy data frames</title>
+			<link>https://dantonnoriega.github.io/ultinomics.org/posts/2017-04-18-xmltools-package.html</link>
+			<pubDate>Tue, 18 Apr 2017 00:00:00 +0000</pubDate>
+			
+			<guid>https://dantonnoriega.github.io/ultinomics.org/posts/2017-04-18-xmltools-package.html</guid>
+			<description>I created a new, small package called xmltools that helps simplify the process of converting XML data into tidy data frames.
+It has not yet been tested on a ton of XML files so it may have some bugs. I also have not created any tests. But, at least for me, it helps drastically cut down on the code I have to write to get the data I want from an XML file.</description>
+			<content type="html"><![CDATA[
+<script src="/ultinomics.org/rmarkdown-libs/header-attrs/header-attrs.js"></script>
+
+
+<p>I created a new, small <a href="https://github.com/dantonnoriega/xmltools">package called <code>xmltools</code></a> that helps simplify the process of converting XML data into tidy data frames.</p>
+<p>It has not yet been tested on a ton of XML files so it may have some bugs. I also have not created any tests. But, at least for me, it helps drastically cut down on the code I have to write to get the data I want from an XML file.</p>
+<p>Below is what I wrote as part of the README to the package (it’s really more of a vignette.)</p>
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+<div id="motivation-for-xmltools" class="section level1">
+<h1>Motivation for <code>xmltools</code></h1>
+<p>There are 3 things I felt were missing from the two wonderful packages <a href="https://cran.r-project.org/web/packages/XML/index.html"><code>XML</code></a> and <a href="https://github.com/hadley/xml2"><code>xml2</code></a>:</p>
+<ol style="list-style-type: decimal">
+<li>A easier, more condensed way to see the structure of xml data.
+<ul>
+<li><code>xml2::xml_structure</code> provides a way to look at the structure, but I find that it is not very easy to read and takes up too much console space.</li>
+<li><code>xmltools::xml_view_tree</code> is more condense and attempts to emulate the <code>tree</code> command line program.</li>
+</ul></li>
+<li>A quick way to determine all feasible xpaths and to identify terminal nodes. Data values of interest are contained in terminal nodes (nodes of “length zero” that do no dig any deeper). Quickly getting xpaths to the <em>parents</em> of these nodes makes extracting data much easier—and faster if you do not recursively dig deeper.
+<ul>
+<li><code>xmltools::xml_get_paths</code> can find all paths for a given nodeset or xml document. It has options to help tag terminal nodes (<code>mark_terminal</code>) and the option to return the parent of any terminal nodes (<code>mark_terminal_parent</code>).</li>
+</ul></li>
+<li>Other alternatives for converting xml data to data frames.
+<ul>
+<li><code>XML::xmlToDataFrame</code> exists but it seems to always dig recursively. This leads to some crappy data frames.</li>
+<li>I offer two alternatives, <code>xml_to_df</code> and <code>xml_dig_df</code>.
+<ul>
+<li><code>xml_to_df</code> uses the <code>XML</code> and <code>data.table</code> packages</li>
+<li><code>xml_dig_df</code> is based of <code>xml2</code> and <code>tidyverse</code> packages.</li>
+</ul></li>
+</ul></li>
+</ol>
+</div>
+<div id="installation" class="section level1">
+<h1>Installation</h1>
+<p>Run the following.</p>
+<pre class="r"><code>devtools::install_github(&#39;dantonnoriega/xmltools&#39;)
+library(xmltools)</code></pre>
+</div>
+<div id="examples" class="section level1">
+<h1>Examples</h1>
+<p>Let’s set up the first example using some ebay data from the <a href="http://aiweb.cs.washington.edu/research/projects/xmltk/xmldata/www/repository.html">UW XML Data Repository</a>. These data come as part of the package because I dropped the really annoying <code>description</code> field that makes the data hard to look at. (Parses it just fine!)</p>
+<pre class="r"><code>library(xmltools)
+library(magrittr)
+
+# USING ebay.xml ------------------------------------------------
+# load the data
+file &lt;- system.file(&quot;extdata&quot;, &quot;ebay.xml&quot;, package = &quot;xmltools&quot;)
+doc &lt;- file %&gt;%
+  xml2::read_xml()
+nodeset &lt;- doc %&gt;%
+  xml2::xml_children() # get top level nodeset</code></pre>
+<div id="view-xml-treesstructures" class="section level2">
+<h2>View XML trees/structures</h2>
+<p>Let’s look at the structure of the data. The function</p>
+<pre class="r"><code># `xml_view_tree` structure
+# we can get a tree for each node of the doc
+doc %&gt;% 
+  xml_view_tree()
+doc %&gt;% # we can also vary the depth
+  xml_view_tree(depth = 2)</code></pre>
+<p> </p>
+<pre class="r"><code># easier to read and understand than `xml2::xml_structure()` and has the `depth` option
+nodeset[1] %&gt;% xml2::xml_structure()
+#&gt; [[1]]
+#&gt; &lt;listing&gt;
+#&gt;   &lt;seller_info&gt;
+#&gt;     &lt;seller_name&gt;
+#&gt;       {text}
+#&gt;     &lt;seller_rating&gt;
+#&gt;       {text}
+#&gt;   &lt;payment_types&gt;
+#&gt;     {text}
+#&gt;   &lt;shipping_info&gt;
+#&gt;     {text}
+#&gt;   &lt;buyer_protection_info&gt;
+#&gt;     {text}
+#&gt;   &lt;auction_info&gt;
+#&gt;     &lt;current_bid&gt;
+#&gt;       {text}
+#&gt;     &lt;time_left&gt;
+#&gt;       {text}
+#&gt;     &lt;high_bidder&gt;
+#&gt;       &lt;bidder_name&gt;
+#&gt;         {text}
+#&gt;       &lt;bidder_rating&gt;
+#&gt;         {text}
+#&gt;     &lt;num_items&gt;
+#&gt;       {text}
+#&gt;     &lt;num_bids&gt;
+#&gt;       {text}
+#&gt;     &lt;started_at&gt;
+#&gt;       {text}
+#&gt;     &lt;bid_increment&gt;
+#&gt;       {text}
+#&gt;     &lt;location&gt;
+#&gt;       {text}
+#&gt;     &lt;opened&gt;
+#&gt;       {text}
+#&gt;     &lt;closed&gt;
+#&gt;       {text}
+#&gt;     &lt;id_num&gt;
+#&gt;       {text}
+#&gt;     &lt;notes&gt;
+#&gt;       {text}
+#&gt;   &lt;bid_history&gt;
+#&gt;     &lt;highest_bid_amount&gt;
+#&gt;       {text}
+#&gt;     &lt;quantity&gt;
+#&gt;       {text}
+#&gt;   &lt;item_info&gt;
+#&gt;     &lt;memory&gt;
+#&gt;       {text}
+#&gt;     &lt;hard_drive&gt;
+#&gt;       {text}
+#&gt;     &lt;cpu&gt;
+#&gt;       {text}
+#&gt;     &lt;brand&gt;
+#&gt;       {text}
+
+## or, we can extract from nodesets
+class(nodeset[1])
+#&gt; [1] &quot;xml_nodeset&quot;
+nodeset[1] %&gt;%
+  xml_view_trees()
+#&gt; └── listing
+#&gt;   ├── payment_types
+#&gt;   ├── shipping_info
+#&gt;   ├── buyer_protection_info
+#&gt;   ├── seller_info
+#&gt;     ├── seller_name
+#&gt;     └── seller_rating
+#&gt;   ├── auction_info
+#&gt;     ├── current_bid
+#&gt;     ├── time_left
+#&gt;     ├── num_items
+#&gt;     ├── num_bids
+#&gt;     ├── started_at
+#&gt;     ├── bid_increment
+#&gt;     ├── location
+#&gt;     ├── opened
+#&gt;     ├── closed
+#&gt;     ├── id_num
+#&gt;     ├── notes
+#&gt;     └── high_bidder
+#&gt;       ├── bidder_name
+#&gt;       └── bidder_rating
+#&gt;   ├── bid_history
+#&gt;     ├── highest_bid_amount
+#&gt;     └── quantity
+#&gt;   └── item_info
+#&gt;     ├── memory
+#&gt;     ├── hard_drive
+#&gt;     ├── cpu
+#&gt;     └── brand
+nodeset[1] %&gt;%
+  xml_view_trees(depth=2)
+#&gt; └── listing
+#&gt;   ├── payment_types
+#&gt;   ├── shipping_info
+#&gt;   ├── buyer_protection_info
+#&gt;   ├── seller_info
+#&gt;   ├── auction_info
+#&gt;   ├── bid_history
+#&gt;   └── item_info
+
+## will not work with class &quot;xml_node&quot; (can&#39;t use lapply on those, apparently)
+class(nodeset[[1]])
+#&gt; [1] &quot;xml_node&quot;
+try(nodeset[[1]] %&gt;%
+  xml_view_tree()
+)
+#&gt; Error in xml_view_trees(xml, depth = depth) : 
+#&gt;   any(c(&quot;xml_tree&quot;, &quot;xml_tree_list&quot;, &quot;xml_document&quot;, &quot;xml_nodeset&quot;) %in%  .... is not TRUE</code></pre>
+</div>
+<div id="get-terminal-nodes" class="section level2">
+<h2>Get Terminal Nodes</h2>
+<p>Terminal nodes in XMLs are nodes that do no have any “children”. These nodes contain the information we generally want to extract into a tidy data frame.</p>
+<p>I’ve found myself wanting easy access to all XML paths but could find no tool to do so easily and quickly. I especially wanted the xpaths to terminal nodes for any XML structure. This is accomplished using the <code>xml_get_paths</code> function.</p>
+<pre class="r"><code># one can see all the paths per node of a doc
+# NOTE EXECUTED
+doc %&gt;%
+  xml_get_paths()</code></pre>
+<p> </p>
+<pre class="r"><code># can look at one nodeset
+## NOTE that nodesets can vary, so looking at one doesn&#39;t mean you&#39;ll find all feasible paths
+
+nodeset[1] %&gt;%
+  xml_get_paths()
+#&gt; [[1]]
+#&gt;  [1] &quot;/root/listing&quot;                                        &quot;/root/listing/payment_types&quot;                         
+#&gt;  [3] &quot;/root/listing/shipping_info&quot;                          &quot;/root/listing/buyer_protection_info&quot;                 
+#&gt;  [5] &quot;/root/listing/seller_info&quot;                            &quot;/root/listing/seller_info/seller_name&quot;               
+#&gt;  [7] &quot;/root/listing/seller_info/seller_rating&quot;              &quot;/root/listing/auction_info&quot;                          
+#&gt;  [9] &quot;/root/listing/auction_info/current_bid&quot;               &quot;/root/listing/auction_info/time_left&quot;                
+#&gt; [11] &quot;/root/listing/auction_info/num_items&quot;                 &quot;/root/listing/auction_info/num_bids&quot;                 
+#&gt; [13] &quot;/root/listing/auction_info/started_at&quot;                &quot;/root/listing/auction_info/bid_increment&quot;            
+#&gt; [15] &quot;/root/listing/auction_info/location&quot;                  &quot;/root/listing/auction_info/opened&quot;                   
+#&gt; [17] &quot;/root/listing/auction_info/closed&quot;                    &quot;/root/listing/auction_info/id_num&quot;                   
+#&gt; [19] &quot;/root/listing/auction_info/notes&quot;                     &quot;/root/listing/auction_info/high_bidder&quot;              
+#&gt; [21] &quot;/root/listing/auction_info/high_bidder/bidder_name&quot;   &quot;/root/listing/auction_info/high_bidder/bidder_rating&quot;
+#&gt; [23] &quot;/root/listing/bid_history&quot;                            &quot;/root/listing/bid_history/highest_bid_amount&quot;        
+#&gt; [25] &quot;/root/listing/bid_history/quantity&quot;                   &quot;/root/listing/item_info&quot;                             
+#&gt; [27] &quot;/root/listing/item_info/memory&quot;                       &quot;/root/listing/item_info/hard_drive&quot;                  
+#&gt; [29] &quot;/root/listing/item_info/cpu&quot;                          &quot;/root/listing/item_info/brand&quot;
+
+nodeset[1] %&gt;%
+  xml_get_paths(mark_terminal = &quot;&gt;&gt;&quot;) # can mark terminal nodes
+#&gt; [[1]]
+#&gt;  [1] &quot;/root/listing&quot;                                          &quot;&gt;&gt;/root/listing/payment_types&quot;                         
+#&gt;  [3] &quot;&gt;&gt;/root/listing/shipping_info&quot;                          &quot;&gt;&gt;/root/listing/buyer_protection_info&quot;                 
+#&gt;  [5] &quot;/root/listing/seller_info&quot;                              &quot;&gt;&gt;/root/listing/seller_info/seller_name&quot;               
+#&gt;  [7] &quot;&gt;&gt;/root/listing/seller_info/seller_rating&quot;              &quot;/root/listing/auction_info&quot;                            
+#&gt;  [9] &quot;&gt;&gt;/root/listing/auction_info/current_bid&quot;               &quot;&gt;&gt;/root/listing/auction_info/time_left&quot;                
+#&gt; [11] &quot;&gt;&gt;/root/listing/auction_info/num_items&quot;                 &quot;&gt;&gt;/root/listing/auction_info/num_bids&quot;                 
+#&gt; [13] &quot;&gt;&gt;/root/listing/auction_info/started_at&quot;                &quot;&gt;&gt;/root/listing/auction_info/bid_increment&quot;            
+#&gt; [15] &quot;&gt;&gt;/root/listing/auction_info/location&quot;                  &quot;&gt;&gt;/root/listing/auction_info/opened&quot;                   
+#&gt; [17] &quot;&gt;&gt;/root/listing/auction_info/closed&quot;                    &quot;&gt;&gt;/root/listing/auction_info/id_num&quot;                   
+#&gt; [19] &quot;&gt;&gt;/root/listing/auction_info/notes&quot;                     &quot;/root/listing/auction_info/high_bidder&quot;                
+#&gt; [21] &quot;&gt;&gt;/root/listing/auction_info/high_bidder/bidder_name&quot;   &quot;&gt;&gt;/root/listing/auction_info/high_bidder/bidder_rating&quot;
+#&gt; [23] &quot;/root/listing/bid_history&quot;                              &quot;&gt;&gt;/root/listing/bid_history/highest_bid_amount&quot;        
+#&gt; [25] &quot;&gt;&gt;/root/listing/bid_history/quantity&quot;                   &quot;/root/listing/item_info&quot;                               
+#&gt; [27] &quot;&gt;&gt;/root/listing/item_info/memory&quot;                       &quot;&gt;&gt;/root/listing/item_info/hard_drive&quot;                  
+#&gt; [29] &quot;&gt;&gt;/root/listing/item_info/cpu&quot;                          &quot;&gt;&gt;/root/listing/item_info/brand&quot;
+
+## we can find all feasible paths then collapse
+
+terminal &lt;- doc %&gt;% ## get all xpaths
+  xml_get_paths()
+
+xpaths &lt;- terminal %&gt;% ## collapse xpaths to unique only
+  unlist() %&gt;%
+  unique()
+
+## but what we really want is the parent node of terminal nodes.
+## use the `only_terminal_parent = TRUE` to do this
+
+terminal_parent &lt;- doc %&gt;% ## get all xpaths to parents of parent node
+  xml_get_paths(only_terminal_parent = TRUE)
+
+terminal_xpaths &lt;- terminal_parent %&gt;% ## collapse xpaths to unique only
+  unlist() %&gt;%
+  unique()</code></pre>
+</div>
+<div id="extracting-xml-data-to-tidy-data-frames" class="section level2">
+<h2>Extracting XML Data to Tidy Data Frames</h2>
+<p>Next, we use the terminal xpaths above to extract the data we want.</p>
+<p>First, I want to show the issue with using <code>XML::xmlToDataFrame</code>.</p>
+<pre class="r"><code># xmlToDataFrame works great on terminal nodes IF there are no non-terminal nodes any deeper.
+## we extract a data frame for each parent of terminal nodes
+
+df0 &lt;- lapply(terminal_xpaths, function(x) {
+  doc &lt;- file %&gt;% XML::xmlInternalTreeParse()
+  nodeset &lt;- XML::getNodeSet(doc, x)
+  XML::xmlToDataFrame(nodeset, stringsAsFactors = FALSE) %&gt;%
+    dplyr::as_data_frame()
+})
+#&gt; Warning: `as_data_frame()` is deprecated, use `as_tibble()` (but mind the new semantics).
+#&gt; This warning is displayed once per session.</code></pre>
+<p>There is data contained in the terminal nodes</p>
+<pre><code>/root/listing/payment_types
+/root/listing/shipping_info
+/root/listing/buyer_protection_info</code></pre>
+<p>with the parent node</p>
+<pre><code>/root/listing</code></pre>
+<p>But <code>XML::xmlToDataFrame</code> will keep digging into <code>/root/listing</code> and extract data from xpaths like <code>/root/listing/seller_info</code>. But it does so extracting data in a non tidy way. We can see this below comparing the data in <code>df0[[1]] %&gt;% dplyr::select(seller_info)</code> vs <code>df0[[2]]</code>, which is data extracted from just from <code>/root/listing/seller_info</code> and deeper.</p>
+<pre class="r"><code># problem with xmlToDataFrame is it keeps digging into other nodes recursively in &quot;/root/listing&quot;
+
+xpaths[1] # /root/listing is terminal parent but xmlToDataFrame keeps digging
+#&gt; [1] &quot;/root/listing&quot;
+
+df0[[1]] %&gt;%
+  dplyr::select(seller_info) # not good; keeps diving into other nodes but fails to separate
+#&gt; # A tibble: 5 x 1
+#&gt;   seller_info            
+#&gt;   &lt;chr&gt;                  
+#&gt; 1 &quot; cubsfantony 848&quot;     
+#&gt; 2 &quot; ct-inc 403&quot;          
+#&gt; 3 &quot; ct-inc 403&quot;          
+#&gt; 4 bestbuys4systems  28   
+#&gt; 5 &quot; sales@ctgcom.com 219&quot;
+
+xpaths[2]
+#&gt; [1] &quot;/root/listing/payment_types&quot;
+
+df0[[2]] # works because the recursive dig down hits only the terminal nodes
+#&gt; # A tibble: 5 x 2
+#&gt;   seller_name         seller_rating
+#&gt;   &lt;chr&gt;               &lt;chr&gt;        
+#&gt; 1 &quot; cubsfantony&quot;      &quot; 848&quot;       
+#&gt; 2 &quot; ct-inc&quot;           &quot; 403&quot;       
+#&gt; 3 &quot; ct-inc&quot;           &quot; 403&quot;       
+#&gt; 4 &quot;bestbuys4systems &quot; &quot; 28&quot;        
+#&gt; 5 &quot; sales@ctgcom.com&quot; &quot; 219&quot;</code></pre>
+<p>The solution that worked for me was to write a function that, by default, does not dig into non-terminal nodes. That is, when given the xpath <code>/root/listing</code>, the function will only go into terminal nodes</p>
+<pre><code>/root/listing/payment_types
+/root/listing/shipping_info
+/root/listing/buyer_protection_info</code></pre>
+<p>And ignore the other, non-terminal nodes unless instructed to do so otherwise by setting option <code>dig = TRUE</code>.</p>
+<div id="the-xml_to_df-function" class="section level3">
+<h3>The <code>xml_to_df</code> Function</h3>
+<p>The <code>xml_to_df</code> function is built on the <code>XML</code> package and <code>data.table</code>. By default, it does not dig into non-terminal nodes (<code>dig = FALSE</code>) when given any xpath. One can pass an xpath to an XML file (<code>is_xml = FALSE</code>) or an already parsed XML file (<code>is_xml = TRUE</code>).</p>
+<pre class="r"><code># xml_to_df (XML package based)
+## does not dig by default
+## use the terminal xpaths to get data frames
+terminal_xpaths
+#&gt; [1] &quot;/root/listing&quot;                          &quot;/root/listing/seller_info&quot;              &quot;/root/listing/auction_info&quot;            
+#&gt; [4] &quot;/root/listing/auction_info/high_bidder&quot; &quot;/root/listing/bid_history&quot;              &quot;/root/listing/item_info&quot;
+
+## we send each terminal xpath to `xml_to_df`. 
+## the file source is the parsed xml object `doc`, so we set `is_xml = TRUE`
+## we do no want to dig, which quickly gets us the data we want for each terminal xpath `dig = FALSE` (default)
+df1 &lt;- lapply(terminal_xpaths, xml_to_df, file = doc, is_xml = TRUE, dig = FALSE) %&gt;%
+  dplyr::bind_cols()</code></pre>
+</div>
+<div id="the-xml_dig_df-function" class="section level3">
+<h3>The <code>xml_dig_df</code> Function</h3>
+<p>The other fuction is <code>xml_dig_df</code> which is built on <code>xml2</code> and <code>tidyverse</code> packages.</p>
+<p>The important distinction is that we first need to find all the terminal nodesets we want to parse. We find these using <code>xml2::xml_find_all</code> on each of the <code>terminal_xpaths</code> on the original parsed xml file (<code>doc</code>).</p>
+<p>For each <code>terminal_nodeset</code>, we then apply <code>xml_dig_df</code>. For each nodeset, we will get single row of data, so we bind the results for each nodeset. The final data frame is created by column binding. (I convert all empty strings to <code>NA</code> for good measure.)</p>
+<pre class="r"><code># xml_dig_df (xml2 package based)
+terminal_nodesets &lt;- lapply(terminal_xpaths, xml2::xml_find_all, x = doc)
+df2 &lt;- terminal_nodesets %&gt;%
+  purrr::map(xml_dig_df) %&gt;% ## does not dig by default
+  purrr::map(dplyr::bind_rows) %&gt;%
+  dplyr::bind_cols() %&gt;%
+  dplyr::mutate_all(empty_as_na)</code></pre>
+<pre class="r"><code># they&#39;re the same!
+identical(df1, data.table::as.data.table(df2))
+#&gt; [1] TRUE</code></pre>
+</div>
+</div>
+</div>
+<div id="example-2" class="section level1">
+<h1>Example 2</h1>
+<p>Below is another example to work through. The output is hidden but copy and paste the code or find the source file in this repository <code>examples.R</code>.</p>
+<pre class="r"><code># USING wsu.xml ------------------------------------------------
+# larger file
+
+# using xml_to_df
+file &lt;- &quot;http://aiweb.cs.washington.edu/research/projects/xmltk/xmldata/data/courses/wsu.xml&quot;
+doc &lt;- file %&gt;%
+  xml2::read_xml()
+nodeset &lt;- doc %&gt;%
+  xml2::xml_children()
+length(nodeset) # lots of nodes!
+nodeset[1] %&gt;% # lets look at ONE node&#39;s tree
+  xml_view_tree()
+
+## takes a long time. likely can extract from a single node
+# terminal_paths &lt;- doc %&gt;% ## get the xpath to parents of terminal node
+#   xml_get_paths(only_terminal_parent = TRUE)
+
+# lets assume that most nodes share the same structure
+terminal_paths &lt;- nodeset[1] %&gt;%
+  xml_get_paths(only_terminal_parent = TRUE)
+
+terminal_xpaths &lt;- terminal_paths %&gt;% ## collapse xpaths to unique only
+  unlist() %&gt;%
+  unique()
+
+# xml_to_df (XML package based)
+## note that we use file, not doc, hence is_xml = FALSE
+df1 &lt;- lapply(terminal_xpaths, xml_to_df, file = file, is_xml = FALSE, dig = FALSE) %&gt;%
+  dplyr::bind_cols()
+df1
+
+# xml_dig_df (xml2 package based)
+## faster!
+terminal_nodesets &lt;- lapply(terminal_xpaths, xml2::xml_find_all, x = doc) # use xml docs, not nodesets! I think this is because it searches the &#39;root&#39;.
+df2 &lt;- terminal_nodesets %&gt;%
+  purrr::map(xml_dig_df) %&gt;%
+  purrr::map(dplyr::bind_rows) %&gt;%
+  dplyr::bind_cols() %&gt;%
+  dplyr::mutate_all(empty_as_na)
+df2
+
+# they&#39;re the same!
+identical(df1, data.table::as.data.table(df2))</code></pre>
+</div>
+]]></content>
+		</item>
+		
+		<item>
+			<title>Thinking in `highcharter` - How to build any Highcharts plot in R</title>
+			<link>https://dantonnoriega.github.io/ultinomics.org/posts/2017-04-05-highcharter-explainer.html</link>
+			<pubDate>Wed, 05 Apr 2017 00:00:00 +0000</pubDate>
+			
+			<guid>https://dantonnoriega.github.io/ultinomics.org/posts/2017-04-05-highcharter-explainer.html</guid>
+			<description>Rstudio’s Mine Cetinkaya-Rundel had a post about the highcharter package, a wrapper for the Highcharts javascripts library that lets you create super sweet interactive charts in R.
+Joshua Kunst’s highcharter package has become my go-to plotting package once I reach the production phase and know I will be using HTML.</description>
+			<content type="html"><![CDATA[
+<script src="/ultinomics.org/rmarkdown-libs/header-attrs/header-attrs.js"></script>
+<script src="/ultinomics.org/rmarkdown-libs/htmlwidgets/htmlwidgets.js"></script>
+<script src="/ultinomics.org/rmarkdown-libs/jquery/jquery.min.js"></script>
+<script src="/ultinomics.org/rmarkdown-libs/proj4js/proj4.js"></script>
+<link href="/ultinomics.org/rmarkdown-libs/highcharts/css/motion.css" rel="stylesheet" />
+<link href="/ultinomics.org/rmarkdown-libs/highcharts/css/htmlwdgtgrid.css" rel="stylesheet" />
+<script src="/ultinomics.org/rmarkdown-libs/highcharts/highcharts.js"></script>
+<script src="/ultinomics.org/rmarkdown-libs/highcharts/highcharts-3d.js"></script>
+<script src="/ultinomics.org/rmarkdown-libs/highcharts/highcharts-more.js"></script>
+<script src="/ultinomics.org/rmarkdown-libs/highcharts/modules/stock.js"></script>
+<script src="/ultinomics.org/rmarkdown-libs/highcharts/modules/map.js"></script>
+<script src="/ultinomics.org/rmarkdown-libs/highcharts/modules/annotations.js"></script>
+<script src="/ultinomics.org/rmarkdown-libs/highcharts/modules/boost.js"></script>
+<script src="/ultinomics.org/rmarkdown-libs/highcharts/modules/data.js"></script>
+<script src="/ultinomics.org/rmarkdown-libs/highcharts/modules/drag-panes.js"></script>
+<script src="/ultinomics.org/rmarkdown-libs/highcharts/modules/drilldown.js"></script>
+<script src="/ultinomics.org/rmarkdown-libs/highcharts/modules/item-series.js"></script>
+<script src="/ultinomics.org/rmarkdown-libs/highcharts/modules/offline-exporting.js"></script>
+<script src="/ultinomics.org/rmarkdown-libs/highcharts/modules/overlapping-datalabels.js"></script>
+<script src="/ultinomics.org/rmarkdown-libs/highcharts/modules/exporting.js"></script>
+<script src="/ultinomics.org/rmarkdown-libs/highcharts/modules/export-data.js"></script>
+<script src="/ultinomics.org/rmarkdown-libs/highcharts/modules/funnel.js"></script>
+<script src="/ultinomics.org/rmarkdown-libs/highcharts/modules/heatmap.js"></script>
+<script src="/ultinomics.org/rmarkdown-libs/highcharts/modules/treemap.js"></script>
+<script src="/ultinomics.org/rmarkdown-libs/highcharts/modules/sankey.js"></script>
+<script src="/ultinomics.org/rmarkdown-libs/highcharts/modules/solid-gauge.js"></script>
+<script src="/ultinomics.org/rmarkdown-libs/highcharts/modules/streamgraph.js"></script>
+<script src="/ultinomics.org/rmarkdown-libs/highcharts/modules/sunburst.js"></script>
+<script src="/ultinomics.org/rmarkdown-libs/highcharts/modules/vector.js"></script>
+<script src="/ultinomics.org/rmarkdown-libs/highcharts/modules/wordcloud.js"></script>
+<script src="/ultinomics.org/rmarkdown-libs/highcharts/modules/xrange.js"></script>
+<script src="/ultinomics.org/rmarkdown-libs/highcharts/modules/tilemap.js"></script>
+<script src="/ultinomics.org/rmarkdown-libs/highcharts/modules/venn.js"></script>
+<script src="/ultinomics.org/rmarkdown-libs/highcharts/modules/gantt.js"></script>
+<script src="/ultinomics.org/rmarkdown-libs/highcharts/modules/timeline.js"></script>
+<script src="/ultinomics.org/rmarkdown-libs/highcharts/modules/parallel-coordinates.js"></script>
+<script src="/ultinomics.org/rmarkdown-libs/highcharts/plugins/grouped-categories.js"></script>
+<script src="/ultinomics.org/rmarkdown-libs/highcharts/plugins/motion.js"></script>
+<script src="/ultinomics.org/rmarkdown-libs/highcharts/plugins/multicolor_series.js"></script>
+<script src="/ultinomics.org/rmarkdown-libs/highcharts/custom/reset.js"></script>
+<script src="/ultinomics.org/rmarkdown-libs/highcharts/custom/symbols-extra.js"></script>
+<script src="/ultinomics.org/rmarkdown-libs/highcharts/custom/text-symbols.js"></script>
+<script src="/ultinomics.org/rmarkdown-libs/highchart-binding/highchart.js"></script>
+
+
+<p>Rstudio’s Mine Cetinkaya-Rundel had a <a href="https://www.rstudio.com/rviews/2016/10/19/creating-interactive-plots-with-r-and-highcharts/">post about the <code>highcharter</code> package</a>, a wrapper for the <a href="http://www.highcharts.com">Highcharts</a> javascripts library that lets you create super sweet interactive charts in R.</p>
+<p><a href="http://jkunst.com/highcharter/">Joshua Kunst’s <code>highcharter</code> package</a> has become my go-to plotting package once I reach the production phase and know I will be using HTML. This is mainly for 3 reasons:</p>
+<ol style="list-style-type: decimal">
+<li>Beautiful interactive charts</li>
+<li>Extremely customizable</li>
+<li>Great documentation (via Highcharts API). Requires understanding how a <code>highcharter</code> object is built and translating between the Highcharts the API.</li>
+</ol>
+<p><code>ggplot2</code> is wonderfully customizable and the <code>plotly</code> wrapper can make interactive charts. I’m sure that <code>plotly</code> objects are customizable, as are other <code>htmlwidget</code> graphing packages, but I think Highcharts graphs are the most impressive. Hence, <code>highcharter</code> is where I have decided to dig deep.</p>
+<p>As Mine noted, all products in this library are free for non-commercial use. If you plan to use <code>highcharter</code> in <code>R</code> for commericial use, please purchase Highcharts: <a href="https://shop.highsoft.com/" class="uri">https://shop.highsoft.com/</a></p>
+<p>Also, a special thanks to <a href="http://jkunst.com">Joshua Kunst</a> for developing this package. I’ve learned a lot about <code>R</code> and <code>javascript</code> thanks to you. Y, gracias a ti mi amigo, siempre estaré empleado.</p>
+
+<div id="TOC">
+<ul>
+<li><a href="#goal-of-this-post">Goal of this Post</a></li>
+<li><a href="#what-i-will-not-cover">What I will not cover</a></li>
+<li><a href="#prerequisites">Prerequisites</a></li>
+<li><a href="#series-highcharter-and-highcharts-building-blocks">Series: <code>highcharter</code> and Highcharts building blocks</a><ul>
+<li><a href="#series-in-highcharter-are-a-list-of-lists-with-a-specific-structure">Series in <code>highcharter</code> are a list of lists with a specific structure</a><ul>
+<li><a href="#hc_add_series_list-vs-hc_add_series"><code>hc_add_series_list()</code> vs <code>hc_add_series()</code></a></li>
+</ul></li>
+<li><a href="#highcharts-api-and-highcharter-functions">Highcharts API and <code>highcharter</code> functions</a><ul>
+<li><a href="#just-throw-an-hc_-infront-of-it">Just throw an <code>hc_</code> infront of it</a></li>
+</ul></li>
+<li><a href="#use-hchart-with-tidy-data">Use <code>hchart()</code> with Tidy Data</a></li>
+</ul></li>
+<li><a href="#your-best-friend-the-hcxhc_optsseries-list">Your Best Friend, the <code>hc$x$hc_opts$series</code> List</a><ul>
+<li><a href="#one-dimensional-array-easy-multi-dimensional-arrays-damn.">One-dimensional array? Easy! Multi-dimensional arrays? Damn.</a></li>
+</ul></li>
+<li><a href="#outline-for-future-posts">Outline for Future Posts</a></li>
+</ul>
+</div>
+
+<div id="goal-of-this-post" class="section level2">
+<h2>Goal of this Post</h2>
+<p>My goal is to show you how I think about, learn about, and then build more complicated <code>highcharter</code> objects in <code>R</code>. I want you to be able to see a graph on the <a href="http://www.highcharts.com/demo">Highcharts demo</a> page and think to yourself, “yeah, I can build that”. This will means some bouncing between the Highcharts demo and API websites. I do this a lot myself and I hope, by the end of this document, you’ll find it a useful habit.</p>
+<p>But I also want to say that my approach to building plots in <code>highcharter</code> can feel a bit complicated. Generally, I like to build plots from the ground up. However, if I have tidy data and I know the structure is well suited for plotting in <code>highcharter</code>, I will opt to use the <code>hchart()</code>. Otherwise, for almost anything more complicated, I will build the data structure (known as a “series”) from scratch and use the <code>highchart()</code> and <code>hc_add_series_list()</code> functions. This process is the result after having built many, many plots, hacking away at the great many functions in <code>highcharter</code>. While it may seem complicated, I assure you that it is the easiest and cleanest way to make complicated plots.</p>
+</div>
+<div id="what-i-will-not-cover" class="section level2">
+<h2>What I will not cover</h2>
+<ul>
+<li>Straightforward, simple plotting using <code>highcharter</code>. Mine’s <a href="https://www.rstudio.com/rviews/2016/10/19/creating-interactive-plots-with-r-and-highcharts/">post</a> and <a href="http://jkunst.com/highcharter/index.html">Joshua Kunst’s online documentation</a> are better resources for that. I will use simple examples, but as a stepping stone to more complicated plots and to learn how to “translate” Highcharts to <code>highcharter</code>.</li>
+<li>How to make <a href="http://www.highcharts.com/stock/demo">Highstocks</a> or <a href="http://www.highcharts.com/products/highmaps">Highmaps</a> using <code>highcharter</code>. That said, the way I go about building Highcharts plot will likely translate over to Highstocks and Highmaps, so this post may prove useful if you’re interested in making timeseries or map plots.</li>
+</ul>
+</div>
+<div id="prerequisites" class="section level2">
+<h2>Prerequisites</h2>
+<p>This post assumes that you have a good handle of the <code>tidyverse</code> as well as basic object and list construction. In short, this is not a beginner’s tutorial but also not an advanced <code>R</code> tutorial.</p>
+</div>
+<div id="series-highcharter-and-highcharts-building-blocks" class="section level1">
+<h1>Series: <code>highcharter</code> and Highcharts building blocks</h1>
+<p><a href="http://www.highcharts.com/docs/chart-concepts/series">Series</a> are the building blocks of a Highcharts plot. Series contain the sets of data you want to plot. As a data scientist who wants to use <code>highcharter</code> to make spiffy plots, the key to building any plot in <code>highcharter</code> is understanding how to build a series in <code>R</code> and how it relates to the structure of a series in Highcharts.</p>
+<p>I learn best by example. I will do the same in this document.</p>
+<div id="series-in-highcharter-are-a-list-of-lists-with-a-specific-structure" class="section level2">
+<h2>Series in <code>highcharter</code> are a list of lists with a specific structure</h2>
+<p>Think of any series you would like to plot in <code>highcharter</code> as a list of lists. The Highcharts equivalent is, at the very least, an array of with a single data object or, a its most complicated, an array of many objects and arrays.</p>
+<p>Here is <a href="http://jsfiddle.net/mca629uj/">a simple Highcharts plot</a>:</p>
+<pre class="javascript"><code>$(function () {
+    Highcharts.chart(&#39;container&#39;, {
+        series: [{
+            data: [29.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 95.6, 54.4]
+        }]
+    });
+});</code></pre>
+<p>Ignore everything but <code>series</code>. A series array (<code>series: [ ]</code>) with a single series object (<code>{data: [ ] }</code>) is the simplest Highcharts plot possible. Translated to <code>R</code>, a series would be a list with a single sublist with named elements. Note that “named elements” means I explicitly assign the elements of a list to a value i.e. unnamed elements <code>list(c(1,2,3))</code> vs named <code>list(x = c(1,2,3))</code>. The named element in this case is <code>data</code> resulting in list structure <code>list(data = c( ))</code>.</p>
+<pre class="r"><code>series = list(
+  list(
+    data = c(29.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 95.6, 54.4)
+  )
+)</code></pre>
+<p>This series can be plotted using <code>highchart()</code> and <code>hc_add_series_list()</code></p>
+<pre class="r"><code>library(highcharter)
+library(tidyverse)
+
+highchart() %&gt;%
+  hc_chart(backgroundColor = &quot;white&quot;) %&gt;%
+  hc_add_series_list(series)</code></pre>
+<div id="htmlwidget-1" style="width:100%;height:500px;" class="highchart html-widget"></div>
+<script type="application/json" data-for="htmlwidget-1">{"x":{"hc_opts":{"title":{"text":null},"yAxis":{"title":{"text":null}},"credits":{"enabled":false},"exporting":{"enabled":false},"plotOptions":{"series":{"label":{"enabled":false},"turboThreshold":0},"treemap":{"layoutAlgorithm":"squarified"}},"chart":{"backgroundColor":"white"},"series":[{"data":[29.9,71.5,106.4,129.2,144,176,135.6,148.5,216.4,194.1,95.6,54.4]}]},"theme":{"chart":{"backgroundColor":"transparent"}},"conf_opts":{"global":{"Date":null,"VMLRadialGradientURL":"http =//code.highcharts.com/list(version)/gfx/vml-radial-gradient.png","canvasToolsURL":"http =//code.highcharts.com/list(version)/modules/canvas-tools.js","getTimezoneOffset":null,"timezoneOffset":0,"useUTC":true},"lang":{"contextButtonTitle":"Chart context menu","decimalPoint":".","downloadJPEG":"Download JPEG image","downloadPDF":"Download PDF document","downloadPNG":"Download PNG image","downloadSVG":"Download SVG vector image","drillUpText":"Back to {series.name}","invalidDate":null,"loading":"Loading...","months":["January","February","March","April","May","June","July","August","September","October","November","December"],"noData":"No data to display","numericSymbols":["k","M","G","T","P","E"],"printChart":"Print chart","resetZoom":"Reset zoom","resetZoomTitle":"Reset zoom level 1:1","shortMonths":["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],"thousandsSep":" ","weekdays":["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]}},"type":"chart","fonts":[],"debug":false},"evals":[],"jsHooks":[]}</script>
+<p>By default, <code>highchart()</code> assumes you are construction a Highcharts line chart. It also provides default series names (i.e. <code>Series 1</code>, <code>Series 2</code> etc) and colors if these values are left unspecified.</p>
+<p>Let’s change the series name and color to <code>'Hola linea'</code> and <code>'red'</code>. In Highcharts, the series array object would look <a href="http://jsfiddle.net/mca629uj/1/">like this</a>:</p>
+<pre class="javascript"><code>$(function () {
+    Highcharts.chart(&#39;container&#39;, {
+        series: [{
+            name: &#39;Hola linea&#39;,
+            color: &#39;red&#39;,
+            data: [29.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 95.6, 54.4]
+        }]
+    });
+});</code></pre>
+<p>Translated to <code>R</code>, the series would be</p>
+<pre class="r"><code>series = list(
+  list(
+    name = &#39;Hola linea&#39;,
+    color = &#39;red&#39;,
+    data = c(29.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 95.6, 54.4)
+  )
+)
+highchart() %&gt;%
+  hc_chart(backgroundColor = &quot;white&quot;) %&gt;%
+  hc_add_series_list(series)</code></pre>
+<div id="htmlwidget-2" style="width:100%;height:500px;" class="highchart html-widget"></div>
+<script type="application/json" data-for="htmlwidget-2">{"x":{"hc_opts":{"title":{"text":null},"yAxis":{"title":{"text":null}},"credits":{"enabled":false},"exporting":{"enabled":false},"plotOptions":{"series":{"label":{"enabled":false},"turboThreshold":0},"treemap":{"layoutAlgorithm":"squarified"}},"chart":{"backgroundColor":"white"},"series":[{"name":"Hola linea","color":"red","data":[29.9,71.5,106.4,129.2,144,176,135.6,148.5,216.4,194.1,95.6,54.4]}]},"theme":{"chart":{"backgroundColor":"transparent"}},"conf_opts":{"global":{"Date":null,"VMLRadialGradientURL":"http =//code.highcharts.com/list(version)/gfx/vml-radial-gradient.png","canvasToolsURL":"http =//code.highcharts.com/list(version)/modules/canvas-tools.js","getTimezoneOffset":null,"timezoneOffset":0,"useUTC":true},"lang":{"contextButtonTitle":"Chart context menu","decimalPoint":".","downloadJPEG":"Download JPEG image","downloadPDF":"Download PDF document","downloadPNG":"Download PNG image","downloadSVG":"Download SVG vector image","drillUpText":"Back to {series.name}","invalidDate":null,"loading":"Loading...","months":["January","February","March","April","May","June","July","August","September","October","November","December"],"noData":"No data to display","numericSymbols":["k","M","G","T","P","E"],"printChart":"Print chart","resetZoom":"Reset zoom","resetZoomTitle":"Reset zoom level 1:1","shortMonths":["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],"thousandsSep":" ","weekdays":["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]}},"type":"chart","fonts":[],"debug":false},"evals":[],"jsHooks":[]}</script>
+<p>Let’s add a second series. The series array object now <a href="http://jsfiddle.net/mca629uj/2/">contains two series</a>. Each series is an object (contain in <code>{ }</code>, separated by <code>,</code>) with named elements (aka “members”).</p>
+<pre class="javascript"><code>$(function () {
+    Highcharts.chart(&#39;container&#39;, {
+        series: [{
+            name: &#39;Hola linea&#39;,
+            color: &#39;red&#39;,
+            data: [29.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 95.6, 54.4]
+        },
+        { // there&#39;s a comma between objects in { }
+            name: &#39;Reverse!&#39;,
+            color: &#39;green&#39;,
+            data: [54.4, 95.6, 194.1, 216.4, 148.5, 135.6, 176, 144, 129.2, 106.4, 71.5, 29.9]
+        }]
+    });
+});</code></pre>
+<p>And in R</p>
+<pre class="r"><code>series = list(
+  list(
+    name = &#39;Hola linea&#39;,
+    color = &#39;red&#39;,
+    data = c(29.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 95.6, 54.4)
+  ),
+  list(
+    name = &#39;Reverse!&#39;,
+    color = &#39;green&#39;,
+    data = c(54.4, 95.6, 194.1, 216.4, 148.5, 135.6, 176, 144, 129.2, 106.4, 71.5, 29.9)
+  )
+)
+
+highchart() %&gt;%
+  hc_chart(backgroundColor = &quot;white&quot;) %&gt;%
+  hc_add_series_list(series)</code></pre>
+<div id="htmlwidget-3" style="width:100%;height:500px;" class="highchart html-widget"></div>
+<script type="application/json" data-for="htmlwidget-3">{"x":{"hc_opts":{"title":{"text":null},"yAxis":{"title":{"text":null}},"credits":{"enabled":false},"exporting":{"enabled":false},"plotOptions":{"series":{"label":{"enabled":false},"turboThreshold":0},"treemap":{"layoutAlgorithm":"squarified"}},"chart":{"backgroundColor":"white"},"series":[{"name":"Hola linea","color":"red","data":[29.9,71.5,106.4,129.2,144,176,135.6,148.5,216.4,194.1,95.6,54.4]},{"name":"Reverse!","color":"green","data":[54.4,95.6,194.1,216.4,148.5,135.6,176,144,129.2,106.4,71.5,29.9]}]},"theme":{"chart":{"backgroundColor":"transparent"}},"conf_opts":{"global":{"Date":null,"VMLRadialGradientURL":"http =//code.highcharts.com/list(version)/gfx/vml-radial-gradient.png","canvasToolsURL":"http =//code.highcharts.com/list(version)/modules/canvas-tools.js","getTimezoneOffset":null,"timezoneOffset":0,"useUTC":true},"lang":{"contextButtonTitle":"Chart context menu","decimalPoint":".","downloadJPEG":"Download JPEG image","downloadPDF":"Download PDF document","downloadPNG":"Download PNG image","downloadSVG":"Download SVG vector image","drillUpText":"Back to {series.name}","invalidDate":null,"loading":"Loading...","months":["January","February","March","April","May","June","July","August","September","October","November","December"],"noData":"No data to display","numericSymbols":["k","M","G","T","P","E"],"printChart":"Print chart","resetZoom":"Reset zoom","resetZoomTitle":"Reset zoom level 1:1","shortMonths":["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],"thousandsSep":" ","weekdays":["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]}},"type":"chart","fonts":[],"debug":false},"evals":[],"jsHooks":[]}</script>
+<blockquote>
+<p><strong>Important:</strong> Naming matters. The <a href="http://api.highcharts.com/highcharts/series%3Cline%3E">Highcharts API for line series</a> explicitly looks for object elements like <code>name</code>, <code>color</code>, <code>data</code> etc. Likewise, this means that the element names when building lists in <code>R</code> also matter. Try changing <code>data</code> to <code>datas</code> (or anything else) and see that nothing will be plotted. Likewise, try changing <code>name</code> to something else like <code>nombres</code>, and the series will fall back to the default <code>Series #</code>.</p>
+</blockquote>
+<div id="hc_add_series_list-vs-hc_add_series" class="section level3">
+<h3><code>hc_add_series_list()</code> vs <code>hc_add_series()</code></h3>
+<p>I prefer to always use <code>hc_add_series_list()</code>, even when only add a single series. Adding a single series can be done using <code>hc_add_series()</code>. For example, I could replicated the last plot by layering one series at a time.</p>
+<pre class="r"><code>highchart() %&gt;%
+  hc_chart(backgroundColor = &quot;white&quot;) %&gt;%
+  hc_add_series(
+    name = &#39;Hola linea&#39;,
+    color = &#39;red&#39;,
+    data = c(29.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 95.6, 54.4)
+  ) %&gt;%
+  hc_add_series(
+    name = &#39;Reverse!&#39;,
+    color = &#39;green&#39;,
+    data = c(54.4, 95.6, 194.1, 216.4, 148.5, 135.6, 176, 144, 129.2, 106.4, 71.5, 29.9)
+  )</code></pre>
+<div id="htmlwidget-4" style="width:100%;height:500px;" class="highchart html-widget"></div>
+<script type="application/json" data-for="htmlwidget-4">{"x":{"hc_opts":{"title":{"text":null},"yAxis":{"title":{"text":null}},"credits":{"enabled":false},"exporting":{"enabled":false},"plotOptions":{"series":{"label":{"enabled":false},"turboThreshold":0},"treemap":{"layoutAlgorithm":"squarified"}},"chart":{"backgroundColor":"white"},"series":[{"data":[29.9,71.5,106.4,129.2,144,176,135.6,148.5,216.4,194.1,95.6,54.4],"name":"Hola linea","color":"red"},{"data":[54.4,95.6,194.1,216.4,148.5,135.6,176,144,129.2,106.4,71.5,29.9],"name":"Reverse!","color":"green"}]},"theme":{"chart":{"backgroundColor":"transparent"}},"conf_opts":{"global":{"Date":null,"VMLRadialGradientURL":"http =//code.highcharts.com/list(version)/gfx/vml-radial-gradient.png","canvasToolsURL":"http =//code.highcharts.com/list(version)/modules/canvas-tools.js","getTimezoneOffset":null,"timezoneOffset":0,"useUTC":true},"lang":{"contextButtonTitle":"Chart context menu","decimalPoint":".","downloadJPEG":"Download JPEG image","downloadPDF":"Download PDF document","downloadPNG":"Download PNG image","downloadSVG":"Download SVG vector image","drillUpText":"Back to {series.name}","invalidDate":null,"loading":"Loading...","months":["January","February","March","April","May","June","July","August","September","October","November","December"],"noData":"No data to display","numericSymbols":["k","M","G","T","P","E"],"printChart":"Print chart","resetZoom":"Reset zoom","resetZoomTitle":"Reset zoom level 1:1","shortMonths":["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],"thousandsSep":" ","weekdays":["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]}},"type":"chart","fonts":[],"debug":false},"evals":[],"jsHooks":[]}</script>
+<p>Notice that the construction of <code>hc_add_series()</code> is basically equivalent to how I built each list object in <code>series</code> that was then passed to <code>hc_add_series_list()</code>. I prefer, however, building list objects and saving them to a value (like <code>series</code>). This makes it easier to reuse the object and also makes for <em>much</em> shorter pipe chains when plotting.</p>
+</div>
+</div>
+<div id="highcharts-api-and-highcharter-functions" class="section level2">
+<h2>Highcharts API and <code>highcharter</code> functions</h2>
+<div id="just-throw-an-hc_-infront-of-it" class="section level3">
+<h3>Just throw an <code>hc_</code> infront of it</h3>
+<p>Now that we’ve build a basic plot and have some understanding of what a series is, let’s play with some plot options!</p>
+<p>The beauty of the <code>highcharter</code> package is that pratically every Highcharts API call can be quickly translated to <code>highcharter</code> <em>without needing to look at <code>highcharter</code> documentation</em>. Specifically, any Highcharts API options can be access by add <code>hc_</code> infront of the function e.g. <code>hc_xAxis()</code> calls the <code>xAxis</code> API option, <code>hc_tooltip()</code> calls the <code>tooltip</code> API option, etc.</p>
+<p>Here is what I mean. When you go to the <a href="http://api.highcharts.com/highcharts/">Highcharts API Options Reference</a>, there is a menu of list of “main” option calls to the left. It looks like this:</p>
+<p><img src="/ultinomics.org/img/highcharts-api.png" />
+ </p>
+<p>The <code>highcharter</code> equivalent to each “main” option can be accessed as a function by throwing an <code>hc_</code> infront (<code>chart</code> becomes <code>hc_chart()</code>, <code>plotOptions</code> becomes <code>hc_plotOptions()</code> etc).</p>
+<p>From there, accessing any “main” option value means using the <em>exact</em> same name as listed in the API. Any level deeper just means contructing a <code>list()</code> but the API reference names will always be the same.</p>
+<p>Let’s work through an example by editing the x-axis looking only at the <a href="http://api.highcharts.com/highcharts/xAxis">Highcharts API x-axis options</a>.</p>
+<p><img src="/ultinomics.org/img/xaxis-clean.png" />
+ </p>
+<p>If I want to change the min, max, the line width, and some labeling quirks of the x-axis, then I just look at the API options for <code>xAxis</code> and locate the corresponding values.</p>
+<p>In this case, three of these suboptions (<code>min</code>, <code>max</code>, <code>lineWidth</code>) are “unnested” level options, one is a “nested” level option (<code>labels</code>). What I call an “unnested” level suboption make up the majority of suboptions—any <em>without</em> <code>{ ... }</code>, easily found by the little gray expansion triangle. “Unnested” suboptions can be accessed by using the unnested level API names asis plus a proper value. “Nested” level suboptions—those that are followed by <code>{...}</code> or just any <code>{</code>—require <code>list(...)</code> calls.</p>
+<p><img src="/ultinomics.org/img/xaxis.png" />
+ </p>
+<p>In the image above, examples of “unnested” level suboptions (i.e. suboptions with no <code>{...}</code>; access without a list) are in purple. One need only use the API name and provide a proper value. Examples of “nested” level suboptions (i.e. suboptions with <code>{ ... }</code>; require biulding a <code>list(...)</code> object) are in red.</p>
+<p>Knowing the “main” API option I want to use is <code>xAxis</code>, I can build the <code>highcharter</code> equivalent by throwing an <code>hc_</code> infront. I can then directly call any of the “unnested” level suboptions <code>min</code>, <code>max</code>, and <code>lineWidth</code> since they are not nested <code>{ ... }</code> objects. Using only the “unnested” level calls, the result would be <code>hc_xAxis(min = 1, max = 7, lineWith = 5)</code>.</p>
+<blockquote>
+<p><strong>Note</strong>: As I said before, elements names must <em>exactly</em> match the API names, meaning suboptions are <em>case-sensitive</em> (i.e. <code>linewidth</code> <span class="math inline">\(\ne\)</span> <code>lineWidth</code>).</p>
+</blockquote>
+<p>But what about nested level calls which require lists? The nested level call I cared about was <code>labels</code>. Expanding the API main option, the <code>labels</code> suboptions nests numerous more suboptions. One of them, <code>style</code>, is <em>another</em> nested suboption—the value starts with <code>{ ...</code>. Again—and hopefully you’re starting to see the pattern!—<code>style</code> suboption values can be accessed by building a named <code>list()</code>.</p>
+<p><img src="/ultinomics.org/img/xaxis-labels.png" /></p>
+<p>I choose two of the <code>labels</code> suboptions to change: <code>align</code> and <code>style</code>. <code>align</code> isn’t nested so I can just assign the proper value. The default is <code>"center"</code>. I change it to <code>"left"</code>: <code>align = "left"</code>.</p>
+<p>But <code>style</code> is <em>another nested</em> suboption (valuestarts with <code>{</code>). But again, not to worry, this just means <em>another</em> <code>list()</code>. I’ll change the font size, weight, and color style values: <code>style = list(fontSize = "16px", fontWeight = "bold", color = "blue")</code>. The nested fully constructed <code>labels</code> suboption is:</p>
+<pre class="r"><code>labels = list(align = &quot;left&quot;,
+              style = list(
+                        fontSize = &quot;16px&quot;,
+                        fontWeight = &quot;bold&quot;,
+                        color = &quot;blue&quot;
+                      ))</code></pre>
+<p>I can then add this <code>labels</code> as aother <code>hc_xAxis()</code> suboption:</p>
+<pre class="r"><code>hc_xAxis(min = 1,
+         max = 7,
+         lineWith = 5,
+         labels = list(align = &quot;left&quot;,
+                       style = list(
+                          fontSize = &quot;16px&quot;,
+                          fontWeight = &quot;bold&quot;,
+                          color = &quot;blue&quot;
+                      )))</code></pre>
+<p>Throwing this all together, I can adjust the x-axis of the plot above by adding my fully constructed <code>hc_xAxis</code> function to the pipe chain.</p>
+<pre class="r"><code>highchart() %&gt;%
+  hc_chart(backgroundColor = &quot;white&quot;) %&gt;%
+  hc_add_series_list(series) %&gt;%
+  hc_xAxis(min = 1,
+         max = 7,
+         lineWith = 5,
+         labels = list(align = &quot;left&quot;,
+                       style = list(
+                          fontSize = &quot;16px&quot;,
+                          fontWeight = &quot;bold&quot;,
+                          color = &quot;blue&quot;
+                      )))</code></pre>
+<div id="htmlwidget-5" style="width:100%;height:500px;" class="highchart html-widget"></div>
+<script type="application/json" data-for="htmlwidget-5">{"x":{"hc_opts":{"title":{"text":null},"yAxis":{"title":{"text":null}},"credits":{"enabled":false},"exporting":{"enabled":false},"plotOptions":{"series":{"label":{"enabled":false},"turboThreshold":0},"treemap":{"layoutAlgorithm":"squarified"}},"chart":{"backgroundColor":"white"},"series":[{"name":"Hola linea","color":"red","data":[29.9,71.5,106.4,129.2,144,176,135.6,148.5,216.4,194.1,95.6,54.4]},{"name":"Reverse!","color":"green","data":[54.4,95.6,194.1,216.4,148.5,135.6,176,144,129.2,106.4,71.5,29.9]}],"xAxis":{"min":1,"max":7,"lineWith":5,"labels":{"align":"left","style":{"fontSize":"16px","fontWeight":"bold","color":"blue"}}}},"theme":{"chart":{"backgroundColor":"transparent"}},"conf_opts":{"global":{"Date":null,"VMLRadialGradientURL":"http =//code.highcharts.com/list(version)/gfx/vml-radial-gradient.png","canvasToolsURL":"http =//code.highcharts.com/list(version)/modules/canvas-tools.js","getTimezoneOffset":null,"timezoneOffset":0,"useUTC":true},"lang":{"contextButtonTitle":"Chart context menu","decimalPoint":".","downloadJPEG":"Download JPEG image","downloadPDF":"Download PDF document","downloadPNG":"Download PNG image","downloadSVG":"Download SVG vector image","drillUpText":"Back to {series.name}","invalidDate":null,"loading":"Loading...","months":["January","February","March","April","May","June","July","August","September","October","November","December"],"noData":"No data to display","numericSymbols":["k","M","G","T","P","E"],"printChart":"Print chart","resetZoom":"Reset zoom","resetZoomTitle":"Reset zoom level 1:1","shortMonths":["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],"thousandsSep":" ","weekdays":["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]}},"type":"chart","fonts":[],"debug":false},"evals":[],"jsHooks":[]}</script>
+<p>The corresponding code in <code>Highcharts</code> can be see <a href="http://jsfiddle.net/mca629uj/3/">here</a>.</p>
+</div>
+</div>
+<div id="use-hchart-with-tidy-data" class="section level2">
+<h2>Use <code>hchart()</code> with Tidy Data</h2>
+<p>One of the most convinient function for plotting is the <code>hchart()</code> function. But I would only recommend the use of this function if one has a Tidy Dataframe structured in a “long” format with a time-key-value or key-value structure, similar to a dataframe that would be used in <code>ggplot</code>. I’ll show you what I mean.</p>
+<p>Here is some code from an example in <code>highcharter</code> that builds a graph by extracting variables from <code>citytemp</code> and adding them as a series.</p>
+<pre class="r"><code>data(citytemp)
+hc1 &lt;- highchart() %&gt;%
+  hc_chart(backgroundColor = &quot;white&quot;) %&gt;%
+  hc_xAxis(categories = citytemp$month) %&gt;%
+  hc_add_series(name = &quot;Tokyo&quot;, data = citytemp$tokyo) %&gt;%
+  hc_add_series(name = &quot;London&quot;, data = citytemp$london)
+hc1</code></pre>
+<div id="htmlwidget-6" style="width:100%;height:500px;" class="highchart html-widget"></div>
+<script type="application/json" data-for="htmlwidget-6">{"x":{"hc_opts":{"title":{"text":null},"yAxis":{"title":{"text":null}},"credits":{"enabled":false},"exporting":{"enabled":false},"plotOptions":{"series":{"label":{"enabled":false},"turboThreshold":0},"treemap":{"layoutAlgorithm":"squarified"}},"chart":{"backgroundColor":"white"},"xAxis":{"categories":["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"]},"series":[{"data":[7,6.9,9.5,14.5,18.2,21.5,25.2,26.5,23.3,18.3,13.9,9.6],"name":"Tokyo"},{"data":[3.9,4.2,5.7,8.5,11.9,15.2,17,16.6,14.2,10.3,6.6,4.8],"name":"London"}]},"theme":{"chart":{"backgroundColor":"transparent"}},"conf_opts":{"global":{"Date":null,"VMLRadialGradientURL":"http =//code.highcharts.com/list(version)/gfx/vml-radial-gradient.png","canvasToolsURL":"http =//code.highcharts.com/list(version)/modules/canvas-tools.js","getTimezoneOffset":null,"timezoneOffset":0,"useUTC":true},"lang":{"contextButtonTitle":"Chart context menu","decimalPoint":".","downloadJPEG":"Download JPEG image","downloadPDF":"Download PDF document","downloadPNG":"Download PNG image","downloadSVG":"Download SVG vector image","drillUpText":"Back to {series.name}","invalidDate":null,"loading":"Loading...","months":["January","February","March","April","May","June","July","August","September","October","November","December"],"noData":"No data to display","numericSymbols":["k","M","G","T","P","E"],"printChart":"Print chart","resetZoom":"Reset zoom","resetZoomTitle":"Reset zoom level 1:1","shortMonths":["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],"thousandsSep":" ","weekdays":["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]}},"type":"chart","fonts":[],"debug":false},"evals":[],"jsHooks":[]}</script>
+<p><code>citytemp</code> is in a “wide” format. But this data isn’t tidy. In these data, there are three variables: <code>month</code>, <code>city</code>, <code>temperature</code>. In this case, <code>month</code> is time, <code>city</code> is a key, and <code>temperature</code> is a value. I want to reshape the data such that each row of data is a single observation for the temprature of one city at one point in time. Reshaping the data to a “long” format with a tidy time-key-value structure will allow us to plot virtually the same plot but in one line using <code>hchart()</code>.</p>
+<pre class="r"><code>citytemp2 &lt;- citytemp %&gt;%
+  tidyr::gather(key = city, value = temperature, tokyo, london)</code></pre>
+<p>I can now use the <code>hchart()</code> function to plot these data. How the data splits into separate series is via the <code>group</code> variable in the <code>hchart()</code> function. Notice that the mapping of variables uses the function <code>highcharter::hcaes()</code>, which was inspired by the <code>ggplot2</code> function <code>ggplot2::aes()</code> and has the same syntax.</p>
+<pre class="r"><code>hchart(citytemp2, type = &#39;line&#39;, hcaes(y = temperature, group = city, x = month)) %&gt;%
+ hc_chart(backgroundColor = &quot;white&quot;)</code></pre>
+<div id="htmlwidget-7" style="width:100%;height:500px;" class="highchart html-widget"></div>
+<script type="application/json" data-for="htmlwidget-7">{"x":{"hc_opts":{"title":{"text":null},"yAxis":{"title":{"text":"temperature"},"type":"linear"},"credits":{"enabled":false},"exporting":{"enabled":false},"plotOptions":{"series":{"label":{"enabled":false},"turboThreshold":0,"showInLegend":true},"treemap":{"layoutAlgorithm":"squarified"},"scatter":{"marker":{"symbol":"circle"}}},"series":[{"name":"london","data":[{"month":"Jan","new_york":-0.2,"berlin":-0.9,"city":"london","temperature":3.9,"y":3.9,"name":"Jan"},{"month":"Feb","new_york":0.8,"berlin":0.6,"city":"london","temperature":4.2,"y":4.2,"name":"Feb"},{"month":"Mar","new_york":5.7,"berlin":3.5,"city":"london","temperature":5.7,"y":5.7,"name":"Mar"},{"month":"Apr","new_york":11.3,"berlin":8.4,"city":"london","temperature":8.5,"y":8.5,"name":"Apr"},{"month":"May","new_york":17,"berlin":13.5,"city":"london","temperature":11.9,"y":11.9,"name":"May"},{"month":"Jun","new_york":22,"berlin":17,"city":"london","temperature":15.2,"y":15.2,"name":"Jun"},{"month":"Jul","new_york":24.8,"berlin":18.6,"city":"london","temperature":17,"y":17,"name":"Jul"},{"month":"Aug","new_york":24.1,"berlin":17.9,"city":"london","temperature":16.6,"y":16.6,"name":"Aug"},{"month":"Sep","new_york":20.1,"berlin":14.3,"city":"london","temperature":14.2,"y":14.2,"name":"Sep"},{"month":"Oct","new_york":14.1,"berlin":9,"city":"london","temperature":10.3,"y":10.3,"name":"Oct"},{"month":"Nov","new_york":8.6,"berlin":3.9,"city":"london","temperature":6.6,"y":6.6,"name":"Nov"},{"month":"Dec","new_york":2.5,"berlin":1,"city":"london","temperature":4.8,"y":4.8,"name":"Dec"}],"type":"line"},{"name":"tokyo","data":[{"month":"Jan","new_york":-0.2,"berlin":-0.9,"city":"tokyo","temperature":7,"y":7,"name":"Jan"},{"month":"Feb","new_york":0.8,"berlin":0.6,"city":"tokyo","temperature":6.9,"y":6.9,"name":"Feb"},{"month":"Mar","new_york":5.7,"berlin":3.5,"city":"tokyo","temperature":9.5,"y":9.5,"name":"Mar"},{"month":"Apr","new_york":11.3,"berlin":8.4,"city":"tokyo","temperature":14.5,"y":14.5,"name":"Apr"},{"month":"May","new_york":17,"berlin":13.5,"city":"tokyo","temperature":18.2,"y":18.2,"name":"May"},{"month":"Jun","new_york":22,"berlin":17,"city":"tokyo","temperature":21.5,"y":21.5,"name":"Jun"},{"month":"Jul","new_york":24.8,"berlin":18.6,"city":"tokyo","temperature":25.2,"y":25.2,"name":"Jul"},{"month":"Aug","new_york":24.1,"berlin":17.9,"city":"tokyo","temperature":26.5,"y":26.5,"name":"Aug"},{"month":"Sep","new_york":20.1,"berlin":14.3,"city":"tokyo","temperature":23.3,"y":23.3,"name":"Sep"},{"month":"Oct","new_york":14.1,"berlin":9,"city":"tokyo","temperature":18.3,"y":18.3,"name":"Oct"},{"month":"Nov","new_york":8.6,"berlin":3.9,"city":"tokyo","temperature":13.9,"y":13.9,"name":"Nov"},{"month":"Dec","new_york":2.5,"berlin":1,"city":"tokyo","temperature":9.6,"y":9.6,"name":"Dec"}],"type":"line"}],"xAxis":{"type":"category","title":{"text":"month"},"categories":null},"chart":{"backgroundColor":"white"}},"theme":{"chart":{"backgroundColor":"transparent"}},"conf_opts":{"global":{"Date":null,"VMLRadialGradientURL":"http =//code.highcharts.com/list(version)/gfx/vml-radial-gradient.png","canvasToolsURL":"http =//code.highcharts.com/list(version)/modules/canvas-tools.js","getTimezoneOffset":null,"timezoneOffset":0,"useUTC":true},"lang":{"contextButtonTitle":"Chart context menu","decimalPoint":".","downloadJPEG":"Download JPEG image","downloadPDF":"Download PDF document","downloadPNG":"Download PNG image","downloadSVG":"Download SVG vector image","drillUpText":"Back to {series.name}","invalidDate":null,"loading":"Loading...","months":["January","February","March","April","May","June","July","August","September","October","November","December"],"noData":"No data to display","numericSymbols":["k","M","G","T","P","E"],"printChart":"Print chart","resetZoom":"Reset zoom","resetZoomTitle":"Reset zoom level 1:1","shortMonths":["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],"thousandsSep":" ","weekdays":["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]}},"type":"chart","fonts":[],"debug":false},"evals":[],"jsHooks":[]}</script>
+<p>If I just wanted to print data for tokyo and london, I can just filter the data prior to using <code>hchart()</code>.</p>
+<pre class="r"><code>citytemp2 &lt;- citytemp2 %&gt;%
+  dplyr::filter(city %in% c(&#39;tokyo&#39;, &#39;london&#39;)) # filter to just tokyo and london
+
+hc2 &lt;- hchart(citytemp2, type = &#39;line&#39;, hcaes(y = temperature, group = city, x = month))
+hc2 %&gt;%
+ hc_chart(backgroundColor = &quot;white&quot;)</code></pre>
+<div id="htmlwidget-8" style="width:100%;height:500px;" class="highchart html-widget"></div>
+<script type="application/json" data-for="htmlwidget-8">{"x":{"hc_opts":{"title":{"text":null},"yAxis":{"title":{"text":"temperature"},"type":"linear"},"credits":{"enabled":false},"exporting":{"enabled":false},"plotOptions":{"series":{"label":{"enabled":false},"turboThreshold":0,"showInLegend":true},"treemap":{"layoutAlgorithm":"squarified"},"scatter":{"marker":{"symbol":"circle"}}},"series":[{"name":"london","data":[{"month":"Jan","new_york":-0.2,"berlin":-0.9,"city":"london","temperature":3.9,"y":3.9,"name":"Jan"},{"month":"Feb","new_york":0.8,"berlin":0.6,"city":"london","temperature":4.2,"y":4.2,"name":"Feb"},{"month":"Mar","new_york":5.7,"berlin":3.5,"city":"london","temperature":5.7,"y":5.7,"name":"Mar"},{"month":"Apr","new_york":11.3,"berlin":8.4,"city":"london","temperature":8.5,"y":8.5,"name":"Apr"},{"month":"May","new_york":17,"berlin":13.5,"city":"london","temperature":11.9,"y":11.9,"name":"May"},{"month":"Jun","new_york":22,"berlin":17,"city":"london","temperature":15.2,"y":15.2,"name":"Jun"},{"month":"Jul","new_york":24.8,"berlin":18.6,"city":"london","temperature":17,"y":17,"name":"Jul"},{"month":"Aug","new_york":24.1,"berlin":17.9,"city":"london","temperature":16.6,"y":16.6,"name":"Aug"},{"month":"Sep","new_york":20.1,"berlin":14.3,"city":"london","temperature":14.2,"y":14.2,"name":"Sep"},{"month":"Oct","new_york":14.1,"berlin":9,"city":"london","temperature":10.3,"y":10.3,"name":"Oct"},{"month":"Nov","new_york":8.6,"berlin":3.9,"city":"london","temperature":6.6,"y":6.6,"name":"Nov"},{"month":"Dec","new_york":2.5,"berlin":1,"city":"london","temperature":4.8,"y":4.8,"name":"Dec"}],"type":"line"},{"name":"tokyo","data":[{"month":"Jan","new_york":-0.2,"berlin":-0.9,"city":"tokyo","temperature":7,"y":7,"name":"Jan"},{"month":"Feb","new_york":0.8,"berlin":0.6,"city":"tokyo","temperature":6.9,"y":6.9,"name":"Feb"},{"month":"Mar","new_york":5.7,"berlin":3.5,"city":"tokyo","temperature":9.5,"y":9.5,"name":"Mar"},{"month":"Apr","new_york":11.3,"berlin":8.4,"city":"tokyo","temperature":14.5,"y":14.5,"name":"Apr"},{"month":"May","new_york":17,"berlin":13.5,"city":"tokyo","temperature":18.2,"y":18.2,"name":"May"},{"month":"Jun","new_york":22,"berlin":17,"city":"tokyo","temperature":21.5,"y":21.5,"name":"Jun"},{"month":"Jul","new_york":24.8,"berlin":18.6,"city":"tokyo","temperature":25.2,"y":25.2,"name":"Jul"},{"month":"Aug","new_york":24.1,"berlin":17.9,"city":"tokyo","temperature":26.5,"y":26.5,"name":"Aug"},{"month":"Sep","new_york":20.1,"berlin":14.3,"city":"tokyo","temperature":23.3,"y":23.3,"name":"Sep"},{"month":"Oct","new_york":14.1,"berlin":9,"city":"tokyo","temperature":18.3,"y":18.3,"name":"Oct"},{"month":"Nov","new_york":8.6,"berlin":3.9,"city":"tokyo","temperature":13.9,"y":13.9,"name":"Nov"},{"month":"Dec","new_york":2.5,"berlin":1,"city":"tokyo","temperature":9.6,"y":9.6,"name":"Dec"}],"type":"line"}],"xAxis":{"type":"category","title":{"text":"month"},"categories":null},"chart":{"backgroundColor":"white"}},"theme":{"chart":{"backgroundColor":"transparent"}},"conf_opts":{"global":{"Date":null,"VMLRadialGradientURL":"http =//code.highcharts.com/list(version)/gfx/vml-radial-gradient.png","canvasToolsURL":"http =//code.highcharts.com/list(version)/modules/canvas-tools.js","getTimezoneOffset":null,"timezoneOffset":0,"useUTC":true},"lang":{"contextButtonTitle":"Chart context menu","decimalPoint":".","downloadJPEG":"Download JPEG image","downloadPDF":"Download PDF document","downloadPNG":"Download PNG image","downloadSVG":"Download SVG vector image","drillUpText":"Back to {series.name}","invalidDate":null,"loading":"Loading...","months":["January","February","March","April","May","June","July","August","September","October","November","December"],"noData":"No data to display","numericSymbols":["k","M","G","T","P","E"],"printChart":"Print chart","resetZoom":"Reset zoom","resetZoomTitle":"Reset zoom level 1:1","shortMonths":["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],"thousandsSep":" ","weekdays":["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]}},"type":"chart","fonts":[],"debug":false},"evals":[],"jsHooks":[]}</script>
+<blockquote>
+<p>NOTE: whatever is passed as the <code>x</code> variable must generally be of class <code>Date</code>, <code>character</code> or <code>numeric</code>. Other types aren’t handled nicely, like class <code>yearmon</code> from the <code>zoo</code> package. Often, the best strategy is to order the data, NOT pass a <code>x</code> variable, then label the x-axis later using the <code>hc_xAxis(categories = some_vector_of_strings)</code> option.</p>
+</blockquote>
+</div>
+</div>
+<div id="your-best-friend-the-hcxhc_optsseries-list" class="section level1">
+<h1>Your Best Friend, the <code>hc$x$hc_opts$series</code> List</h1>
+<p>Pretend you assigned your chart to the variable <code>hc</code>. You can extract the underlying series data used in the chart by digging into the lists <code>hc$x$hc_opts$series</code>. Referencing these series list is actually how I learned to finally start connecting the Highcharts API with tooltip options and series construction.</p>
+<p>But this is where things also start to get tricky. <em>How</em> you pass data to <code>highcharter</code> or <em>how</em> you build a series affects the underlying structure of the data used for plotting. I will again show this by example.</p>
+<p>Below, I build two charts with essentially the same output, <code>hc1</code> and <code>hc2</code>. <code>hc1</code> is built series by series, explicitly defining the series <code>name</code> and <code>data</code> (remember, the list names <code>name</code> and <code>data</code> are explicit, matching the API calls). <code>hc2</code> is built series by passing a tidy dataframe to <code>hchart</code>, defining the <code>x</code> and <code>y</code> values but letting the series names be defined by the <code>group</code> variable.</p>
+<pre class="r"><code># build series by series
+hc1 &lt;- highchart() %&gt;%
+  hc_chart(backgroundColor = &quot;white&quot;) %&gt;%
+  hc_xAxis(categories = citytemp$month) %&gt;%
+  hc_add_series(name = &quot;tokyo&quot;, data = citytemp$tokyo) %&gt;%
+  hc_add_series(name = &quot;london&quot;, data = citytemp$london)
+hc1</code></pre>
+<div id="htmlwidget-9" style="width:100%;height:500px;" class="highchart html-widget"></div>
+<script type="application/json" data-for="htmlwidget-9">{"x":{"hc_opts":{"title":{"text":null},"yAxis":{"title":{"text":null}},"credits":{"enabled":false},"exporting":{"enabled":false},"plotOptions":{"series":{"label":{"enabled":false},"turboThreshold":0},"treemap":{"layoutAlgorithm":"squarified"}},"chart":{"backgroundColor":"white"},"xAxis":{"categories":["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"]},"series":[{"data":[7,6.9,9.5,14.5,18.2,21.5,25.2,26.5,23.3,18.3,13.9,9.6],"name":"tokyo"},{"data":[3.9,4.2,5.7,8.5,11.9,15.2,17,16.6,14.2,10.3,6.6,4.8],"name":"london"}]},"theme":{"chart":{"backgroundColor":"transparent"}},"conf_opts":{"global":{"Date":null,"VMLRadialGradientURL":"http =//code.highcharts.com/list(version)/gfx/vml-radial-gradient.png","canvasToolsURL":"http =//code.highcharts.com/list(version)/modules/canvas-tools.js","getTimezoneOffset":null,"timezoneOffset":0,"useUTC":true},"lang":{"contextButtonTitle":"Chart context menu","decimalPoint":".","downloadJPEG":"Download JPEG image","downloadPDF":"Download PDF document","downloadPNG":"Download PNG image","downloadSVG":"Download SVG vector image","drillUpText":"Back to {series.name}","invalidDate":null,"loading":"Loading...","months":["January","February","March","April","May","June","July","August","September","October","November","December"],"noData":"No data to display","numericSymbols":["k","M","G","T","P","E"],"printChart":"Print chart","resetZoom":"Reset zoom","resetZoomTitle":"Reset zoom level 1:1","shortMonths":["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],"thousandsSep":" ","weekdays":["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]}},"type":"chart","fonts":[],"debug":false},"evals":[],"jsHooks":[]}</script>
+<pre class="r"><code># build using hchart
+citytemp2 &lt;- citytemp %&gt;%
+  tidyr::gather(key = city, value = temperature, tokyo, london)
+
+hc2 &lt;- hchart(citytemp2, type = &#39;line&#39;, hcaes(y = temperature, group = city, x = month))
+hc2 %&gt;%
+ hc_chart(backgroundColor = &quot;white&quot;)</code></pre>
+<div id="htmlwidget-10" style="width:100%;height:500px;" class="highchart html-widget"></div>
+<script type="application/json" data-for="htmlwidget-10">{"x":{"hc_opts":{"title":{"text":null},"yAxis":{"title":{"text":"temperature"},"type":"linear"},"credits":{"enabled":false},"exporting":{"enabled":false},"plotOptions":{"series":{"label":{"enabled":false},"turboThreshold":0,"showInLegend":true},"treemap":{"layoutAlgorithm":"squarified"},"scatter":{"marker":{"symbol":"circle"}}},"series":[{"name":"london","data":[{"month":"Jan","new_york":-0.2,"berlin":-0.9,"city":"london","temperature":3.9,"y":3.9,"name":"Jan"},{"month":"Feb","new_york":0.8,"berlin":0.6,"city":"london","temperature":4.2,"y":4.2,"name":"Feb"},{"month":"Mar","new_york":5.7,"berlin":3.5,"city":"london","temperature":5.7,"y":5.7,"name":"Mar"},{"month":"Apr","new_york":11.3,"berlin":8.4,"city":"london","temperature":8.5,"y":8.5,"name":"Apr"},{"month":"May","new_york":17,"berlin":13.5,"city":"london","temperature":11.9,"y":11.9,"name":"May"},{"month":"Jun","new_york":22,"berlin":17,"city":"london","temperature":15.2,"y":15.2,"name":"Jun"},{"month":"Jul","new_york":24.8,"berlin":18.6,"city":"london","temperature":17,"y":17,"name":"Jul"},{"month":"Aug","new_york":24.1,"berlin":17.9,"city":"london","temperature":16.6,"y":16.6,"name":"Aug"},{"month":"Sep","new_york":20.1,"berlin":14.3,"city":"london","temperature":14.2,"y":14.2,"name":"Sep"},{"month":"Oct","new_york":14.1,"berlin":9,"city":"london","temperature":10.3,"y":10.3,"name":"Oct"},{"month":"Nov","new_york":8.6,"berlin":3.9,"city":"london","temperature":6.6,"y":6.6,"name":"Nov"},{"month":"Dec","new_york":2.5,"berlin":1,"city":"london","temperature":4.8,"y":4.8,"name":"Dec"}],"type":"line"},{"name":"tokyo","data":[{"month":"Jan","new_york":-0.2,"berlin":-0.9,"city":"tokyo","temperature":7,"y":7,"name":"Jan"},{"month":"Feb","new_york":0.8,"berlin":0.6,"city":"tokyo","temperature":6.9,"y":6.9,"name":"Feb"},{"month":"Mar","new_york":5.7,"berlin":3.5,"city":"tokyo","temperature":9.5,"y":9.5,"name":"Mar"},{"month":"Apr","new_york":11.3,"berlin":8.4,"city":"tokyo","temperature":14.5,"y":14.5,"name":"Apr"},{"month":"May","new_york":17,"berlin":13.5,"city":"tokyo","temperature":18.2,"y":18.2,"name":"May"},{"month":"Jun","new_york":22,"berlin":17,"city":"tokyo","temperature":21.5,"y":21.5,"name":"Jun"},{"month":"Jul","new_york":24.8,"berlin":18.6,"city":"tokyo","temperature":25.2,"y":25.2,"name":"Jul"},{"month":"Aug","new_york":24.1,"berlin":17.9,"city":"tokyo","temperature":26.5,"y":26.5,"name":"Aug"},{"month":"Sep","new_york":20.1,"berlin":14.3,"city":"tokyo","temperature":23.3,"y":23.3,"name":"Sep"},{"month":"Oct","new_york":14.1,"berlin":9,"city":"tokyo","temperature":18.3,"y":18.3,"name":"Oct"},{"month":"Nov","new_york":8.6,"berlin":3.9,"city":"tokyo","temperature":13.9,"y":13.9,"name":"Nov"},{"month":"Dec","new_york":2.5,"berlin":1,"city":"tokyo","temperature":9.6,"y":9.6,"name":"Dec"}],"type":"line"}],"xAxis":{"type":"category","title":{"text":"month"},"categories":null},"chart":{"backgroundColor":"white"}},"theme":{"chart":{"backgroundColor":"transparent"}},"conf_opts":{"global":{"Date":null,"VMLRadialGradientURL":"http =//code.highcharts.com/list(version)/gfx/vml-radial-gradient.png","canvasToolsURL":"http =//code.highcharts.com/list(version)/modules/canvas-tools.js","getTimezoneOffset":null,"timezoneOffset":0,"useUTC":true},"lang":{"contextButtonTitle":"Chart context menu","decimalPoint":".","downloadJPEG":"Download JPEG image","downloadPDF":"Download PDF document","downloadPNG":"Download PNG image","downloadSVG":"Download SVG vector image","drillUpText":"Back to {series.name}","invalidDate":null,"loading":"Loading...","months":["January","February","March","April","May","June","July","August","September","October","November","December"],"noData":"No data to display","numericSymbols":["k","M","G","T","P","E"],"printChart":"Print chart","resetZoom":"Reset zoom","resetZoomTitle":"Reset zoom level 1:1","shortMonths":["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],"thousandsSep":" ","weekdays":["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]}},"type":"chart","fonts":[],"debug":false},"evals":[],"jsHooks":[]}</script>
+<p>So what? If the output is the same, what is there to fret about? Enter <code>.$x$hc_opts$series</code>.</p>
+<p>Here is the underlying structure of the data used to make the <code>hc1</code> plot.</p>
+<pre class="r"><code>length(hc1$x$hc_opts$series)</code></pre>
+<pre><code>#&gt; [1] 2</code></pre>
+<pre class="r"><code>hc1$x$hc_opts$series # here is the series data and metadata</code></pre>
+<pre><code>#&gt; [[1]]
+#&gt; [[1]]$data
+#&gt;  [1]  7.0  6.9  9.5 14.5 18.2 21.5 25.2 26.5 23.3 18.3 13.9  9.6
+#&gt; 
+#&gt; [[1]]$name
+#&gt; [1] &quot;tokyo&quot;
+#&gt; 
+#&gt; 
+#&gt; [[2]]
+#&gt; [[2]]$data
+#&gt;  [1]  3.9  4.2  5.7  8.5 11.9 15.2 17.0 16.6 14.2 10.3  6.6  4.8
+#&gt; 
+#&gt; [[2]]$name
+#&gt; [1] &quot;london&quot;</code></pre>
+<pre class="r"><code>hc1$x$hc_opts$series[[1]] # i can extract a specific series</code></pre>
+<pre><code>#&gt; $data
+#&gt;  [1]  7.0  6.9  9.5 14.5 18.2 21.5 25.2 26.5 23.3 18.3 13.9  9.6
+#&gt; 
+#&gt; $name
+#&gt; [1] &quot;tokyo&quot;</code></pre>
+<pre class="r"><code>hc1$x$hc_opts$series[[1]]$data # also just the plotting data, which is a vector in this case</code></pre>
+<pre><code>#&gt;  [1]  7.0  6.9  9.5 14.5 18.2 21.5 25.2 26.5 23.3 18.3 13.9  9.6</code></pre>
+<p><code>hc1$x$hc_opts$series</code> is therefore a list of lists, where each element of the list <code>.$series</code> contains the plotting data. The structure of the data in this case is pretty simple and clean.</p>
+<p>But now let’s look at <code>hc2</code>.</p>
+<p>There series count is the same (<code>2</code>). But I’m not going to display the output of <code>hc2$x$hc_opts$series</code> because it is crazy long. However, I recommend running the code <code>hc2$x$hc_opts$series</code> yourself in the console and taking a look.</p>
+<pre class="r"><code>length(hc2$x$hc_opts$series)</code></pre>
+<pre><code>#&gt; [1] 2</code></pre>
+<pre class="r"><code># hc2$x$hc_opts$series # commented out because its so long
+hc2$x$hc_opts$series[[2]][[&quot;name&quot;]] # notice how we are extracting from the second series, &quot;tokyo&quot;, not the first! Why is that? See the &quot;Important Note&quot; below.</code></pre>
+<pre><code>#&gt; [1] &quot;tokyo&quot;</code></pre>
+<pre class="r"><code>hc2$x$hc_opts$series[[2]]$data %&gt;% head(2) # extract the first 2 elements of the data for the tokyo series</code></pre>
+<pre><code>#&gt; [[1]]
+#&gt; [[1]]$month
+#&gt; [1] &quot;Jan&quot;
+#&gt; 
+#&gt; [[1]]$new_york
+#&gt; [1] -0.2
+#&gt; 
+#&gt; [[1]]$berlin
+#&gt; [1] -0.9
+#&gt; 
+#&gt; [[1]]$city
+#&gt; [1] &quot;tokyo&quot;
+#&gt; 
+#&gt; [[1]]$temperature
+#&gt; [1] 7
+#&gt; 
+#&gt; [[1]]$y
+#&gt; [1] 7
+#&gt; 
+#&gt; [[1]]$name
+#&gt; [1] &quot;Jan&quot;
+#&gt; 
+#&gt; 
+#&gt; [[2]]
+#&gt; [[2]]$month
+#&gt; [1] &quot;Feb&quot;
+#&gt; 
+#&gt; [[2]]$new_york
+#&gt; [1] 0.8
+#&gt; 
+#&gt; [[2]]$berlin
+#&gt; [1] 0.6
+#&gt; 
+#&gt; [[2]]$city
+#&gt; [1] &quot;tokyo&quot;
+#&gt; 
+#&gt; [[2]]$temperature
+#&gt; [1] 6.9
+#&gt; 
+#&gt; [[2]]$y
+#&gt; [1] 6.9
+#&gt; 
+#&gt; [[2]]$name
+#&gt; [1] &quot;Feb&quot;</code></pre>
+<blockquote>
+<p><strong>IMPORTANT NOTE:</strong> Why is the <code>tokyo</code> data the second series in <code>hc2</code>, which used <code>hchart</code>, but the first series in <code>hc1</code>? This is because, when you build the chart series by series (using <code>hc_add_series</code>), the index follows the order of inclusion. The <code>tokyo</code> data is added to <code>hc1</code> chart first, so it becomes the first series (<code>.$series[[1]]</code>). On the other hand, if you use <code>hchart</code>, then highcharter orders series <em>alphabetically</em>. <code>london</code> comes before <code>tokyo</code>, so <code>tokyo</code> is the second series (<code>.$series[[2]]</code>). Given that the order of how a series is plotted can matter, this is a very important caveat to remember when using <code>hchart</code>!</p>
+</blockquote>
+<p>The fact that <code>hc2$x$hc_opts$series</code> is so much longer than the very concise <code>hc1$x$hc_opts$series</code> is telling you that <code>hchart</code> is a very different beast than building using <code>hc_add_series</code> or <code>hc_add_series_list</code>. Yet, despite having very different underlying series structures, each produces the same visual output.</p>
+<p>What’s going on? Why is the structure so different?</p>
+<p>Let’s dive deeper by looking at the <em>first element</em> of the <code>data</code> list for the <code>tokyo</code> series in <code>hc1</code> and <code>hc2</code>. Remember, the <code>tokyo</code> data is the first series in <code>hc1</code> and the second in <code>hc2</code>.</p>
+<pre class="r"><code># first data element of tokyo series
+hc1$x$hc_opts$series[[1]]$data[[1]] # first series here (ordered by how series was added)</code></pre>
+<pre><code>#&gt; [1] 7</code></pre>
+<pre class="r"><code>hc2$x$hc_opts$series[[2]]$data[[1]] # but second series here (ordered alphabetically by series name)</code></pre>
+<pre><code>#&gt; $month
+#&gt; [1] &quot;Jan&quot;
+#&gt; 
+#&gt; $new_york
+#&gt; [1] -0.2
+#&gt; 
+#&gt; $berlin
+#&gt; [1] -0.9
+#&gt; 
+#&gt; $city
+#&gt; [1] &quot;tokyo&quot;
+#&gt; 
+#&gt; $temperature
+#&gt; [1] 7
+#&gt; 
+#&gt; $y
+#&gt; [1] 7
+#&gt; 
+#&gt; $name
+#&gt; [1] &quot;Jan&quot;</code></pre>
+<p>For reference, here, again, is that code that generated <code>hc1</code> and <code>hc2</code>. I also recommend looking at the structure of the <code>citytemp</code> and <code>citytemp2</code> data objects to refresh yourself.</p>
+<pre class="r"><code>hc1 &lt;- highchart() %&gt;%
+  hc_chart(backgroundColor = &quot;white&quot;) %&gt;%
+  hc_xAxis(categories = citytemp$month) %&gt;%
+  hc_add_series(name = &quot;tokyo&quot;, data = citytemp$tokyo) %&gt;%
+  hc_add_series(name = &quot;london&quot;, data = citytemp$london)
+
+hc2 &lt;- hchart(citytemp2, type = &#39;line&#39;, hcaes(y = temperature, group = city, x = month))</code></pre>
+<p>The value of <code>hc1$x$hc_opts$series[[1]]$data[[1]]</code> is <code>7</code>. This maps directly with <code>citytemp$tokyo[1]</code>. This is because the data for each series in <code>hc1</code> is a single vector (or array) of data (<code>..., data = citytemp$tokyo)</code>). A nice chart is still generated because the API handles the translation of the 1d <code>data</code> vector to <code>y</code> values and creates the corresponding <code>x</code> index values.</p>
+<p>But the value of <code>hc2$x$hc_opts$series[[2]]$data[[1]]</code> is a list of 5 named elements.</p>
+<pre class="r"><code>hc2$x$hc_opts$series[[2]]$data[[1]] %&gt;% str()</code></pre>
+<pre><code>#&gt; List of 7
+#&gt;  $ month      : chr &quot;Jan&quot;
+#&gt;  $ new_york   : num -0.2
+#&gt;  $ berlin     : num -0.9
+#&gt;  $ city       : chr &quot;tokyo&quot;
+#&gt;  $ temperature: num 7
+#&gt;  $ y          : num 7
+#&gt;  $ name       : chr &quot;Jan&quot;</code></pre>
+<p>The best way to think of element <code>hc2$x$hc_opts$series[[2]]$data[[1]]</code> is as a point with, in this case, 5 bits of data. While each bit of data exists as part of the point, not all of the data is used when creating the chart. The only bits of data used are those that have names used by the Highcharts API, like <code>y</code> and <code>name</code>.</p>
+<p>There are a few things to notice, each rooted in the code <code>hchart(., type = 'line', hcaes(y = temperature, group = city, x = month))</code>:</p>
+<ol style="list-style-type: decimal">
+<li>The dataframe <code>citytemp2</code> had only 3 variables (<code>month</code>, <code>city</code>, <code>temperature</code>). <code>hchart</code> not only passes these variables as data, it then passes the variables assigned to the <code>y</code> and <code>x</code> arguments (<code>y = temperature</code>, <code>x = month</code>).</li>
+<li>But wait, there is no <code>x</code> named element? The variable assigned to <code>x</code> was renamed to <code>name</code>, *which is not to be confused with the <strong>series</strong> name <code>hc2$x$hc_opts$series[[2]]$name</code>. This is because the variable assigned to <code>x</code> was of class <code>character</code>. Highcharts cannot chart a non-numeric value to the x-axis. Instead, <code>highcharter</code> automatically maps string values assigned to <code>x</code> to the list element <code>name</code>. Index values are then generated for <code>x</code> by the API and each is labeled by the <code>name</code> value.</li>
+</ol>
+<div id="one-dimensional-array-easy-multi-dimensional-arrays-damn." class="section level3">
+<h3>One-dimensional array? Easy! Multi-dimensional arrays? Damn.</h3>
+<p>Turns out that Highcharts, by default, parses the contents of the <code>data</code> array object element by element, looking for sub-arrays with specific names (<code>y</code>, <code>x</code> etc) or a specific order (<code>[2, 5]</code> order implies <code>x = 2</code>, <code>y = 5</code>).</p>
+<p>If Highcharts finds a single unlabeled <code>data</code> array instead of an array with subarray elements (essentially a one-dimensional vector vs a list of lists), it assumes that the data maps to <code>y</code> and creates an index for each value to act as the x-axis. That is, in the background, the API takes the single 1-dim array, assumes its the data for <code>y</code>, and then creates <code>(x, y)</code> array pairs where <code>x</code> is just an index <code>1:length(y)</code>.</p>
+<p>Things start getting cumbersome and confusing the moment you want to chart <em>anything</em> more complicated than a one-dimensional vector/array—like <em>specific</em> <code>(x,y)</code> data pairs or perhaps extra data to label specific points or to make fancy tooltips. In <code>R</code> terms, this means that <code>data</code> goes from being a simple vector to a sprawling list of sublists where each element of <code>data</code> (e.g. <code>data[[1]]</code>) is actually <em>another</em> named list.</p>
+<p>The pros of this is you have <em>total</em> control over what you want to plot! The downside is that a simple change to a chart can sometimes be incredibly tedious.</p>
+<p>If you just want a plot with no special customizations, no problem! Easy, clean, straightforward. But the moment you want to customize even one point in a series, the amount and complexity of code you have to write just ballooned 2 or 3 fold.</p>
+<p>My next post will cover how to deal with these more complex plots. It can be tedious but the results are beautiful. As I told my old boss, “It is amazing how much you have to code to make there be <em>less</em> in a plot.”</p>
+<!-- # Outline for Future Posts -->
+<!-- - Basics -->
+<!--     - [x] Understanding the series -->
+<!--         - `highchart()` plus `hc_add_series_list()` for most everything -->
+<!--     - [x] translating highcharts api to highcharter syntax -->
+<!--         - list of nested lists! -->
+<!--         - example translating Highcharts API to highcharter -->
+<!--     - [x] `hchart()` for tidy data frames -->
+<!-- - Advanced -->
+<!--     - [x] `hc$x$hc_opts$series` for understanding structure of series in highcharts -->
+<!--         - a single vector defaults to `data` or `y` -->
+<!--         - any more data than a single vector and you end up with a series being list of lists e.g. build an object with `hchart()` and `highchart()` and `hc_add_series_list()` -->
+<!-- - Random things -->
+<!--     - [ ] highcharter likes as.Date(), but not character values of dates. -->
+</div>
+</div>
+]]></content>
+		</item>
+		
+		<item>
+			<title>RMarkdown (.Rmd) to MS Word (.docx) aka rmarkdown2docx</title>
+			<link>https://dantonnoriega.github.io/ultinomics.org/posts/2016-04-14-rmarkdown-to-docx.html</link>
+			<pubDate>Thu, 14 Apr 2016 00:00:00 +0000</pubDate>
+			
+			<guid>https://dantonnoriega.github.io/ultinomics.org/posts/2016-04-14-rmarkdown-to-docx.html</guid>
+			<description>Love Rmarkdown (.Rmd) but hate that you sometimes have to produce MS Word (.docx) files? BOOM! Solved. This post shows you how. Well, it sources the repo I made that shows you how!</description>
+			<content type="html"><![CDATA[<p>This post is just a copy of README.md file for the repo <a href="https://github.com/dantonnoriega/rmarkdown2docx">https://github.com/dantonnoriega/rmarkdown2docx</a>. But it&rsquo;s got everything you need to get your R Markdown file (.Rmd) to a clean, useful MS Word file (.docx).</p>
+<h1 id="description">Description</h1>
+<p>This set of scripts help convert the output of <code>Rmd</code> files to <code>docx</code> files. It is done by creating a clean <code>html</code> file, then opening, converting, and saving the <code>html</code> to <code>docx</code> using <a href="https://www.dropbox.com/s/4bwwsgod27w1fjo/word-2004-applescript-reference.pdf?dl=0">Applescript and Microsoft Word</a>.</p>
+<p>The workhorse script is a <code>makefile</code>. Just change the variables to convert any <code>Rmd</code> to <code>docx</code>. However, only clean (not standalone) <code>html</code> files will fully convert. There are some caveats (outlined below) if you want to keep a standalone <code>html</code> file.</p>
+<p>In this repo, the <code>makefile</code> converts <code>example.Rmd</code> to <code>example.docx</code>.</p>
+<h2 id="the-output-files">The output files</h2>
+<ul>
+<li><code>example.html</code></li>
+<li><code>example.docx</code></li>
+</ul>
+<h2 id="the-main-support-file">The main support file</h2>
+<ul>
+<li><code>html2docx.sh</code></li>
+</ul>
+<p>The <code>makefile</code> automatically downloads the <code>html2docx.sh</code> conversion script using <code>wget</code> if it&rsquo;s missing. (Requires unix command-line tool <code>wget</code> to download if missing.)</p>
+<h2 id="optional-support-files">Optional support files</h2>
+<ul>
+<li><code>chicago-author-date.csl</code></li>
+<li><code>bibliography.bib</code></li>
+</ul>
+<p>These files are listed to show that folks can cite references (useful for academics). To learn more about these RMarkdown <code>yaml</code> options, see this <a href="http://rmarkdown.rstudio.com/authoring_bibliographies_and_citations.html">RStudio post</a>.</p>
+<h1 id="requirements">Requirements</h1>
+<ol>
+<li>Microsoft Word for Mac in your Applications folder. This has been built and testing using Microsoft Word for Mac, Version <code>15.20</code>.</li>
+<li><code>R</code> with packages <code>rmarkdown</code> and <code>knitr</code>.</li>
+<li>An understanding of how to use GNU Make and terminal commands.</li>
+</ol>
+<h1 id="how-to-use">How to Use</h1>
+<p>There are two options for going from <code>Rmd</code> to <code>docx</code>. The first <code>make</code> option is <code>all</code> and the second is <code>alt</code>. But before anything, make sure the <code>makefile</code> variables are set up accordingly. Simply change the <code>RMD_NAME</code> variable to suite your needs:</p>
+<pre><code>RMD_NAME = example.Rmd
+</code></pre><p>In this case, the <code>Rmd</code> file of interest is <code>example.Rmd</code>.</p>
+<h2 id="option-1-all">Option 1: <code>all</code></h2>
+<p>Simply run</p>
+<pre><code>make all
+</code></pre><p>Although one can knit an <code>html</code> file from a <code>Rmd</code> file&mdash;letting knitr run the <code>pandoc</code> step&mdash;there is a caveat.</p>
+<blockquote>
+<p>output options <code>self_contained</code> <strong>must</strong> be <code>FALSE</code>. Otherwise, Microsoft Word will crash during the <code>html</code> to <code>docx</code> conversion. Keep in mind that this is the default option for <code>rmarkdown</code>. But I force it to be true in the <code>makefile</code>.</p>
+</blockquote>
+<h2 id="option-2-alt">Option 2: <code>alt</code></h2>
+<p>You cannot convert a self contained (aka standalone) <code>html</code> file to a <code>docx</code>. (At least I&rsquo;ve found that it always crashes.) If you want the option to have a standalone <code>html</code> file, then then we use option <code>alt</code>.</p>
+<p>Simply run</p>
+<pre><code>make alt
+</code></pre><p>This will produce a clean (not self contained) <code>html</code>, create a <code>docx</code> file, then replace the clean <code>html</code> file with a standalone file.</p>
+<p>It&rsquo;s a little hackish, but it allows you to create a <code>docx</code> AND keep a standalone <code>html</code> file.</p>
+<h1 id="first-run-word-will-ask-for-permission">First Run, Word will ask for permission</h1>
+<p>When you first run the script, do not worry if Word asks for permissions. Once you give Word access to the folder and files, it should run just fine and without asking again every time after.</p>
+<h1 id="shortcomings">Shortcomings</h1>
+<h2 id="footnotes">Footnotes</h2>
+<p>Footnotes, not matter what, go to the bottom of the page. Just how html files work.</p>
+<h1 id="thanks">Thanks</h1>
+<p>A special thanks to <a href="http://github.com/andrewheiss">Andrew Heiss</a>, from whom I&rsquo;ve learned almost all I know about makefiles and converting markdown files to docx files.</p>
+]]></content>
+		</item>
+		
+		<item>
+			<title>Converting Unsearchable PDF Files (aka PDF scans) to Raw Text Using Command Line Tools `convert` and `tesseract`</title>
+			<link>https://dantonnoriega.github.io/ultinomics.org/posts/2016-03-29-pdf-text-convert-ocr-tesseract.html</link>
+			<pubDate>Tue, 29 Mar 2016 00:00:00 +0000</pubDate>
+			
+			<guid>https://dantonnoriega.github.io/ultinomics.org/posts/2016-03-29-pdf-text-convert-ocr-tesseract.html</guid>
+			<description>Often, one gets a PDF file that is a scan of a book or text, which cannot be searched (boo!). A good (but not perfect) solution is to use Optical Character Recognition (OCR) to convert the pdf to a txt file and search that instead.
+Here is my solution.
+Requirements   Command line tools
+ convert tesseract  I installed both using homebrew. I&amp;rsquo;m using Mac OS X 10.11.3. This is important because it affects the location of where these are install of my system /usr/local/.</description>
+			<content type="html"><![CDATA[<p>Often, one gets a PDF file that is a scan of a book or text, which cannot be searched (boo!). A good (but not perfect) solution is to use Optical Character Recognition (OCR) to convert the pdf to a txt file and search that instead.</p>
+<p>Here is my solution.</p>
+<h1 id="requirements">Requirements</h1>
+<ol>
+<li>
+<p>Command line tools</p>
+<ul>
+<li><code>convert</code></li>
+<li><code>tesseract</code></li>
+</ul>
+<p>I installed both using <a href="http://brew.sh/"><code>homebrew</code></a>. I&rsquo;m using Mac OS X 10.11.3. This is important because it affects the location of where these are install of my system <code>/usr/local/</code>.</p>
+</li>
+<li>
+<p>Knowledge and comfort using command line. Helps if you understand how to use the <code>find</code> command.</p>
+</li>
+</ol>
+<h1 id="workflow">Workflow</h1>
+<h2 id="1-convert-pdf-to-tiff">1. Convert <code>pdf</code> to <code>tiff</code></h2>
+<p>Say we have pdf <code>Bookscan.pdf</code>. We can create a new directory <code>tiffs/</code> and then use the command line tool <code>convert</code> to convert the pdf to a tiff.</p>
+<p>Below, we create a new directory called <code>tiffs/</code> in the same directory as <code>Bookscan.pdf</code> then convert the pdf to a tiff (here, its called <code>bookdown.tiff</code>).</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">mkdir tiffs
+convert -density <span class="m">600</span> -depth <span class="m">4</span> -monochrome -background white -blur <span class="s1">&#39;0x2&#39;</span> -shave <span class="s1">&#39;0x200&#39;</span> Bookscan.pdf tiffs/bookdown.tiff
+</code></pre></div><p>To learn more about the commands, visit the <a href="http://www.imagemagick.org/script/command-line-options.php">imagemagick site</a>. But in brief:</p>
+<ul>
+<li><code>density</code> adjust dpi</li>
+<li><code>depth</code> is the number of bits</li>
+<li><code>monochrome</code> black and white only</li>
+<li><code>blur</code> is useful for super sharp scans (thin letters are bad, thick good)</li>
+<li><code>shave</code> used to strip pixels from the output image (so you need to figure out the size of the final image). Useful when books have chapter names or numbers at the top (<code>0</code> is width, <code>200</code> is height)</li>
+</ul>
+<p>(<em>Note that the option in the sample code above just happen to work for the set of documents I was converting.</em>)</p>
+<h2 id="2-make-sure-we-ignore-annoying-characters-like-ligatures">2. Make Sure We Ignore Annoying Characters Like &lsquo;ligatures&rsquo;</h2>
+<p>I found that, consistently, <code>tesseract</code> will add in <a href="https://en.wikipedia.org/wiki/Typographic_ligature">ligatures</a>, ruining the ability to search some words. But it is possible to keep <code>tesseract</code> from using them by creating a <em>blacklist</em>. I copied a list of ligatures from <a href="https://en.wikipedia.org/wiki/List_of_precomposed_Latin_characters_in_Unicode">this page</a></p>
+<p>One needs to add a file to <code>/usr/local/share/tessdata/configs/</code> (this assumes a <code>brew</code> installation in Mac OS X) to a file which contains the following:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">tessedit_char_blacklist ꜲꜳÆæꜴꜵꜶꜷꜸꜹꜼꜽǱǲǳǄǅǆﬀﬃﬄﬁﬂĲĳǇǈǉǊǋǌŒœꝎꝏﬅᵫꝠꝡ
+</code></pre></div><p><img src="https://www.dropbox.com/s/z7rhn1v66cm4jli/ligatures.png?raw=1" alt="Here is a screen shot of the file (named it ligatures)."></p>
+<p><img src="https://www.dropbox.com/s/24nwja0r0y6v2bo/ligatures_dir.png?raw=1" alt="And here is what the directory /usr/local/share/tessdata/configs/ looks like on my computer."></p>
+<h2 id="3-convert-the-tiff-to-text">3. Convert the tiff to text</h2>
+<p>This is pretty straight-forward. <code>cd</code> into the folder with the tiffs then run the command:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">cd</span> tiffs/
+tesseract bookscan.tiff bookscan -l eng ligatures                                                            
+</code></pre></div><p>Here, we are assuming the text is in English (<code>-l eng</code>) and we load the <code>ligature</code> configs file (which loads the blacklist variable).</p>
+<p>For other tips, see the <a href="https://github.com/tesseract-ocr/tesseract/wiki/FAQ">Tesseract FAQ</a>. Sometimes, files are just too noisy or tilted to work. Most of the scans I&rsquo;ve worked with are pretty clean, so I&rsquo;ve not had to struggle with something too complicated.</p>
+<p>Granted, if there are problems with the image, the fixes would all have to be done in the conversion stage!</p>
+<h2 id="4-optional-looping-through-tiffs">4. (optional) Looping Through Tiffs</h2>
+<p>If you <code>cd</code> into the folder full of tiffs, you can loop through all the tiffs and convert them to texts.</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">cd</span> tiffs/
+find . -type f <span class="p">|</span> <span class="k">while</span> <span class="nb">read</span> F<span class="p">;</span> <span class="k">do</span> tesseract <span class="si">${</span><span class="nv">F</span><span class="si">}</span> <span class="si">${</span><span class="nv">F</span><span class="p">%.tiff</span><span class="si">}</span> -l eng ligatures<span class="p">;</span> <span class="k">done</span><span class="p">;</span>                          
+</code></pre></div><p>Boom. Loops through and converts any and all tiffs in the directory (here, called <code>tiffs/</code>).</p>
+<p>And that&rsquo;s it!</p>
+<h1 id="an-example">An Example</h1>
+<p>If you to try a real example, try it with the following pdf: <a href="https://www.dropbox.com/s/ihn23r2olq211za/bookscan.pdf?dl=0"><code>bookscan.pdf</code></a></p>
+<p>Let&rsquo;s pretend you put <code>bookscan.pdf</code> in your downloads folder. We&rsquo;ll make a new folder called <code>tiffs/</code>, convert the pdf, then use <code>tesseract</code>.</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">cd</span> ~/Downloads
+mkdir tiffs
+convert -density <span class="m">600</span> -depth <span class="m">4</span> -monochrome -background white -blur <span class="s1">&#39;0x2&#39;</span> -shave <span class="s1">&#39;200x450&#39;</span> bookscan.pdf tiffs/bookscan.tiff
+<span class="nb">cd</span> tiffs
+tesseract bookscan.tiff bookscan -l eng ligatures
+</code></pre></div><p>I get the resulting <a href="https://www.dropbox.com/s/4twn7egdkdj0ox0/bookscan.tiff?raw=1">tiff</a> and <a href="https://www.dropbox.com/s/ik27dm6dmjsq05n/bookscan.txt?raw=1">txt</a> files.</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<blockquote>
+</blockquote>
+]]></content>
+		</item>
+		
+	</channel>
+</rss>

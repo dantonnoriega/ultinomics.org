@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="theme-color" content="#494f5c">
+	<meta name="msapplication-TileColor" content="#494f5c">
+<meta itemprop="name" content="Converting Unsearchable PDF Files (aka PDF scans) to Raw Text Using Command Line Tools `convert` and `tesseract`">
+<meta itemprop="description" content="Often, one gets a PDF file that is a scan of a book or text, which cannot be searched (boo!). A good (but not perfect) solution is to use Optical Character Recognition (OCR) to convert the pdf to a txt file and search that instead.
+Here is my solution.
+Requirements   Command line tools
+ convert tesseract  I installed both using homebrew. I&rsquo;m using Mac OS X 10.11.3. This is important because it affects the location of where these are install of my system /usr/local/.">
+<meta itemprop="datePublished" content="2016-03-29T00:00:00&#43;00:00" />
+<meta itemprop="dateModified" content="2016-03-29T00:00:00&#43;00:00" />
+<meta itemprop="wordCount" content="589">
+
+
+
+<meta itemprop="keywords" content="convert,tesseract,mac os x,terminal,ocr,pdf,txt," /><meta property="og:title" content="Converting Unsearchable PDF Files (aka PDF scans) to Raw Text Using Command Line Tools `convert` and `tesseract`" />
+<meta property="og:description" content="Often, one gets a PDF file that is a scan of a book or text, which cannot be searched (boo!). A good (but not perfect) solution is to use Optical Character Recognition (OCR) to convert the pdf to a txt file and search that instead.
+Here is my solution.
+Requirements   Command line tools
+ convert tesseract  I installed both using homebrew. I&rsquo;m using Mac OS X 10.11.3. This is important because it affects the location of where these are install of my system /usr/local/." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://dantonnoriega.github.io/ultinomics.org/posts/2016-03-29-pdf-text-convert-ocr-tesseract.html" />
+<meta property="article:published_time" content="2016-03-29T00:00:00+00:00" />
+<meta property="article:modified_time" content="2016-03-29T00:00:00+00:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Converting Unsearchable PDF Files (aka PDF scans) to Raw Text Using Command Line Tools `convert` and `tesseract`"/>
+<meta name="twitter:description" content="Often, one gets a PDF file that is a scan of a book or text, which cannot be searched (boo!). A good (but not perfect) solution is to use Optical Character Recognition (OCR) to convert the pdf to a txt file and search that instead.
+Here is my solution.
+Requirements   Command line tools
+ convert tesseract  I installed both using homebrew. I&rsquo;m using Mac OS X 10.11.3. This is important because it affects the location of where these are install of my system /usr/local/."/>
+
+	<link rel="apple-touch-icon" sizes="180x180" href="/ultinomics.org/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/ultinomics.org/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/ultinomics.org/favicon-16x16.png">
+	<link rel="manifest" href="/ultinomics.org/site.webmanifest">
+	<link rel="mask-icon" href="/ultinomics.org/safari-pinned-tab.svg" color="">
+	<link rel="shortcut icon" href="/ultinomics.org/favicon.ico">
+
+	<title>Converting Unsearchable PDF Files (aka PDF scans) to Raw Text Using Command Line Tools `convert` and `tesseract`</title>
+	<link rel="stylesheet" href="https://dantonnoriega.github.io/ultinomics.org/css/style.min.657bcb7af31123e4156b1a3d2ff60a636717e54ead74f882136b5114cf72b55e.css" integrity="sha256-ZXvLevMRI+QVaxo9L/YKY2cX5U6tdPiCE2tRFM9ytV4=" crossorigin="anonymous">
+	
+</head>
+
+<body id="page">
+	
+	<header id="site-header" class="animated slideInUp faster">
+		<div class="hdr-wrapper section-inner">
+			<div class="hdr-left">
+				<div class="site-branding">
+					<a href="https://dantonnoriega.github.io/ultinomics.org/">ultinomics.org</a>
+				</div>
+				<nav class="site-nav hide-in-mobile">
+					
+				<a href="https://dantonnoriega.github.io/ultinomics.org/posts.html">Posts</a>
+				<a href="http://dantonnoriega.gitlab.io">About</a>
+
+				</nav>
+			</div>
+			<div class="hdr-right hdr-icons">
+				<span class="hdr-social hide-in-mobile"><a href="https://twitter.com/dantonnoriega" target="_blank" rel="noopener me" title="Twitter"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg></a><a href="https://instagram.com/dantonnoriega" target="_blank" rel="noopener me" title="Instagram"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.5" y2="6.5"></line></svg></a><a href="https://github.com/dantonnoriega" target="_blank" rel="noopener me" title="Github"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a></span><button id="menu-btn" class="hdr-btn" title="Menu"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+			</div>
+		</div>
+	</header>
+	<div id="mobile-menu" class="animated fast">
+		<ul>
+			<li><a href="https://dantonnoriega.github.io/ultinomics.org/posts.html">Posts</a></li>
+			<li><a href="http://dantonnoriega.gitlab.io">About</a></li>
+		</ul>
+	</div>
+
+
+	<main class="site-main section-inner animated fadeIn faster">
+		<article class="thin">
+			<header class="post-header">
+				<div class="post-meta"><span>Mar 29, 2016</span></div>
+				<h1>Converting Unsearchable PDF Files (aka PDF scans) to Raw Text Using Command Line Tools `convert` and `tesseract`</h1>
+			</header>
+			<div class="content">
+				<p>Often, one gets a PDF file that is a scan of a book or text, which cannot be searched (boo!). A good (but not perfect) solution is to use Optical Character Recognition (OCR) to convert the pdf to a txt file and search that instead.</p>
+<p>Here is my solution.</p>
+<h1 id="requirements">Requirements<a href="#requirements" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h1>
+<ol>
+<li>
+<p>Command line tools</p>
+<ul>
+<li><code>convert</code></li>
+<li><code>tesseract</code></li>
+</ul>
+<p>I installed both using <a href="http://brew.sh/"><code>homebrew</code></a>. I&rsquo;m using Mac OS X 10.11.3. This is important because it affects the location of where these are install of my system <code>/usr/local/</code>.</p>
+</li>
+<li>
+<p>Knowledge and comfort using command line. Helps if you understand how to use the <code>find</code> command.</p>
+</li>
+</ol>
+<h1 id="workflow">Workflow<a href="#workflow" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h1>
+<h2 id="1-convert-pdf-to-tiff">1. Convert <code>pdf</code> to <code>tiff</code><a href="#1-convert-pdf-to-tiff" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>Say we have pdf <code>Bookscan.pdf</code>. We can create a new directory <code>tiffs/</code> and then use the command line tool <code>convert</code> to convert the pdf to a tiff.</p>
+<p>Below, we create a new directory called <code>tiffs/</code> in the same directory as <code>Bookscan.pdf</code> then convert the pdf to a tiff (here, its called <code>bookdown.tiff</code>).</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">mkdir tiffs
+convert -density <span class="m">600</span> -depth <span class="m">4</span> -monochrome -background white -blur <span class="s1">&#39;0x2&#39;</span> -shave <span class="s1">&#39;0x200&#39;</span> Bookscan.pdf tiffs/bookdown.tiff
+</code></pre></div><p>To learn more about the commands, visit the <a href="http://www.imagemagick.org/script/command-line-options.php">imagemagick site</a>. But in brief:</p>
+<ul>
+<li><code>density</code> adjust dpi</li>
+<li><code>depth</code> is the number of bits</li>
+<li><code>monochrome</code> black and white only</li>
+<li><code>blur</code> is useful for super sharp scans (thin letters are bad, thick good)</li>
+<li><code>shave</code> used to strip pixels from the output image (so you need to figure out the size of the final image). Useful when books have chapter names or numbers at the top (<code>0</code> is width, <code>200</code> is height)</li>
+</ul>
+<p>(<em>Note that the option in the sample code above just happen to work for the set of documents I was converting.</em>)</p>
+<h2 id="2-make-sure-we-ignore-annoying-characters-like-ligatures">2. Make Sure We Ignore Annoying Characters Like &lsquo;ligatures&rsquo;<a href="#2-make-sure-we-ignore-annoying-characters-like-ligatures" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>I found that, consistently, <code>tesseract</code> will add in <a href="https://en.wikipedia.org/wiki/Typographic_ligature">ligatures</a>, ruining the ability to search some words. But it is possible to keep <code>tesseract</code> from using them by creating a <em>blacklist</em>. I copied a list of ligatures from <a href="https://en.wikipedia.org/wiki/List_of_precomposed_Latin_characters_in_Unicode">this page</a></p>
+<p>One needs to add a file to <code>/usr/local/share/tessdata/configs/</code> (this assumes a <code>brew</code> installation in Mac OS X) to a file which contains the following:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">tessedit_char_blacklist ꜲꜳÆæꜴꜵꜶꜷꜸꜹꜼꜽǱǲǳǄǅǆﬀﬃﬄﬁﬂĲĳǇǈǉǊǋǌŒœꝎꝏﬅᵫꝠꝡ
+</code></pre></div><p><img src="https://www.dropbox.com/s/z7rhn1v66cm4jli/ligatures.png?raw=1" alt="Here is a screen shot of the file (named it ligatures)."></p>
+<p><img src="https://www.dropbox.com/s/24nwja0r0y6v2bo/ligatures_dir.png?raw=1" alt="And here is what the directory /usr/local/share/tessdata/configs/ looks like on my computer."></p>
+<h2 id="3-convert-the-tiff-to-text">3. Convert the tiff to text<a href="#3-convert-the-tiff-to-text" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>This is pretty straight-forward. <code>cd</code> into the folder with the tiffs then run the command:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">cd</span> tiffs/
+tesseract bookscan.tiff bookscan -l eng ligatures                                                            
+</code></pre></div><p>Here, we are assuming the text is in English (<code>-l eng</code>) and we load the <code>ligature</code> configs file (which loads the blacklist variable).</p>
+<p>For other tips, see the <a href="https://github.com/tesseract-ocr/tesseract/wiki/FAQ">Tesseract FAQ</a>. Sometimes, files are just too noisy or tilted to work. Most of the scans I&rsquo;ve worked with are pretty clean, so I&rsquo;ve not had to struggle with something too complicated.</p>
+<p>Granted, if there are problems with the image, the fixes would all have to be done in the conversion stage!</p>
+<h2 id="4-optional-looping-through-tiffs">4. (optional) Looping Through Tiffs<a href="#4-optional-looping-through-tiffs" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>If you <code>cd</code> into the folder full of tiffs, you can loop through all the tiffs and convert them to texts.</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">cd</span> tiffs/
+find . -type f <span class="p">|</span> <span class="k">while</span> <span class="nb">read</span> F<span class="p">;</span> <span class="k">do</span> tesseract <span class="si">${</span><span class="nv">F</span><span class="si">}</span> <span class="si">${</span><span class="nv">F</span><span class="p">%.tiff</span><span class="si">}</span> -l eng ligatures<span class="p">;</span> <span class="k">done</span><span class="p">;</span>                          
+</code></pre></div><p>Boom. Loops through and converts any and all tiffs in the directory (here, called <code>tiffs/</code>).</p>
+<p>And that&rsquo;s it!</p>
+<h1 id="an-example">An Example<a href="#an-example" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h1>
+<p>If you to try a real example, try it with the following pdf: <a href="https://www.dropbox.com/s/ihn23r2olq211za/bookscan.pdf?dl=0"><code>bookscan.pdf</code></a></p>
+<p>Let&rsquo;s pretend you put <code>bookscan.pdf</code> in your downloads folder. We&rsquo;ll make a new folder called <code>tiffs/</code>, convert the pdf, then use <code>tesseract</code>.</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">cd</span> ~/Downloads
+mkdir tiffs
+convert -density <span class="m">600</span> -depth <span class="m">4</span> -monochrome -background white -blur <span class="s1">&#39;0x2&#39;</span> -shave <span class="s1">&#39;200x450&#39;</span> bookscan.pdf tiffs/bookscan.tiff
+<span class="nb">cd</span> tiffs
+tesseract bookscan.tiff bookscan -l eng ligatures
+</code></pre></div><p>I get the resulting <a href="https://www.dropbox.com/s/4twn7egdkdj0ox0/bookscan.tiff?raw=1">tiff</a> and <a href="https://www.dropbox.com/s/ik27dm6dmjsq05n/bookscan.txt?raw=1">txt</a> files.</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<blockquote>
+</blockquote>
+
+			</div>
+			<hr class="post-end">
+			<footer class="post-info">
+				<p>
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://dantonnoriega.github.io/ultinomics.org/tags/convert">convert</a></span><span class="tag"><a href="https://dantonnoriega.github.io/ultinomics.org/tags/tesseract">tesseract</a></span><span class="tag"><a href="https://dantonnoriega.github.io/ultinomics.org/tags/mac-os-x">mac os x</a></span><span class="tag"><a href="https://dantonnoriega.github.io/ultinomics.org/tags/terminal">terminal</a></span><span class="tag"><a href="https://dantonnoriega.github.io/ultinomics.org/tags/ocr">ocr</a></span><span class="tag"><a href="https://dantonnoriega.github.io/ultinomics.org/tags/pdf">pdf</a></span><span class="tag"><a href="https://dantonnoriega.github.io/ultinomics.org/tags/txt">txt</a></span>
+				</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>589 Words</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2016-03-28 17:00 -0700</p>
+			</footer>
+		</article>
+		<div class="post-nav thin">
+			<a class="next-post" href="https://dantonnoriega.github.io/ultinomics.org/posts/2016-04-14-rmarkdown-to-docx.html">
+				<span class="post-nav-label"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>&nbsp;Newer</span><br><span>RMarkdown (.Rmd) to MS Word (.docx) aka rmarkdown2docx</span>
+			</a>
+		</div>
+		<div id="comments" class="thin">
+<div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "ultinomics-org" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+	</main>
+
+	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
+		<p>&copy; 2020 <a href="https://dantonnoriega.github.io/ultinomics.org/">Danton Noriega-Goodwin</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
+		<p>
+			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://dantonnoriega.github.io/ultinomics.org/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
+		</p>
+	</footer>
+
+
+
+	<script src="https://dantonnoriega.github.io/ultinomics.org/js/bundle.min.4a9a0ac3d2217822c7865b4161e6c2a71de1d70492264337755427898dd718f6.js" integrity="sha256-SpoKw9IheCLHhltBYebCpx3h1wSSJkM3dVQniY3XGPY=" crossorigin="anonymous"></script>
+	
+
+</body>
+
+</html>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>txt on ultinomics.org</title>
+    <link>https://dantonnoriega.github.io/ultinomics.org/tags/txt.html</link>
+    <description>Recent content in txt on ultinomics.org</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 29 Mar 2016 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://dantonnoriega.github.io/ultinomics.org/tags/txt/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Converting Unsearchable PDF Files (aka PDF scans) to Raw Text Using Command Line Tools `convert` and `tesseract`</title>
+      <link>https://dantonnoriega.github.io/ultinomics.org/posts/2016-03-29-pdf-text-convert-ocr-tesseract.html</link>
+      <pubDate>Tue, 29 Mar 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://dantonnoriega.github.io/ultinomics.org/posts/2016-03-29-pdf-text-convert-ocr-tesseract.html</guid>
+      <description>Often, one gets a PDF file that is a scan of a book or text, which cannot be searched (boo!). A good (but not perfect) solution is to use Optical Character Recognition (OCR) to convert the pdf to a txt file and search that instead.
+Here is my solution.
+Requirements   Command line tools
+ convert tesseract  I installed both using homebrew. I&amp;rsquo;m using Mac OS X 10.11.3. This is important because it affects the location of where these are install of my system /usr/local/.</description>
+    </item>
+    
+  </channel>
+</rss>

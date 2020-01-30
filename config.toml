@@ -1,6 +1,11 @@
-baseURL = "https://dantonnoriega.github.io/ultinomics.org/"
-languageCode = "en-us"
+baseURL             = "https://dantonnoriega.github.io/ultinomics.org/"
+languageCode        = "en-us"
 defaultContentLanguage = "en"
+builddrafts         = false
+relativeURLs        = false
+uglyURLs            = true
+contentdir          = "content"
+publishdir          = "docs"
 title = "ultinomics.org"
 theme = "hermit"
 # enableGitInfo = true
@@ -23,6 +28,9 @@ disqusShortname = "ultinomics-org"
   dateformShort   = "Jan 2"
   dateformNum     = "2006-01-02"
   dateformNumTime = "2006-01-02 15:04 -0700"
+  
+  math = true
+
 
   # Metadata mostly used in document's head
   # description = ""
@@ -63,7 +71,7 @@ disqusShortname = "ultinomics-org"
 
   [[menu.main]]
     name = "Posts"
-    url = "posts/"
+    url = "posts.html"
     weight = 10
 
   [[menu.main]]
