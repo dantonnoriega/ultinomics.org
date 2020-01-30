@@ -19,7 +19,7 @@
 
 <meta property="og:title" content="xmltools package to help convert XML data to tidy data frames  &middot; ultinomics.org ">
 <meta property="og:site_name" content="ultinomics.org"/>
-<meta property="og:url" content="/ultinomics.org/post/2017-04-18-xmltools-package.html" />
+<meta property="og:url" content="https://dantonnoriega.github.io/ultinomics.org/post/2017-04-18-xmltools-package.html" />
 <meta property="og:locale" content="en-US">
 
 
@@ -44,8 +44,8 @@
 <meta name="twitter:creator" content="@dantonnoriega" />
 <meta name="twitter:title" content="xmltools package to help convert XML data to tidy data frames" />
 <meta name="twitter:description" content="" />
-<meta name="twitter:url" content="/ultinomics.org/post/2017-04-18-xmltools-package.html" />
-<meta name="twitter:domain" content="/ultinomics.org/">
+<meta name="twitter:url" content="https://dantonnoriega.github.io/ultinomics.org/post/2017-04-18-xmltools-package.html" />
+<meta name="twitter:domain" content="https://dantonnoriega.github.io/ultinomics.org/">
   
 
 <script type="application/ld+json">
@@ -59,16 +59,16 @@
     },
     "datePublished": "2017-04-18",
     "description": "",
-    "wordCount":  1956 
+    "wordCount":  1888 
   }
 </script>
 
 
 
-<link rel="apple-touch-icon-precomposed" sizes="144x144" href="/touch-icon-144-precomposed.png">
-<link href="/favicon.png" rel="icon">
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://dantonnoriega.github.io/touch-icon-144-precomposed.png">
+<link href="https://dantonnoriega.github.io/favicon.png" rel="icon">
 
-<meta name="generator" content="Hugo 0.56.3" />
+<meta name="generator" content="Hugo 0.63.2" />
 
   <!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
@@ -88,7 +88,7 @@
     <header id="main-header" class="container main_header">
   <div class="container brand">
   <div class="container title h1-like">
-  <a class="baselink" href="/ultinomics.org/">
+  <a class="baselink" href="https://dantonnoriega.github.io/ultinomics.org/">
   ultinomics.org
 
 </a>
@@ -98,8 +98,7 @@
   
 <div class="container topline">
   
-  <p>random, infrequent posts about R and programming.<br/><br/><p style="font-style:italic">mediocre economist.<br>aspiring data scientist.<br>ultimate player.</p></p>
-
+  random, infrequent posts about R and programming.<!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted -->mediocre economist.<!-- raw HTML omitted -->aspiring data scientist.<!-- raw HTML omitted -->ultimate player.<!-- raw HTML omitted -->
 
 
 </div>
@@ -110,7 +109,7 @@
   <nav class="container nav primary no-print">
   
 
-<a class="homelink" href="/ultinomics.org/">home</a>
+<a class="homelink" href="https://dantonnoriega.github.io/ultinomics.org/">home</a>
 
 
   
@@ -174,15 +173,15 @@
 
 
   
-  &middot; Read in about 10 min
-  &middot; (1956 Words)
+  &middot; Read in about 9 min
+  &middot; (1888 Words)
   <br>
   
-<a class="label" href="/tags/r-markdown">R Markdown</a>
+<a class="label" href="https://dantonnoriega.github.io/tags/r-markdown">R Markdown</a>
 
-<a class="label" href="/tags/xml">XML</a>
+<a class="label" href="https://dantonnoriega.github.io/tags/xml">XML</a>
 
-<a class="label" href="/tags/xml2">xml2</a>
+<a class="label" href="https://dantonnoriega.github.io/tags/xml2">xml2</a>
 
 
 
@@ -192,6 +191,7 @@
 
   <div class="container content">
   
+<script src="/ultinomics.org/rmarkdown-libs/header-attrs/header-attrs.js"></script>
 
 
 <p>I created a new, small <a href="https://github.com/dantonnoriega/xmltools">package called <code>xmltools</code></a> that helps simplify the process of converting XML data into tidy data frames.</p>
@@ -379,70 +379,40 @@ doc %&gt;%
 nodeset[1] %&gt;%
   xml_get_paths()
 #&gt; [[1]]
-#&gt;  [1] &quot;/root/listing&quot;                                       
-#&gt;  [2] &quot;/root/listing/payment_types&quot;                         
-#&gt;  [3] &quot;/root/listing/shipping_info&quot;                         
-#&gt;  [4] &quot;/root/listing/buyer_protection_info&quot;                 
-#&gt;  [5] &quot;/root/listing/seller_info&quot;                           
-#&gt;  [6] &quot;/root/listing/seller_info/seller_name&quot;               
-#&gt;  [7] &quot;/root/listing/seller_info/seller_rating&quot;             
-#&gt;  [8] &quot;/root/listing/auction_info&quot;                          
-#&gt;  [9] &quot;/root/listing/auction_info/current_bid&quot;              
-#&gt; [10] &quot;/root/listing/auction_info/time_left&quot;                
-#&gt; [11] &quot;/root/listing/auction_info/num_items&quot;                
-#&gt; [12] &quot;/root/listing/auction_info/num_bids&quot;                 
-#&gt; [13] &quot;/root/listing/auction_info/started_at&quot;               
-#&gt; [14] &quot;/root/listing/auction_info/bid_increment&quot;            
-#&gt; [15] &quot;/root/listing/auction_info/location&quot;                 
-#&gt; [16] &quot;/root/listing/auction_info/opened&quot;                   
-#&gt; [17] &quot;/root/listing/auction_info/closed&quot;                   
-#&gt; [18] &quot;/root/listing/auction_info/id_num&quot;                   
-#&gt; [19] &quot;/root/listing/auction_info/notes&quot;                    
-#&gt; [20] &quot;/root/listing/auction_info/high_bidder&quot;              
-#&gt; [21] &quot;/root/listing/auction_info/high_bidder/bidder_name&quot;  
-#&gt; [22] &quot;/root/listing/auction_info/high_bidder/bidder_rating&quot;
-#&gt; [23] &quot;/root/listing/bid_history&quot;                           
-#&gt; [24] &quot;/root/listing/bid_history/highest_bid_amount&quot;        
-#&gt; [25] &quot;/root/listing/bid_history/quantity&quot;                  
-#&gt; [26] &quot;/root/listing/item_info&quot;                             
-#&gt; [27] &quot;/root/listing/item_info/memory&quot;                      
-#&gt; [28] &quot;/root/listing/item_info/hard_drive&quot;                  
-#&gt; [29] &quot;/root/listing/item_info/cpu&quot;                         
-#&gt; [30] &quot;/root/listing/item_info/brand&quot;
+#&gt;  [1] &quot;/root/listing&quot;                                        &quot;/root/listing/payment_types&quot;                         
+#&gt;  [3] &quot;/root/listing/shipping_info&quot;                          &quot;/root/listing/buyer_protection_info&quot;                 
+#&gt;  [5] &quot;/root/listing/seller_info&quot;                            &quot;/root/listing/seller_info/seller_name&quot;               
+#&gt;  [7] &quot;/root/listing/seller_info/seller_rating&quot;              &quot;/root/listing/auction_info&quot;                          
+#&gt;  [9] &quot;/root/listing/auction_info/current_bid&quot;               &quot;/root/listing/auction_info/time_left&quot;                
+#&gt; [11] &quot;/root/listing/auction_info/num_items&quot;                 &quot;/root/listing/auction_info/num_bids&quot;                 
+#&gt; [13] &quot;/root/listing/auction_info/started_at&quot;                &quot;/root/listing/auction_info/bid_increment&quot;            
+#&gt; [15] &quot;/root/listing/auction_info/location&quot;                  &quot;/root/listing/auction_info/opened&quot;                   
+#&gt; [17] &quot;/root/listing/auction_info/closed&quot;                    &quot;/root/listing/auction_info/id_num&quot;                   
+#&gt; [19] &quot;/root/listing/auction_info/notes&quot;                     &quot;/root/listing/auction_info/high_bidder&quot;              
+#&gt; [21] &quot;/root/listing/auction_info/high_bidder/bidder_name&quot;   &quot;/root/listing/auction_info/high_bidder/bidder_rating&quot;
+#&gt; [23] &quot;/root/listing/bid_history&quot;                            &quot;/root/listing/bid_history/highest_bid_amount&quot;        
+#&gt; [25] &quot;/root/listing/bid_history/quantity&quot;                   &quot;/root/listing/item_info&quot;                             
+#&gt; [27] &quot;/root/listing/item_info/memory&quot;                       &quot;/root/listing/item_info/hard_drive&quot;                  
+#&gt; [29] &quot;/root/listing/item_info/cpu&quot;                          &quot;/root/listing/item_info/brand&quot;
 
 nodeset[1] %&gt;%
   xml_get_paths(mark_terminal = &quot;&gt;&gt;&quot;) # can mark terminal nodes
 #&gt; [[1]]
-#&gt;  [1] &quot;/root/listing&quot;                                         
-#&gt;  [2] &quot;&gt;&gt;/root/listing/payment_types&quot;                         
-#&gt;  [3] &quot;&gt;&gt;/root/listing/shipping_info&quot;                         
-#&gt;  [4] &quot;&gt;&gt;/root/listing/buyer_protection_info&quot;                 
-#&gt;  [5] &quot;/root/listing/seller_info&quot;                             
-#&gt;  [6] &quot;&gt;&gt;/root/listing/seller_info/seller_name&quot;               
-#&gt;  [7] &quot;&gt;&gt;/root/listing/seller_info/seller_rating&quot;             
-#&gt;  [8] &quot;/root/listing/auction_info&quot;                            
-#&gt;  [9] &quot;&gt;&gt;/root/listing/auction_info/current_bid&quot;              
-#&gt; [10] &quot;&gt;&gt;/root/listing/auction_info/time_left&quot;                
-#&gt; [11] &quot;&gt;&gt;/root/listing/auction_info/num_items&quot;                
-#&gt; [12] &quot;&gt;&gt;/root/listing/auction_info/num_bids&quot;                 
-#&gt; [13] &quot;&gt;&gt;/root/listing/auction_info/started_at&quot;               
-#&gt; [14] &quot;&gt;&gt;/root/listing/auction_info/bid_increment&quot;            
-#&gt; [15] &quot;&gt;&gt;/root/listing/auction_info/location&quot;                 
-#&gt; [16] &quot;&gt;&gt;/root/listing/auction_info/opened&quot;                   
-#&gt; [17] &quot;&gt;&gt;/root/listing/auction_info/closed&quot;                   
-#&gt; [18] &quot;&gt;&gt;/root/listing/auction_info/id_num&quot;                   
-#&gt; [19] &quot;&gt;&gt;/root/listing/auction_info/notes&quot;                    
-#&gt; [20] &quot;/root/listing/auction_info/high_bidder&quot;                
-#&gt; [21] &quot;&gt;&gt;/root/listing/auction_info/high_bidder/bidder_name&quot;  
-#&gt; [22] &quot;&gt;&gt;/root/listing/auction_info/high_bidder/bidder_rating&quot;
-#&gt; [23] &quot;/root/listing/bid_history&quot;                             
-#&gt; [24] &quot;&gt;&gt;/root/listing/bid_history/highest_bid_amount&quot;        
-#&gt; [25] &quot;&gt;&gt;/root/listing/bid_history/quantity&quot;                  
-#&gt; [26] &quot;/root/listing/item_info&quot;                               
-#&gt; [27] &quot;&gt;&gt;/root/listing/item_info/memory&quot;                      
-#&gt; [28] &quot;&gt;&gt;/root/listing/item_info/hard_drive&quot;                  
-#&gt; [29] &quot;&gt;&gt;/root/listing/item_info/cpu&quot;                         
-#&gt; [30] &quot;&gt;&gt;/root/listing/item_info/brand&quot;
+#&gt;  [1] &quot;/root/listing&quot;                                          &quot;&gt;&gt;/root/listing/payment_types&quot;                         
+#&gt;  [3] &quot;&gt;&gt;/root/listing/shipping_info&quot;                          &quot;&gt;&gt;/root/listing/buyer_protection_info&quot;                 
+#&gt;  [5] &quot;/root/listing/seller_info&quot;                              &quot;&gt;&gt;/root/listing/seller_info/seller_name&quot;               
+#&gt;  [7] &quot;&gt;&gt;/root/listing/seller_info/seller_rating&quot;              &quot;/root/listing/auction_info&quot;                            
+#&gt;  [9] &quot;&gt;&gt;/root/listing/auction_info/current_bid&quot;               &quot;&gt;&gt;/root/listing/auction_info/time_left&quot;                
+#&gt; [11] &quot;&gt;&gt;/root/listing/auction_info/num_items&quot;                 &quot;&gt;&gt;/root/listing/auction_info/num_bids&quot;                 
+#&gt; [13] &quot;&gt;&gt;/root/listing/auction_info/started_at&quot;                &quot;&gt;&gt;/root/listing/auction_info/bid_increment&quot;            
+#&gt; [15] &quot;&gt;&gt;/root/listing/auction_info/location&quot;                  &quot;&gt;&gt;/root/listing/auction_info/opened&quot;                   
+#&gt; [17] &quot;&gt;&gt;/root/listing/auction_info/closed&quot;                    &quot;&gt;&gt;/root/listing/auction_info/id_num&quot;                   
+#&gt; [19] &quot;&gt;&gt;/root/listing/auction_info/notes&quot;                     &quot;/root/listing/auction_info/high_bidder&quot;                
+#&gt; [21] &quot;&gt;&gt;/root/listing/auction_info/high_bidder/bidder_name&quot;   &quot;&gt;&gt;/root/listing/auction_info/high_bidder/bidder_rating&quot;
+#&gt; [23] &quot;/root/listing/bid_history&quot;                              &quot;&gt;&gt;/root/listing/bid_history/highest_bid_amount&quot;        
+#&gt; [25] &quot;&gt;&gt;/root/listing/bid_history/quantity&quot;                   &quot;/root/listing/item_info&quot;                               
+#&gt; [27] &quot;&gt;&gt;/root/listing/item_info/memory&quot;                       &quot;&gt;&gt;/root/listing/item_info/hard_drive&quot;                  
+#&gt; [29] &quot;&gt;&gt;/root/listing/item_info/cpu&quot;                          &quot;&gt;&gt;/root/listing/item_info/brand&quot;
 
 ## we can find all feasible paths then collapse
 
@@ -525,12 +495,8 @@ df0[[2]] # works because the recursive dig down hits only the terminal nodes
 ## does not dig by default
 ## use the terminal xpaths to get data frames
 terminal_xpaths
-#&gt; [1] &quot;/root/listing&quot;                         
-#&gt; [2] &quot;/root/listing/seller_info&quot;             
-#&gt; [3] &quot;/root/listing/auction_info&quot;            
-#&gt; [4] &quot;/root/listing/auction_info/high_bidder&quot;
-#&gt; [5] &quot;/root/listing/bid_history&quot;             
-#&gt; [6] &quot;/root/listing/item_info&quot;
+#&gt; [1] &quot;/root/listing&quot;                          &quot;/root/listing/seller_info&quot;              &quot;/root/listing/auction_info&quot;            
+#&gt; [4] &quot;/root/listing/auction_info/high_bidder&quot; &quot;/root/listing/bid_history&quot;              &quot;/root/listing/item_info&quot;
 
 ## we send each terminal xpath to `xml_to_df`. 
 ## the file source is the parsed xml object `doc`, so we set `is_xml = TRUE`
@@ -614,13 +580,13 @@ identical(df1, data.table::as.data.table(df2))</code></pre>
   
 
     
-    <a class="prev" href="/ultinomics.org/post/2017-04-05-highcharter-explainer.html" title="Thinking in `highcharter` - How to build any Highcharts plot in R">
+    <a class="prev" href="https://dantonnoriega.github.io/ultinomics.org/post/2017-04-05-highcharter-explainer.html" title="Thinking in `highcharter` - How to build any Highcharts plot in R">
       Previous
     </a>
     
 
     
-    <a class="next" href="/ultinomics.org/post/2017-07-21-cropping-pdfs.html" title="Cropping a Multiple Page PDF Using Command Line (macOS)">
+    <a class="next" href="https://dantonnoriega.github.io/ultinomics.org/post/2017-07-21-cropping-pdfs.html" title="Cropping a Multiple Page PDF Using Command Line (macOS)">
       Next
     </a>
     
@@ -672,7 +638,7 @@ identical(df1, data.table::as.data.table(df2))</code></pre>
   
 <div class="container footline">
   
-  throw discs and code with <i class='fa fa-heart'></i>
+  throw discs and code with <!-- raw HTML omitted --><!-- raw HTML omitted -->
 
 
 </div>
@@ -681,7 +647,7 @@ identical(df1, data.table::as.data.table(df2))</code></pre>
   
 <div class="container copyright">
   
-  &copy; 2017 Danton Noriega.
+  (c) 2017 Danton Noriega.
 
 
 </div>

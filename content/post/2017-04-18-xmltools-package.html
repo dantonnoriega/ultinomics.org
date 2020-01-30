@@ -6,6 +6,7 @@ tags: ["R Markdown", "XML", "xml2"]
 output: blogdown::html_page
 ---
 
+<script src="/ultinomics.org/rmarkdown-libs/header-attrs/header-attrs.js"></script>
 
 
 <p>I created a new, small <a href="https://github.com/dantonnoriega/xmltools">package called <code>xmltools</code></a> that helps simplify the process of converting XML data into tidy data frames.</p>
@@ -193,70 +194,40 @@ doc %&gt;%
 nodeset[1] %&gt;%
   xml_get_paths()
 #&gt; [[1]]
-#&gt;  [1] &quot;/root/listing&quot;                                       
-#&gt;  [2] &quot;/root/listing/payment_types&quot;                         
-#&gt;  [3] &quot;/root/listing/shipping_info&quot;                         
-#&gt;  [4] &quot;/root/listing/buyer_protection_info&quot;                 
-#&gt;  [5] &quot;/root/listing/seller_info&quot;                           
-#&gt;  [6] &quot;/root/listing/seller_info/seller_name&quot;               
-#&gt;  [7] &quot;/root/listing/seller_info/seller_rating&quot;             
-#&gt;  [8] &quot;/root/listing/auction_info&quot;                          
-#&gt;  [9] &quot;/root/listing/auction_info/current_bid&quot;              
-#&gt; [10] &quot;/root/listing/auction_info/time_left&quot;                
-#&gt; [11] &quot;/root/listing/auction_info/num_items&quot;                
-#&gt; [12] &quot;/root/listing/auction_info/num_bids&quot;                 
-#&gt; [13] &quot;/root/listing/auction_info/started_at&quot;               
-#&gt; [14] &quot;/root/listing/auction_info/bid_increment&quot;            
-#&gt; [15] &quot;/root/listing/auction_info/location&quot;                 
-#&gt; [16] &quot;/root/listing/auction_info/opened&quot;                   
-#&gt; [17] &quot;/root/listing/auction_info/closed&quot;                   
-#&gt; [18] &quot;/root/listing/auction_info/id_num&quot;                   
-#&gt; [19] &quot;/root/listing/auction_info/notes&quot;                    
-#&gt; [20] &quot;/root/listing/auction_info/high_bidder&quot;              
-#&gt; [21] &quot;/root/listing/auction_info/high_bidder/bidder_name&quot;  
-#&gt; [22] &quot;/root/listing/auction_info/high_bidder/bidder_rating&quot;
-#&gt; [23] &quot;/root/listing/bid_history&quot;                           
-#&gt; [24] &quot;/root/listing/bid_history/highest_bid_amount&quot;        
-#&gt; [25] &quot;/root/listing/bid_history/quantity&quot;                  
-#&gt; [26] &quot;/root/listing/item_info&quot;                             
-#&gt; [27] &quot;/root/listing/item_info/memory&quot;                      
-#&gt; [28] &quot;/root/listing/item_info/hard_drive&quot;                  
-#&gt; [29] &quot;/root/listing/item_info/cpu&quot;                         
-#&gt; [30] &quot;/root/listing/item_info/brand&quot;
+#&gt;  [1] &quot;/root/listing&quot;                                        &quot;/root/listing/payment_types&quot;                         
+#&gt;  [3] &quot;/root/listing/shipping_info&quot;                          &quot;/root/listing/buyer_protection_info&quot;                 
+#&gt;  [5] &quot;/root/listing/seller_info&quot;                            &quot;/root/listing/seller_info/seller_name&quot;               
+#&gt;  [7] &quot;/root/listing/seller_info/seller_rating&quot;              &quot;/root/listing/auction_info&quot;                          
+#&gt;  [9] &quot;/root/listing/auction_info/current_bid&quot;               &quot;/root/listing/auction_info/time_left&quot;                
+#&gt; [11] &quot;/root/listing/auction_info/num_items&quot;                 &quot;/root/listing/auction_info/num_bids&quot;                 
+#&gt; [13] &quot;/root/listing/auction_info/started_at&quot;                &quot;/root/listing/auction_info/bid_increment&quot;            
+#&gt; [15] &quot;/root/listing/auction_info/location&quot;                  &quot;/root/listing/auction_info/opened&quot;                   
+#&gt; [17] &quot;/root/listing/auction_info/closed&quot;                    &quot;/root/listing/auction_info/id_num&quot;                   
+#&gt; [19] &quot;/root/listing/auction_info/notes&quot;                     &quot;/root/listing/auction_info/high_bidder&quot;              
+#&gt; [21] &quot;/root/listing/auction_info/high_bidder/bidder_name&quot;   &quot;/root/listing/auction_info/high_bidder/bidder_rating&quot;
+#&gt; [23] &quot;/root/listing/bid_history&quot;                            &quot;/root/listing/bid_history/highest_bid_amount&quot;        
+#&gt; [25] &quot;/root/listing/bid_history/quantity&quot;                   &quot;/root/listing/item_info&quot;                             
+#&gt; [27] &quot;/root/listing/item_info/memory&quot;                       &quot;/root/listing/item_info/hard_drive&quot;                  
+#&gt; [29] &quot;/root/listing/item_info/cpu&quot;                          &quot;/root/listing/item_info/brand&quot;
 
 nodeset[1] %&gt;%
   xml_get_paths(mark_terminal = &quot;&gt;&gt;&quot;) # can mark terminal nodes
 #&gt; [[1]]
-#&gt;  [1] &quot;/root/listing&quot;                                         
-#&gt;  [2] &quot;&gt;&gt;/root/listing/payment_types&quot;                         
-#&gt;  [3] &quot;&gt;&gt;/root/listing/shipping_info&quot;                         
-#&gt;  [4] &quot;&gt;&gt;/root/listing/buyer_protection_info&quot;                 
-#&gt;  [5] &quot;/root/listing/seller_info&quot;                             
-#&gt;  [6] &quot;&gt;&gt;/root/listing/seller_info/seller_name&quot;               
-#&gt;  [7] &quot;&gt;&gt;/root/listing/seller_info/seller_rating&quot;             
-#&gt;  [8] &quot;/root/listing/auction_info&quot;                            
-#&gt;  [9] &quot;&gt;&gt;/root/listing/auction_info/current_bid&quot;              
-#&gt; [10] &quot;&gt;&gt;/root/listing/auction_info/time_left&quot;                
-#&gt; [11] &quot;&gt;&gt;/root/listing/auction_info/num_items&quot;                
-#&gt; [12] &quot;&gt;&gt;/root/listing/auction_info/num_bids&quot;                 
-#&gt; [13] &quot;&gt;&gt;/root/listing/auction_info/started_at&quot;               
-#&gt; [14] &quot;&gt;&gt;/root/listing/auction_info/bid_increment&quot;            
-#&gt; [15] &quot;&gt;&gt;/root/listing/auction_info/location&quot;                 
-#&gt; [16] &quot;&gt;&gt;/root/listing/auction_info/opened&quot;                   
-#&gt; [17] &quot;&gt;&gt;/root/listing/auction_info/closed&quot;                   
-#&gt; [18] &quot;&gt;&gt;/root/listing/auction_info/id_num&quot;                   
-#&gt; [19] &quot;&gt;&gt;/root/listing/auction_info/notes&quot;                    
-#&gt; [20] &quot;/root/listing/auction_info/high_bidder&quot;                
-#&gt; [21] &quot;&gt;&gt;/root/listing/auction_info/high_bidder/bidder_name&quot;  
-#&gt; [22] &quot;&gt;&gt;/root/listing/auction_info/high_bidder/bidder_rating&quot;
-#&gt; [23] &quot;/root/listing/bid_history&quot;                             
-#&gt; [24] &quot;&gt;&gt;/root/listing/bid_history/highest_bid_amount&quot;        
-#&gt; [25] &quot;&gt;&gt;/root/listing/bid_history/quantity&quot;                  
-#&gt; [26] &quot;/root/listing/item_info&quot;                               
-#&gt; [27] &quot;&gt;&gt;/root/listing/item_info/memory&quot;                      
-#&gt; [28] &quot;&gt;&gt;/root/listing/item_info/hard_drive&quot;                  
-#&gt; [29] &quot;&gt;&gt;/root/listing/item_info/cpu&quot;                         
-#&gt; [30] &quot;&gt;&gt;/root/listing/item_info/brand&quot;
+#&gt;  [1] &quot;/root/listing&quot;                                          &quot;&gt;&gt;/root/listing/payment_types&quot;                         
+#&gt;  [3] &quot;&gt;&gt;/root/listing/shipping_info&quot;                          &quot;&gt;&gt;/root/listing/buyer_protection_info&quot;                 
+#&gt;  [5] &quot;/root/listing/seller_info&quot;                              &quot;&gt;&gt;/root/listing/seller_info/seller_name&quot;               
+#&gt;  [7] &quot;&gt;&gt;/root/listing/seller_info/seller_rating&quot;              &quot;/root/listing/auction_info&quot;                            
+#&gt;  [9] &quot;&gt;&gt;/root/listing/auction_info/current_bid&quot;               &quot;&gt;&gt;/root/listing/auction_info/time_left&quot;                
+#&gt; [11] &quot;&gt;&gt;/root/listing/auction_info/num_items&quot;                 &quot;&gt;&gt;/root/listing/auction_info/num_bids&quot;                 
+#&gt; [13] &quot;&gt;&gt;/root/listing/auction_info/started_at&quot;                &quot;&gt;&gt;/root/listing/auction_info/bid_increment&quot;            
+#&gt; [15] &quot;&gt;&gt;/root/listing/auction_info/location&quot;                  &quot;&gt;&gt;/root/listing/auction_info/opened&quot;                   
+#&gt; [17] &quot;&gt;&gt;/root/listing/auction_info/closed&quot;                    &quot;&gt;&gt;/root/listing/auction_info/id_num&quot;                   
+#&gt; [19] &quot;&gt;&gt;/root/listing/auction_info/notes&quot;                     &quot;/root/listing/auction_info/high_bidder&quot;                
+#&gt; [21] &quot;&gt;&gt;/root/listing/auction_info/high_bidder/bidder_name&quot;   &quot;&gt;&gt;/root/listing/auction_info/high_bidder/bidder_rating&quot;
+#&gt; [23] &quot;/root/listing/bid_history&quot;                              &quot;&gt;&gt;/root/listing/bid_history/highest_bid_amount&quot;        
+#&gt; [25] &quot;&gt;&gt;/root/listing/bid_history/quantity&quot;                   &quot;/root/listing/item_info&quot;                               
+#&gt; [27] &quot;&gt;&gt;/root/listing/item_info/memory&quot;                       &quot;&gt;&gt;/root/listing/item_info/hard_drive&quot;                  
+#&gt; [29] &quot;&gt;&gt;/root/listing/item_info/cpu&quot;                          &quot;&gt;&gt;/root/listing/item_info/brand&quot;
 
 ## we can find all feasible paths then collapse
 
@@ -339,12 +310,8 @@ df0[[2]] # works because the recursive dig down hits only the terminal nodes
 ## does not dig by default
 ## use the terminal xpaths to get data frames
 terminal_xpaths
-#&gt; [1] &quot;/root/listing&quot;                         
-#&gt; [2] &quot;/root/listing/seller_info&quot;             
-#&gt; [3] &quot;/root/listing/auction_info&quot;            
-#&gt; [4] &quot;/root/listing/auction_info/high_bidder&quot;
-#&gt; [5] &quot;/root/listing/bid_history&quot;             
-#&gt; [6] &quot;/root/listing/item_info&quot;
+#&gt; [1] &quot;/root/listing&quot;                          &quot;/root/listing/seller_info&quot;              &quot;/root/listing/auction_info&quot;            
+#&gt; [4] &quot;/root/listing/auction_info/high_bidder&quot; &quot;/root/listing/bid_history&quot;              &quot;/root/listing/item_info&quot;
 
 ## we send each terminal xpath to `xml_to_df`. 
 ## the file source is the parsed xml object `doc`, so we set `is_xml = TRUE`
